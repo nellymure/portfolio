@@ -20,6 +20,12 @@ import GradientsBg from './components/GradientsBg.vue'
   </header>
 
   <RouterView /> -->
+
+  <!-- <RouterView v-slot="{ Component }">
+    <Transition name="slide-fade" mode="out-in">
+      <Component :is="Component" />
+    </Transition>
+  </RouterView> -->
 </template>
 
 <style scoped>

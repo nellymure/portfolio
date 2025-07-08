@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import HeaderOutlined from './HeaderOutlined.vue'
+
 document.addEventListener('DOMContentLoaded', () => {
   const interBubble = document.querySelector<HTMLDivElement>('.interactive')!
   let curX = 0
@@ -25,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <template>
-  <div class="text-container">Nelly Mure</div>
+  <!-- <div class="text-container asterisk">Nelly Mure</div>
   <div class="gradient-bg">
     <svg xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -49,10 +51,23 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="g5 bubble-bg"></div>
       <div class="interactive"></div>
     </div>
-  </div>
+  </div> -->
+  <HeaderOutlined class="test">
+    <template v-slot:content>
+      <h1>Nelly Mure Mure Mure Mure Mure Mure</h1>
+    </template>
+  </HeaderOutlined>
+  <HeaderOutlined class="test">
+    <template v-slot:content>
+      <h6>Nelly Mure Mure Mure Mure Mure Mure</h6>
+    </template>
+  </HeaderOutlined>
 </template>
 
 <style scoped>
+.test {
+  position: absolute;
+}
 .text-container {
   z-index: 100;
   width: 100vw;
@@ -64,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   justify-content: center;
   align-items: center;
   font-size: 96px;
-  color: white;
+  color: var(--color-hex-beige-light);
   opacity: 0.8;
   user-select: none;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
@@ -185,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
 .bubble-bg {
   background: radial-gradient(
       circle at center,
-      var(--color-hex-bubble-gradient-1) 20%,
+      var(--color-hex-bubble-gradient-1) 30%,
       var(--color-hex-bubble-gradient-2) 15%,
       var(--color-hex-bubble-gradient-3) 40%
     )
@@ -195,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: absolute;
   background: radial-gradient(
       circle at center,
-      var(--color-hex-bubble-gradient-1) 20%,
+      var(--color-hex-bubble-gradient-1) 30%,
       var(--color-hex-bubble-gradient-2),
       var(--color-hex-bubble-gradient-3) 50%
     )
