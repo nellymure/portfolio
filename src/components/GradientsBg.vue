@@ -1,34 +1,44 @@
 <script setup lang="ts">
-import { routes } from '@/router'
+import { ref } from 'vue'
+import router, { routes } from '@/router'
 import { RouterLink } from 'vue-router'
 
-document.addEventListener('DOMContentLoaded', () => {
-  const interBubble = document.querySelector<HTMLDivElement>('.interactive')!
-  let curX = 0
-  let curY = 0
-  let tgX = 0
-  let tgY = 0
+const interactiveBubble = ref<HTMLDivElement>()
+let curX = 0
+let curY = 0
+let tgX = 0
+let tgY = 0
 
-  function move() {
-    curX += (tgX - curX) / 20
-    curY += (tgY - curY) / 20
-    interBubble.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`
-    requestAnimationFrame(() => {
-      move()
-    })
+function move() {
+  curX += (tgX - curX) / 20
+  curY += (tgY - curY) / 20
+  if (interactiveBubble.value) {
+    interactiveBubble.value.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`
   }
-
-  window.addEventListener('mousemove', (event) => {
-    tgX = event.clientX
-    tgY = event.clientY
+  requestAnimationFrame(() => {
+    move()
   })
+}
 
-  move()
-})
+function handleMouseMove(event: MouseEvent) {
+  tgX = event.clientX
+  tgY = event.clientY
+}
+
+function goToNextPage() {
+  router.push({ name: routes.ABOUT.name })
+  router.go(1)
+}
+move()
 </script>
 
 <template>
-  <router-link :to="{ name: routes.ABOUT.name }">
+  <router-link
+    @mousemove="handleMouseMove"
+    @wheel="goToNextPage"
+    @touchstart="goToNextPage"
+    :to="{ name: routes.ABOUT.name }"
+  >
     <div class="text-container">Nelly Mure</div>
     <div class="gradient-bg">
       <svg xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="g3 bubble-bg"></div>
         <div class="g4 bubble-bg"></div>
         <div class="g5 bubble-bg"></div>
-        <div class="interactive"></div>
+        <div class="interactive" ref="interactiveBubble"></div>
       </div>
     </div>
     <!-- <HeaderOutline class="test">
