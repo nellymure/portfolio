@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import HeaderOutlined from './HeaderOutlined.vue'
+import { routes } from '@/router'
+import { RouterLink } from 'vue-router'
 
 document.addEventListener('DOMContentLoaded', () => {
   const interBubble = document.querySelector<HTMLDivElement>('.interactive')!
@@ -27,47 +28,46 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <template>
-  <!-- <div class="text-container asterisk">Nelly Mure</div>
-  <div class="gradient-bg">
-    <svg xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-          <feColorMatrix
-            in="blur"
-            mode="matrix"
-            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
-            result="goo"
-          />
-          <feBlend in="SourceGraphic" in2="goo" />
-        </filter>
-      </defs>
-    </svg>
-    <div class="gradients-container">
-      <div class="g1 bubble-bg"></div>
-      <div class="g2 bubble-bg"></div>
-      <div class="g3 bubble-bg"></div>
-      <div class="g4 bubble-bg"></div>
-      <div class="g5 bubble-bg"></div>
-      <div class="interactive"></div>
+  <router-link :to="{ name: routes.ABOUT.name }">
+    <div class="text-container">Nelly Mure</div>
+    <div class="gradient-bg">
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+              result="goo"
+            />
+            <feBlend in="SourceGraphic" in2="goo" />
+          </filter>
+        </defs>
+      </svg>
+      <div class="gradients-container">
+        <div class="g1 bubble-bg"></div>
+        <div class="g2 bubble-bg"></div>
+        <div class="g3 bubble-bg"></div>
+        <div class="g4 bubble-bg"></div>
+        <div class="g5 bubble-bg"></div>
+        <div class="interactive"></div>
+      </div>
     </div>
-  </div> -->
-  <HeaderOutlined class="test">
-    <template v-slot:content>
-      <h1>Nelly Mure Mure Mure Mure Mure Mure</h1>
-    </template>
-  </HeaderOutlined>
-  <HeaderOutlined class="test">
-    <template v-slot:content>
-      <h6>Nelly Mure Mure Mure Mure Mure Mure</h6>
-    </template>
-  </HeaderOutlined>
+    <!-- <HeaderOutline class="test">
+      <template v-slot:content>
+        <h1>une suite de mots sans signification utilisye à titre provisoire</h1>
+      </template>
+    </HeaderOutline>
+    <HeaderOutline class="test">
+      <template v-slot:content>
+        <h6>une suite de mots sans signification utilisye à titre provisoire</h6>
+      </template>
+    </HeaderOutline> -->
+  </router-link>
 </template>
 
 <style scoped>
-.test {
-  position: absolute;
-}
 .text-container {
   z-index: 100;
   width: 100vw;

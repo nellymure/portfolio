@@ -1,4 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps({
+  outlineWidth: {
+    type: String,
+    default: '0.3em',
+  },
+})
+</script>
 
 <template>
   <div class="container">
@@ -24,23 +31,23 @@
   display: flex;
   justify-content: center;
   flex-basis: auto;
-  border: 1pt solid var(--color-hex-text-orange);
+  border: v-bind(outlineWidth) solid var(--color-hex-text-orange);
   border-left: 0;
   border-right: 0;
   width: 100%;
 }
 .left {
-  flex-shrink: 0;
-  width: 30px;
-  border: 1pt solid var(--color-hex-text-orange);
-  border-radius: 30px 0 0 30px;
+  width: 20%;
+  transform: translateX(52%);
+  border: v-bind(outlineWidth) solid var(--color-hex-text-orange);
   border-right: 0;
+  border-radius: 50% 0 0 50%;
 }
 .right {
-  flex-shrink: 0;
-  width: 30px;
-  border: 1pt solid var(--color-hex-text-orange);
-  border-radius: 0 30px 30px 0;
+  width: 20%;
+  transform: translateX(-52%);
+  border: v-bind(outlineWidth) solid var(--color-hex-text-orange);
   border-left: 0;
+  border-radius: 0 50% 50% 0;
 }
 </style>
