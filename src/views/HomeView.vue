@@ -33,56 +33,56 @@ move()
 </script>
 
 <template>
-  <!-- <router-link
+  <router-link
     @mousemove="handleMouseMove"
     @wheel="goToNextPage"
     @touchstart="goToNextPage"
     :to="{ name: routes.ABOUT.name }"
-  > -->
-  <div class="hover-container">
-    <div class="banner">
-      <div>
-        nelly mure
-        <span class="asterisk">✳</span>
+  >
+    <div class="hover-container">
+      <div class="banner">
+        <div>
+          nelly mure
+          <span class="asterisk">✳</span>
+        </div>
+        <div>
+          design d'espace
+          <span class="asterisk">✳</span>
+        </div>
+        <div>
+          scenographie
+          <span class="sd-asterisk">✳</span>
+        </div>
       </div>
-      <div>
-        design d'espace
-        <span class="asterisk">✳</span>
-      </div>
-      <div>
-        scenographie
-        <span class="sd-asterisk">✳</span>
+      <div class="main-title-container">
+        <div class="main-title">portfolio</div>
       </div>
     </div>
-    <div class="main-title-container">
-      <div class="main-title">portfolio</div>
+    <div class="gradient-bg">
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+              result="goo"
+            />
+            <feBlend in="SourceGraphic" in2="goo" />
+          </filter>
+        </defs>
+      </svg>
+      <div class="gradients-container">
+        <div class="g1 bubble-bg"></div>
+        <div class="g2 bubble-bg"></div>
+        <div class="g3 bubble-bg"></div>
+        <div class="g4 bubble-bg"></div>
+        <div class="g5 bubble-bg"></div>
+        <div class="interactive" ref="interactiveBubble"></div>
+      </div>
     </div>
-  </div>
-  <div class="gradient-bg">
-    <svg xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-          <feColorMatrix
-            in="blur"
-            mode="matrix"
-            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
-            result="goo"
-          />
-          <feBlend in="SourceGraphic" in2="goo" />
-        </filter>
-      </defs>
-    </svg>
-    <div class="gradients-container">
-      <div class="g1 bubble-bg"></div>
-      <div class="g2 bubble-bg"></div>
-      <div class="g3 bubble-bg"></div>
-      <div class="g4 bubble-bg"></div>
-      <div class="g5 bubble-bg"></div>
-      <div class="interactive" ref="interactiveBubble"></div>
-    </div>
-  </div>
-  <!-- </router-link> -->
+  </router-link>
 </template>
 
 <style scoped>
@@ -227,7 +227,7 @@ move()
   height: 0;
 }
 .gradient-bg .gradients-container {
-  filter: url(#goo) blur(40px);
+  filter: url(#goo) blur(1.8vmax);
   width: 100%;
   height: 100%;
 }
