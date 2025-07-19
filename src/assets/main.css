@@ -5,7 +5,6 @@
 *::after {
   box-sizing: border-box;
   margin: 0;
-  font-weight: normal;
 }
 
 body {
@@ -14,20 +13,10 @@ body {
   font-style: normal;
   font-weight: var(--font-weight-light);
   font-size: 13pt;
-  color: var(--color-hex-text);
-
-  min-height: 100vh;
-
-  background: var(--color-background);
-  transition:
-    color 0.5s,
-    background-color 0.5s;
   line-height: 1.6;
-  font-family: var(--font-family-text);
-  font-size: 15px;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  color: var(--color-hex-text);
+  min-height: 100vh;
 }
 
 .text-body {

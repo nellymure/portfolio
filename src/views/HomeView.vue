@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import router, { routes } from '@/router'
+import router, { routes, getRouteName } from '@/router'
 import { RouterLink } from 'vue-router'
 
 const interactiveBubble = ref<HTMLDivElement>()
@@ -26,7 +26,7 @@ function handleMouseMove(event: MouseEvent) {
 }
 
 function goToNextPage() {
-  router.push({ name: routes.ABOUT.name })
+  router.push({ name: getRouteName(routes.ABOUT) })
   router.go(1)
 }
 move()
@@ -37,7 +37,7 @@ move()
     @mousemove="handleMouseMove"
     @wheel="goToNextPage"
     @touchstart="goToNextPage"
-    :to="{ name: routes.ABOUT.name }"
+    :to="{ name: getRouteName(routes.ABOUT) }"
   >
     <div class="hover-container">
       <div class="banner">
@@ -112,10 +112,10 @@ move()
   font-style: normal;
   font-weight: var(--font-weight-normal);
   font-size: 45vw;
-  line-height: 45vw;
+  line-height: 1;
 }
 .gradient-bg {
-  background-image: url('@/assets/gradient-bg.png');
+  background-image: url('@/assets/images/home/gradient-bg.png');
   background-size: 200% 200%;
   animation: movingBgGradient 20s linear infinite;
   height: 100vh;
@@ -165,7 +165,7 @@ move()
     position: absolute;
     bottom: 0;
     font-size: 25vh;
-    line-height: 25vh;
+    line-height: 1;
     transform: rotate(-90deg) translateY(-0.15em) translateX(-1.02em);
     transform-origin: top left;
   }
