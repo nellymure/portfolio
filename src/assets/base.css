@@ -81,7 +81,7 @@
   font-family: 'Reem Kufi';
   src: url('@/assets/fonts/ReemKufi-Regular.ttf');
   font-style: normal;
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-normal);
 }
 
 :root {
