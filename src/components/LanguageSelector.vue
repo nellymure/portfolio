@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { switchI18nLocale } from '@/i18n/i18n'
+
+const rootStyles = getComputedStyle(document.documentElement)
+const mainColor = rootStyles.getPropertyValue('--color-hex-salmon-dark')
+const secondaryColor = rootStyles.getPropertyValue('--color-hex-salmon')
 </script>
 
 <template>
@@ -21,8 +25,8 @@ import { switchI18nLocale } from '@/i18n/i18n'
       d="M38.019 34l-.87-.49c-.207-.116-5.092-2.901-8.496-7.667l1.627-1.162c3.139 4.394 7.805 7.061 7.851 7.087L39 32.26 38.019 34zM26 22H40V24H26z"
     />
     <path fill="#546E7A" d="M32 20H34V24H32z" />
-    <path fill="#2196F3" d="M33,35H8c-1.104,0-2-0.896-2-2V8c0-1.104,0.896-2,2-2h14L33,35z" />
-    <path fill="#3F51B5" d="M26 42L23 35 33 35z" />
+    <path :fill="mainColor" d="M33,35H8c-1.104,0-2-0.896-2-2V8c0-1.104,0.896-2,2-2h14L33,35z" />
+    <path :fill="secondaryColor" d="M26 42L23 35 33 35z" />
     <path
       fill="#FFF"
       d="M19.172,24h-4.36l-1.008,3H11l4.764-13h2.444L23,27h-2.805L19.172,24z M15.444,22h3.101l-1.559-4.714L15.444,22z"
