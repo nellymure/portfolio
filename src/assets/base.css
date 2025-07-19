@@ -102,13 +102,4 @@
   --color-hex-orange: #ff6131;
   --color-hex-violet: #cfb4dd;
   --color-hex-beige-light: #fff3e5;
-
-  /* Gradient Bubble */
-  --circle-size: 80%;
-  --blending: hard-light;
-  --color-hex-bubble-bg-gradient-1: #b183b8;
-  --color-hex-bubble-bg-gradient-2: #cfb4dd;
-  --color-hex-bubble-gradient-1: #ff6131;
-  --color-hex-bubble-gradient-2: #e1d9c1;
-  --color-hex-bubble-gradient-3: #ff613100;
 }
