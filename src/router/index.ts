@@ -50,6 +50,10 @@ function getI18nLocaleForRoute() {
 }
 
 router.beforeEach((to, _from) => {
+  if (to.path == '/') {
+    return
+  }
+
   const localeUrlSegment = to.path.split('/')
   const locale = localeUrlSegment[1]
   if (!SUPPORT_LOCALES.includes(locale)) {
@@ -67,7 +71,7 @@ interface Route {
 }
 
 export function getRouteName(route: Route) {
-  return `${getI18nLocaleForRoute()}.${route.name}`
+  return route.name == routes.HOME.name ? route.name : `${getI18nLocaleForRoute()}.${route.name}`
 }
 
 export default router

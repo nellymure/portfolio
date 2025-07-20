@@ -1,5 +1,6 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
+import { getRouteName, routes } from '@/router'
 const { t } = useI18n()
 </script>
 
@@ -11,7 +12,7 @@ const { t } = useI18n()
     </p>
     <p>
       {{ t('check url or') }}
-      <router-link to="/">{{ t('click here') }}</router-link>
+      <router-link :to="{ name: getRouteName(routes.HOME) }">{{ t('click here') }}</router-link>
       {{ t('to return home') }}
     </p>
   </div>
