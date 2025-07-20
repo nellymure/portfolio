@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import LanguageSelector from '@/components/LanguageSelector.vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
@@ -49,7 +49,7 @@ const { t } = useI18n()
   }
 </i18n>
 
-<style>
+<style scoped>
 .about {
   width: 100vw;
   height: 100vh;
@@ -61,9 +61,8 @@ const { t } = useI18n()
 .title {
   display: flex;
   flex-direction: row;
-  color: var(--color-hex-text-orange);
+  color: var(--color-hex-black-orange);
   font-family: var(--font-family-le-murmure);
-  font-style: normal;
   font-weight: var(--font-weight-normal);
   font-size: 10vw;
   line-height: 1;

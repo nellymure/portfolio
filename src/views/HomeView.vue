@@ -1,43 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import router, { routes, getRouteName } from '@/router'
 import { RouterLink } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
-const interactiveBubble = ref<HTMLDivElement>()
-let curX = 0
-let curY = 0
-let tgX = 0
-let tgY = 0
-
-function move() {
-  curX += (tgX - curX) / 20
-  curY += (tgY - curY) / 20
-  if (interactiveBubble.value) {
-    interactiveBubble.value.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`
-  }
-  requestAnimationFrame(() => {
-    move()
-  })
-}
-
-function handleMouseMove(event: MouseEvent) {
-  tgX = event.clientX
-  tgY = event.clientY
-}
+const { t } = useI18n()
+const nextPage = routes.HUB
 
 function goToNextPage() {
-  router.push({ name: getRouteName(routes.ABOUT) })
+  router.push({ name: getRouteName(nextPage) })
   router.go(1)
 }
-move()
 </script>
 
 <template>
   <router-link
-    @mousemove="handleMouseMove"
     @wheel="goToNextPage"
     @touchstart="goToNextPage"
-    :to="{ name: getRouteName(routes.ABOUT) }"
+    :to="{ name: getRouteName(nextPage) }"
   >
     <div class="hover-container">
       <div class="banner">
@@ -46,11 +25,11 @@ move()
           <span class="asterisk">✳</span>
         </div>
         <div>
-          design d'espace
+          {{ t('spatial design') }}
           <span class="asterisk">✳</span>
         </div>
         <div>
-          scenographie
+          {{ t('scenography') }}
           <span class="sd-asterisk">✳</span>
         </div>
       </div>
@@ -61,6 +40,19 @@ move()
     <div class="gradient-bg"></div>
   </router-link>
 </template>
+
+<i18n>
+  {
+    "fr": {
+      "spatial design": "design d'espace",
+      "scenography": "scenographie",
+    },
+    "en": {
+      "spatial design": "spatial design",
+      "scenography": "scenography",
+    }
+  }
+</i18n>
 
 <style scoped>
 .hover-container {
@@ -87,10 +79,9 @@ move()
   row-gap: 0.5em;
   text-align: center;
   font-family: var(--font-family-reem-kufi);
-  font-style: normal;
   font-weight: var(--font-weight-normal);
   font-size: 1.5vw;
-  color: var(--color-hex-text-beige);
+  color: var(--color-hex-beige-light);
   text-transform: uppercase;
 }
 .asterisk {
@@ -107,9 +98,8 @@ move()
   align-items: flex-end;
 }
 .main-title {
-  color: var(--color-hex-text-beige);
+  color: var(--color-hex-beige-light);
   font-family: var(--font-family-le-murmure);
-  font-style: normal;
   font-weight: var(--font-weight-normal);
   font-size: 45vw;
   line-height: 1;

@@ -6,84 +6,72 @@
   --font-weight-semi-bold: 600; /* Semi-Bold */
   --font-weight-black: 900; /* Black */
 }
-
 @font-face {
   font-family: 'Adobe Song Std';
   src: url('@/assets/fonts/AdobeSongStd-Light.otf') format('opentype');
   font-style: normal;
   font-weight: var(--font-weight-light);
 }
-
 @font-face {
   font-family: 'Cormorant Infant';
   src: url('@/assets/fonts/CormorantInfant-Italic.ttf') format('truetype');
   font-style: italic;
   font-weight: var(--font-weight-normal);
 }
-
 @font-face {
   font-family: 'Cormorant Infant';
   src: url('@/assets/fonts/CormorantInfant-Medium.ttf') format('truetype');
   font-style: normal;
   font-weight: var(--font-weight-medium);
 }
-
 @font-face {
   font-family: 'Cormorant Infant';
   src: url('@/assets/fonts/CormorantInfant-Regular.ttf') format('truetype');
   font-style: normal;
   font-weight: var(--font-weight-normal);
 }
-
 @font-face {
   font-family: 'Le Murmure';
   src: url('@/assets/fonts/le-murmure.ttf') format('truetype');
   font-style: normal;
   font-weight: var(--font-weight-normal);
 }
-
 @font-face {
   font-family: 'Minion Pro';
   src: url('@/assets/fonts/MinionPro-Regular.otf') format('opentype');
   font-style: normal;
   font-weight: var(--font-weight-normal);
 }
-
 @font-face {
   font-family: 'Montserrat';
   src: url('@/assets/fonts/Montserrat-Black.ttf') format('truetype');
   font-style: normal;
   font-weight: var(--font-weight-black);
 }
-
 @font-face {
   font-family: 'Montserrat';
   src: url('@/assets/fonts/Montserrat-Medium.ttf') format('truetype');
   font-style: normal;
   font-weight: var(--font-weight-medium);
 }
-
 @font-face {
   font-family: 'Montserrat';
   src: url('@/assets/fonts/Montserrat-SemiBold.ttf') format('truetype');
   font-style: normal;
   font-weight: var(--font-weight-semi-bold);
 }
-
 @font-face {
   font-family: 'Montserrat';
   src: url('@/assets/fonts/Montserrat-Thin.ttf') format('truetype');
   font-style: normal;
   font-weight: var(--font-weight-light);
 }
-
 @font-face {
   font-family: 'Reem Kufi';
   src: url('@/assets/fonts/ReemKufi-Regular.ttf') format('truetype');
   font-style: normal;
   font-weight: var(--font-weight-normal);
 }
-
 :root {
   --font-family-adobe-song: 'Adobe Song Std';
   --font-family-cormorant-infant: 'Cormorant Infant';
@@ -93,13 +81,12 @@
   --font-family-reem-kufi: 'Reem Kufi';
 
   /* Nelly's color palette */
-  --color-hex-text: #231f20;
-  --color-hex-text-orange: #ef6146;
-  --color-hex-text-beige: #fff3e5;
-  --color-hex-grey: #d7cec7;
+  --color-hex-black: #231f20;
+  --color-hex-grey: #ebebeb;
   --color-hex-salmon: #fbbb96;
   --color-hex-salmon-dark: #ea9e78;
-  --color-hex-orange: #ff6131;
+  --color-hex-orange: #ef6146;
   --color-hex-violet: #cfb4dd;
+  --color-hex-beige: #d7cec7;
   --color-hex-beige-light: #fff3e5;
 }

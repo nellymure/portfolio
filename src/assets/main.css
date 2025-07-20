@@ -6,56 +6,54 @@
   box-sizing: border-box;
   margin: 0;
 }
-
+:root {
+  font-size: 1.5vw;
+}
+@media (orientation: portrait) {
+  :root {
+    font-size: 1.5vh;
+  }
+}
 body {
   /* Fonts */
   font-family: var(--font-family-montserrat);
-  font-style: normal;
   font-weight: var(--font-weight-light);
-  font-size: 13pt;
+  font-size: 1.083rem;
   line-height: 1.6;
   text-rendering: geometricPrecision;
-  color: var(--color-hex-text);
+  color: var(--color-hex-black);
   min-height: 100vh;
+  background-color: var(--color-hex-white);
+  text-align: justify;
+  hyphens: auto;
 }
-
 .text-body {
   font-family: var(--font-family-montserrat);
-  font-style: normal;
   font-weight: var(--font-weight-light);
-  font-size: 13pt;
-  color: var(--color-hex-text);
+  font-size: 1.083rem;
+  color: var(--color-hex-black);
 }
-
 .text-body-bold {
   font-family: var(--font-family-montserrat);
-  font-style: normal;
   font-weight: var(--font-weight-semi-bold);
-  font-size: 14.1pt;
-  color: var(--color-hex-text);
+  font-size: 1.175rem;
+  color: var(--color-hex-black);
 }
-
 .text-header-outlined {
   font-family: var(--font-family-adobe-song);
-  font-style: normal;
   font-weight: var(--font-weight-light);
-  font-size: 21.4pt;
-  color: var(--color-hex-text-orange);
+  font-size: 1.783rem;
+  color: var(--color-hex-black-orange);
   border-radius: 25px;
 }
-
 .asterisk {
   font-family: var(--font-family-asterisk);
 }
-
-.section-title {
-  font-family: var(--font-family-section-title);
+.folder-title {
+  font-family: var(--font-family-cormorant-infant);
+  font-style: italic;
+  text-transform: uppercase;
 }
-
-.section-title {
-  font-family: var(--font-family-section-title);
-}
-
 h1,
 h2,
 h3,
@@ -63,4 +61,17 @@ h4,
 h5,
 h6 {
   font-family: var(--font-family-adobe-song);
+  text-align: left;
+}
+.my-2em {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+@media (orientation: portrait) {
+  .mb-0-portrait {
+    margin-bottom: 0;
+  }
+}
+.text-center {
+  text-align: center;
 }

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { getRouteName, routes } from '@/router'
 const { t } = useI18n()
@@ -35,7 +35,7 @@ const { t } = useI18n()
   }
 </i18n>
 
-<style>
+<style scoped>
 .container {
   width: 100vw;
   height: 100vh;
