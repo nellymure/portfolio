@@ -6,7 +6,7 @@ import CamargueMuseumArticle from '@/components/sections/exhibition/CamargueMuse
 
 const { t } = useI18n()
 const articles = ref<HTMLElement | null>(null)
-const folderImageContainer = ref<HTMLElement | null>(null)
+const folderImage = ref<HTMLElement | null>(null)
 const navbarTextColor = ref('var(--color-hex-beige-light)')
 
 function updateTextColor() {
@@ -31,16 +31,16 @@ onBeforeUnmount(() => {
 })
 
 function animateFolderImage(articlesPosY: number) {
-  if (!folderImageContainer.value) {
+  if (!folderImage.value) {
     return
   }
 
   const { innerHeight, innerWidth } = window
   const margin = innerHeight * (innerHeight < innerWidth ? 0.2 : 0.7)
   if (articlesPosY < innerHeight - margin) {
-    folderImageContainer.value.style.opacity = `${articlesPosY / (innerHeight - margin)}`
-  } else if (folderImageContainer.value.style.opacity != '1') {
-    folderImageContainer.value.style.opacity = '1'
+    folderImage.value.style.opacity = `${articlesPosY / (innerHeight - margin)}`
+  } else if (folderImage.value.style.opacity != '1') {
+    folderImage.value.style.opacity = '1'
   }
 }
 </script>
@@ -50,13 +50,12 @@ function animateFolderImage(articlesPosY: number) {
     <SectionNavbar />
     <div class="content">
       <div class="folder-separator">
-        <div class="folder-image-container" ref="folderImageContainer">
-          <img
-            class="folder-image"
-            src="@/assets/images/sections/exhibition/coupe-concept.jpg"
-            alt="Exhibition main image"
-          />
-        </div>
+        <img
+          class="folder-image"
+          ref="folderImage"
+          src="@/assets/images/sections/exhibition/coupe-concept.jpg"
+          alt="Exhibition main image"
+        />
         <div class="folder-title">
           {{ t('title') }}
         </div>
@@ -102,18 +101,8 @@ function animateFolderImage(articlesPosY: number) {
   align-items: center;
   padding-bottom: 10vh;
 }
-.folder-image-container {
-  position: relative;
-  height: 60%;
-  width: 60%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .folder-image {
-  position: absolute;
-  width: 130%;
+  height: 60%;
   object-fit: contain;
 }
 .folder-title {
