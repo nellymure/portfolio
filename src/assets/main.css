@@ -25,7 +25,6 @@ body {
   min-height: 100vh;
   background-color: var(--color-hex-white);
   text-align: justify;
-  hyphens: auto;
 }
 .text-body {
   font-family: var(--font-family-montserrat);
@@ -62,11 +61,4 @@ h5,
 h6 {
   font-family: var(--font-family-adobe-song);
   text-align: left;
-}
-.my-2em {
-  margin-top: 2em;
-  margin-bottom: 2em;
-}
-.text-center {
-  text-align: center;
 }

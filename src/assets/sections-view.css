@@ -6,27 +6,17 @@
   line-height: 2;
   padding: 10vw; /* (viewport width - folder-image-container width) / 2 */
 }
-@media (orientation: portrait) {
-  .articles {
-    padding: 10vw 5vw;
-  }
-}
 .articles h1 {
   font-size: 5.583em;
   line-height: 1;
 }
-.articles p {
-  text-indent: 2em;
-}
 .articles article header {
   margin-bottom: 5.583em;
-}
-section {
-  display: flex;
 }
 .comments {
   font-family: var(--font-family-montserrat);
   font-weight: var(--font-weight-light);
   font-style: italic;
-  font-size: 0.917rem;
+  font-size: 0.817rem;
+  text-align: center;
 }
