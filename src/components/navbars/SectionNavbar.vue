@@ -46,6 +46,11 @@ const { t } = useI18n()
   font-weight: var(--font-weight-semi-bold);
   text-transform: uppercase;
 }
+@media (orientation: portrait) {
+  .navbar {
+    padding: 2rem 2rem 0 2rem;
+  }
+}
 .left {
   display: flex;
   align-items: center;

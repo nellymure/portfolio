@@ -6,7 +6,7 @@
   line-height: 2;
   padding: 10vw; /* (viewport width - folder-image-container width) / 2 */
 }
-@media screen {
+@media (orientation: portrait) {
   .articles {
     padding: 10vw 5vw;
   }
