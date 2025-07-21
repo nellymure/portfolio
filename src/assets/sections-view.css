@@ -6,6 +6,11 @@
   line-height: 2;
   padding: 10vw; /* (viewport width - folder-image-container width) / 2 */
 }
+@media screen {
+  .articles {
+    padding: 10vw 5vw;
+  }
+}
 .articles h1 {
   font-size: 5.583em;
   line-height: 1;

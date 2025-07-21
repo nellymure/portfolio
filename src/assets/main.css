@@ -67,11 +67,6 @@ h6 {
   margin-top: 2em;
   margin-bottom: 2em;
 }
-@media (orientation: portrait) {
-  .mb-0-portrait {
-    margin-bottom: 0;
-  }
-}
 .text-center {
   text-align: center;
 }

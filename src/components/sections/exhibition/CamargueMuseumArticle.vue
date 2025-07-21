@@ -28,30 +28,26 @@ const { t } = useI18n()
       <div class="half-page">
         <FadeIn delay="0.5s">
           <slot>
-            <div class="image-container">
-              <img
-                class="zoning-museum-image"
-                src="@/assets/images/sections/exhibition/zoning-musee-camargue.jpg"
-                alt="Zoning of the Camargue museum"
-              />
-            </div>
+            <img
+              class="zoning-museum-image"
+              src="@/assets/images/sections/exhibition/zoning-musee-camargue.jpg"
+              alt="Zoning of the Camargue museum"
+            />
             <div class="comments text-center">{{ t('image.zoning') }}</div>
           </slot>
         </FadeIn>
         <FadeIn delay="0.5s">
           <slot>
-            <p class="my-2em mb-0-portrait">{{ t('paragraphs[1]') }}</p>
+            <p class="my-2em">{{ t('paragraphs[1]') }}</p>
           </slot>
         </FadeIn>
         <FadeIn delay="0.5s">
           <slot>
-            <div class="image-container">
-              <img
-                class="elevation-project-image"
-                src="@/assets/images/sections/exhibition/coupe-partie-3.png"
-                alt="Project 3d elevation"
-              />
-            </div>
+            <img
+              class="elevation-project-image"
+              src="@/assets/images/sections/exhibition/coupe-partie-3.png"
+              alt="Project 3d elevation"
+            />
             <div class="comments text-center">{{ t('image.elevation') }}</div>
           </slot>
         </FadeIn>
@@ -133,34 +129,14 @@ const { t } = useI18n()
   width: 45%;
   display: flex;
   flex-direction: column;
-  align-content: center;
-  justify-content: center;
+  justify-content: flex-end;
+}
+.half-page:first {
+  justify-content: space-between;
 }
 img {
   width: 100%;
   object-fit: cover;
-}
-.image-container {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.image-container:has(.zoning-museum-image) {
-  height: 20vw;
-}
-.zoning-museum-image {
-  position: absolute;
-  width: 100%;
-}
-.image-container:has(.elevation-project-image) {
-  height: 25vw;
-}
-.elevation-project-image {
-  position: absolute;
-  width: 150%;
 }
 @media (orientation: portrait) {
   .section1 {
@@ -169,12 +145,6 @@ img {
   }
   .half-page {
     width: 100%;
-  }
-  .image-container:has(.zoning-museum-image) {
-    height: 20vh;
-  }
-  .image-container:has(.elevation-project-image) {
-    height: 25vh;
   }
 }
 </style>
