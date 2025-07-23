@@ -5,56 +5,101 @@ import SectionNavbar from '@/components/navbars/SectionNavbar.vue'
 import CamargueMuseumArticle from '@/components/sections/exhibition/CamargueMuseumArticle.vue'
 import BigNorthBigSouthArticle from '@/components/sections/exhibition/BigNorthBigSouthArticle.vue'
 
-const { t } = useI18n()
-const articles = ref<HTMLElement | null>(null)
-const folderSeparator = ref<HTMLElement | null>(null)
-const navbarTextColor = ref('var(--color-hex-beige-light)')
+interface AnimatedOnScroll {
+  element: HTMLElement
+  animationDuration: number
+  animationDelay: number
+}
 
-const folderAnimationSpeed = 1
+const { t } = useI18n()
+const html = {
+  section: ref<HTMLElement | null>(null),
+  animatedOnScroll: ref<AnimatedOnScroll[]>([]),
+}
+const navbarTextColor = ref('var(--color-hex-beige-light)')
+const folderAnimationDurationMs = 2000
+const letterAnimationDurationMs = 500
+const descriptionAnimationDurationMs = 1000
 
 const titleWords = ref(
   t('title')
-    .split('\n')
+    .split(/[ \n]+/)
     .map((word) => word.split('')) as string[][],
 )
 
-function updateTextColor() {
-  if (!articles.value) {
-    return
-  }
-  const { top } = articles.value.getBoundingClientRect()
-  navbarTextColor.value = `var(${top > 0 ? '--color-hex-beige-light' : '--color-hex-black'})`
-  if (top > 0) {
-    animateFolderImage(top)
+/**
+ * https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event#examples
+ */
+let lastKnownScrollPosition = 0
+let ticking = false
+function scrollEventThrottling() {
+  lastKnownScrollPosition = window.scrollY
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      onScrollPosition(lastKnownScrollPosition)
+      ticking = false
+    })
+    ticking = true
   }
 }
-
 onMounted(() => {
-  window.addEventListener('scroll', updateTextColor)
-  window.addEventListener('resize', updateTextColor)
+  window.addEventListener('scroll', scrollEventThrottling)
+  window.addEventListener('resize', scrollEventThrottling)
 })
-
 onBeforeUnmount(() => {
-  window.removeEventListener('scroll', updateTextColor)
-  window.removeEventListener('resize', updateTextColor)
+  window.removeEventListener('scroll', scrollEventThrottling)
+  window.removeEventListener('resize', scrollEventThrottling)
 })
-
-function animateFolderImage(articlesPosY: number) {
-  if (!folderSeparator.value) {
+let previousSectionPosition: number | undefined = undefined
+function onScrollPosition(_scrollPosition: number) {
+  if (!html.section.value) {
     return
   }
-
-  const { innerHeight, innerWidth } = window
-  const margin = innerHeight * (innerHeight < innerWidth ? 0.2 : 0.7)
-  if (articlesPosY < innerHeight - margin) {
-    folderSeparator.value.style.opacity = `${articlesPosY / (innerHeight - margin)}`
-  } else if (folderSeparator.value.style.opacity != '1') {
-    folderSeparator.value.style.opacity = '1'
+  const sectionPosition = html.section.value.getBoundingClientRect().top
+  navbarTextColor.value = `var(${sectionPosition > 0 ? '--color-hex-beige-light' : '--color-hex-black'})`
+  if (previousSectionPosition != undefined && sectionPosition > 0) {
+    animateFolderOnScroll(sectionPosition)
   }
+  previousSectionPosition = sectionPosition
 }
-
-function getLetterAnimationDelay(idx: number, minDelay: number): string {
-  return `${minDelay + idx * 0.1 * folderAnimationSpeed}s`
+function setAnimationProgress(
+  element: HTMLElement,
+  duration: number,
+  progress: number,
+  delay: number,
+) {
+  const totalTime = delay + duration
+  const currentTime = progress * totalTime
+  element.getAnimations().forEach((animation) => {
+    animation.currentTime = currentTime
+    if (animation.playState != 'paused') {
+      animation.pause()
+    }
+  })
+}
+function animateFolderOnScroll(sectionPosition: number) {
+  const innerHeight = window.innerHeight * 0.9 // remove 0.1vh margin
+  if (sectionPosition > innerHeight) {
+    return
+  }
+  const percent = sectionPosition / innerHeight
+  html.animatedOnScroll.value.forEach(({ element, animationDuration, animationDelay }) => {
+    setAnimationProgress(element, animationDuration, percent, animationDelay)
+  })
+}
+function getLetterAnimationDelayMs(idx: number): number {
+  return (0.1 + idx * 0.1) * 1000
+}
+function addElementAnimatedOnScroll(
+  element: any,
+  animationDuration: number,
+  animationDelay: number = 0,
+) {
+  html.animatedOnScroll.value.push({
+    element: element as HTMLElement,
+    animationDuration,
+    animationDelay: animationDelay,
+  })
 }
 </script>
 
@@ -62,25 +107,35 @@ function getLetterAnimationDelay(idx: number, minDelay: number): string {
   <div class="exhibition">
     <SectionNavbar />
     <div class="content">
-      <div class="folder-separator line-break" ref="folderSeparator">
-        <!-- <h1 class="folder-title">{{{ title }}}</h1> -->
-        <h1>
+      <div class="folder-separator line-break">
+        <h1 :ref="(el) => addElementAnimatedOnScroll(el, folderAnimationDurationMs)">
           <span v-for="word in titleWords" class="d-flex">
             <div
               v-for="(letter, idx) in word"
               class="char"
-              :style="{ 'animation-delay': getLetterAnimationDelay(idx, 0.9) }"
+              :style="{ 'animation-delay': `${getLetterAnimationDelayMs(idx)}ms` }"
+              :ref="
+                (el) =>
+                  addElementAnimatedOnScroll(
+                    el,
+                    letterAnimationDurationMs,
+                    getLetterAnimationDelayMs(idx),
+                  )
+              "
             >
               {{ letter }}
             </div>
           </span>
         </h1>
-        <div>
+        <div
+          class="folder-description"
+          :ref="(el) => addElementAnimatedOnScroll(el, descriptionAnimationDurationMs)"
+        >
           {{ t('description') }}
         </div>
         <div class="btn-open-folder">▼</div>
       </div>
-      <section ref="section">
+      <section :ref="(el) => (html.section.value = el as HTMLElement)">
         <CamargueMuseumArticle />
         <BigNorthBigSouthArticle />
       </section>
@@ -124,63 +179,88 @@ function getLetterAnimationDelay(idx: number, minDelay: number): string {
   background: var(--color-hex-orange);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   padding-top: 10vh;
   padding-left: 20vh;
+  padding-right: 20vh;
 }
 .d-flex {
   display: flex;
 }
-h1 {
+.folder-separator h1 {
   line-height: 1;
-  animation: anim2-ease-in-out 2s ease-in-out forwards;
-}
-h1 .char {
   font-size: 5rem;
+  align-self: flex-start;
+  animation: folder-h1-animation calc(1ms * v-bind(folderAnimationDurationMs))
+    cubic-bezier(0, 0, 0.2, 1) both;
 }
-h1 .char {
+.char {
   opacity: 0;
-  animation: anim1-linear 1s linear forwards;
+  animation: letter-animation calc(1ms * v-bind(letterAnimationDurationMs))
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
-.folder-image {
-  height: 60%;
-  object-fit: contain;
+.folder-description {
+  animation: folder-description-animation calc(1ms * v-bind(descriptionAnimationDurationMs))
+    cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
 .btn-open-folder {
+  opacity: 0;
   color: var(--color-hex-beige-light);
+  animation: arrow-animation 1.5s linear calc(2ms * v-bind(descriptionAnimationDurationMs)) infinite
+    none;
 }
 @media (orientation: portrait) {
   .folder-separator {
-    height: 50vh;
+    height: 90vh;
     padding-bottom: 5vh;
-  }
-  .folder-image-container {
-    height: 45vw;
-    width: 90vw;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
-@keyframes anim1-linear {
+@keyframes letter-animation {
   0% {
     opacity: 0;
-    transform: translateY(0.8em);
-    filter: blur(3px);
-  }
-  30% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
+    transform: translateY(0.6em);
   }
   100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
-@keyframes anim2-ease-in-out {
+@keyframes folder-h1-animation {
   0% {
-    transform: translateX(15em);
+    transform: translateX(50%);
   }
   100% {
     transform: translateX(0);
+  }
+}
+@keyframes folder-description-animation {
+  0% {
+    filter: blur(0.5em);
+    opacity: 0;
+  }
+  80% {
+    filter: blur(0px);
+  }
+  100% {
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+@keyframes arrow-animation {
+  0% {
+    transform: translateZ(-1em) translateY(-1em);
+    opacity: 0;
+  }
+  50% {
+    transform: translateZ(0) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateZ(-1em) translateY(1em);
+    opacity: 0;
   }
 }
 </style>
