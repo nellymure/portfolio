@@ -7,54 +7,54 @@ const { t } = useI18n()
 
 <template>
   <article>
+    <img
+      class="folder-image"
+      ref="folderSeparator"
+      src="@/assets/images/sections/exhibition/coupe-concept.jpg"
+      alt="Exhibition main image"
+    />
     <header>
       <h3>01</h3>
-      <h1>{{ t('title') }}</h1>
+      <!-- <h1>{{ t('title') }}</h1> -->
     </header>
-    <section>
-      <p class="first-paragraph">{{ t('paragraphs[0]') }}</p>
-      <p>{{ t('paragraphs[1]') }}</p>
-      <p>{{ t('paragraphs[2]') }}</p>
-      <FadeIn delay="0.5s">
-        <slot>
-          <img
-            class="elevation-project-image"
-            src="@/assets/images/sections/exhibition/coupe-partie-3.png"
-            alt="Project 3d elevation"
-          />
-          <div class="comments text-center">{{ t('image.elevation') }}</div>
-        </slot>
-      </FadeIn>
-      <FadeIn delay="0.5s">
-        <slot>
-          <img
-            class="imersive-view-1-image"
-            src="@/assets/images/sections/exhibition/partie-3.jpg"
-            alt="Immersive view 1 of the project"
-          />
-        </slot>
-      </FadeIn>
-      <FadeIn delay="0.5s">
-        <slot>
-          <img
-            class="imersive-view-2-image"
-            src="@/assets/images/sections/exhibition/partie-4-mapping2.jpg"
-            alt="Immersive view 2 of the project"
-          />
-          <div class="comments text-center">{{ t('image.immersiveViews') }}</div>
-        </slot>
-      </FadeIn>
-      <FadeIn delay="0.5s">
-        <slot>
-          <img
-            class="zoning-museum-image"
-            src="@/assets/images/sections/exhibition/zoning-musee-camargue.jpg"
-            alt="Zoning of the Camargue museum"
-          />
-          <div class="comments text-center">{{ t('image.zoning') }}</div>
-        </slot>
-      </FadeIn>
-    </section>
+    <!-- <p class="first-paragraph">{{ t('paragraphs[0]') }}</p>
+    <p>{{ t('paragraphs[1]') }}</p>
+    <p>{{ t('paragraphs[2]') }}</p> -->
+    <FadeIn delay="0.5s">
+      <slot>
+        <img
+          src="@/assets/images/sections/exhibition/coupe-partie-3.png"
+          alt="Project 3d elevation"
+        />
+        <!-- <div class="comments text-center">{{ t('image.elevation') }}</div> -->
+      </slot>
+    </FadeIn>
+    <FadeIn delay="0.5s">
+      <slot>
+        <img
+          src="@/assets/images/sections/exhibition/partie-3.jpg"
+          alt="Immersive view 1 of the project"
+        />
+      </slot>
+    </FadeIn>
+    <FadeIn delay="0.5s">
+      <slot>
+        <img
+          src="@/assets/images/sections/exhibition/partie-4-mapping2.jpg"
+          alt="Immersive view 2 of the project"
+        />
+        <!-- <div class="comments text-center">{{ t('image.immersiveViews') }}</div> -->
+      </slot>
+    </FadeIn>
+    <FadeIn delay="0.5s">
+      <slot>
+        <img
+          src="@/assets/images/sections/exhibition/zoning-musee-camargue.jpg"
+          alt="Zoning of the project"
+        />
+        <!-- <div class="comments text-center">{{ t('image.zoning') }}</div> -->
+      </slot>
+    </FadeIn>
   </article>
 </template>
 
@@ -89,17 +89,4 @@ const { t } = useI18n()
 
 <style scoped>
 @import '@/assets/sections-view.css';
-
-.first-paragraph {
-  text-indent: 2em;
-}
-section {
-  display: flex;
-  flex-direction: column;
-  row-gap: 2em;
-}
-img {
-  width: 100%;
-  object-fit: cover;
-}
 </style>

@@ -26,6 +26,9 @@ body {
   background-color: var(--color-hex-white);
   text-align: justify;
 }
+.line-break {
+  white-space: pre-line;
+}
 .text-body {
   font-family: var(--font-family-montserrat);
   font-weight: var(--font-weight-light);
@@ -50,7 +53,6 @@ body {
 }
 .folder-title {
   font-family: var(--font-family-cormorant-infant);
-  font-style: italic;
   text-transform: uppercase;
 }
 h1,
