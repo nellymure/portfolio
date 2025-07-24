@@ -4,9 +4,9 @@ import { useI18n } from 'vue-i18n'
 import SectionNavbar from '@/components/navbars/SectionNavbar.vue'
 import CamargueMuseumArticle from '@/components/sections/exhibition/CamargueMuseumArticle.vue'
 import BigNorthBigSouthArticle from '@/components/sections/exhibition/BigNorthBigSouthArticle.vue'
-import i18n, { onI18nLocaleChanged } from '@/i18n/i18n'
+import { onI18nLocaleChanged } from '@/i18n/i18n'
 
-interface AnimatedOnScroll {
+interface HTMLAnimated {
   element: HTMLElement
   animationDuration: number
   animationDelay: number
@@ -14,7 +14,8 @@ interface AnimatedOnScroll {
 const { t } = useI18n()
 const html = {
   section: ref<HTMLElement | null>(null),
-  animatedOnScroll: ref<AnimatedOnScroll[]>([]),
+  animatedOnScroll: ref<HTMLAnimated[]>([]),
+  animatedOnLocalChanged: ref<HTMLAnimated[]>([]),
 }
 const navbarTextColor = ref('var(--color-hex-beige-light)')
 const folderAnimationDurationMs = 2000
@@ -32,6 +33,11 @@ onI18nLocaleChanged((_event) => {
     .split(/[ \n]+/)
     .map((word) => word.split('')) as string[][]
   html.animatedOnScroll.value
+    .filter(({ element }) => element)
+    .forEach(({ element, animationDuration, animationDelay }) => {
+      setAnimationProgress(element, animationDuration, 0, animationDelay, false)
+    })
+  html.animatedOnLocalChanged.value
     .filter(({ element }) => element)
     .forEach(({ element, animationDuration, animationDelay }) => {
       setAnimationProgress(element, animationDuration, 0, animationDelay, false)
@@ -106,17 +112,6 @@ function animateFolderOnScroll(sectionPosition: number) {
 function getLetterAnimationDelayMs(idx: number): number {
   return (0.1 + idx * 0.1) * 1000
 }
-function addElementAnimatedOnScroll(
-  element: any,
-  animationDuration: number,
-  animationDelay: number = 0,
-) {
-  html.animatedOnScroll.value.push({
-    element: element as HTMLElement,
-    animationDuration,
-    animationDelay: animationDelay,
-  })
-}
 </script>
 
 <template>
@@ -124,7 +119,16 @@ function addElementAnimatedOnScroll(
     <SectionNavbar />
     <div class="content">
       <div class="folder-separator line-break">
-        <h1 :ref="(el) => addElementAnimatedOnScroll(el, folderAnimationDurationMs)">
+        <h1
+          :ref="
+            (element) =>
+              html.animatedOnScroll.value.push({
+                element: element as HTMLElement,
+                animationDuration: folderAnimationDurationMs,
+                animationDelay: 0,
+              })
+          "
+        >
           <span v-for="(word, wIdx) in titleWords" :key="wIdx" class="d-flex">
             <div
               v-for="(letter, lIdx) in word"
@@ -132,12 +136,12 @@ function addElementAnimatedOnScroll(
               class="char"
               :style="{ 'animation-delay': `${getLetterAnimationDelayMs(lIdx)}ms` }"
               :ref="
-                (el) =>
-                  addElementAnimatedOnScroll(
-                    el,
-                    letterAnimationDurationMs,
-                    getLetterAnimationDelayMs(lIdx),
-                  )
+                (element) =>
+                  html.animatedOnScroll.value.push({
+                    element: element as HTMLElement,
+                    animationDuration: letterAnimationDurationMs,
+                    animationDelay: getLetterAnimationDelayMs(lIdx),
+                  })
               "
             >
               {{ letter }}
@@ -146,19 +150,26 @@ function addElementAnimatedOnScroll(
         </h1>
         <div
           class="folder-description"
-          :ref="(el) => addElementAnimatedOnScroll(el, descriptionAnimationDurationMs)"
+          :ref="
+            (element) =>
+              html.animatedOnScroll.value.push({
+                element: element as HTMLElement,
+                animationDuration: descriptionAnimationDurationMs,
+                animationDelay: 0,
+              })
+          "
         >
           {{ t('description') }}
         </div>
         <div
           class="btn-open-folder"
           :ref="
-            (el) =>
-              addElementAnimatedOnScroll(
-                el,
-                arrowAnimationDurationMs,
-                2 * descriptionAnimationDurationMs,
-              )
+            (element) =>
+              html.animatedOnLocalChanged.value.push({
+                element: element as HTMLElement,
+                animationDuration: arrowAnimationDurationMs,
+                animationDelay: 2 * descriptionAnimationDurationMs,
+              })
           "
         >
           ▼
@@ -203,7 +214,7 @@ function addElementAnimatedOnScroll(
   color: var(--color-hex-beige-light);
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 90vh;
   width: 100%;
   background: var(--color-hex-orange);
   display: flex;
@@ -241,7 +252,6 @@ function addElementAnimatedOnScroll(
 }
 @media (orientation: portrait) {
   .folder-separator {
-    height: 90vh;
     padding-bottom: 5vh;
     padding-left: 0;
     padding-right: 0;
