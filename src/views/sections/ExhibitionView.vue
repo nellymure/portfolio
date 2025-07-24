@@ -4,13 +4,13 @@ import { useI18n } from 'vue-i18n'
 import SectionNavbar from '@/components/navbars/SectionNavbar.vue'
 import CamargueMuseumArticle from '@/components/sections/exhibition/CamargueMuseumArticle.vue'
 import BigNorthBigSouthArticle from '@/components/sections/exhibition/BigNorthBigSouthArticle.vue'
+import i18n, { onI18nLocaleChanged } from '@/i18n/i18n'
 
 interface AnimatedOnScroll {
   element: HTMLElement
   animationDuration: number
   animationDelay: number
 }
-
 const { t } = useI18n()
 const html = {
   section: ref<HTMLElement | null>(null),
@@ -26,6 +26,12 @@ const titleWords = ref(
     .split(/[ \n]+/)
     .map((word) => word.split('')) as string[][],
 )
+onI18nLocaleChanged((_event) => {
+  console.log('New title', t('title'), _event.detail)
+  titleWords.value = t('title')
+    .split(/[ \n]+/)
+    .map((word) => word.split('')) as string[][]
+})
 
 /**
  * https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event#examples
@@ -83,9 +89,11 @@ function animateFolderOnScroll(sectionPosition: number) {
     return
   }
   const percent = sectionPosition / innerHeight
-  html.animatedOnScroll.value.forEach(({ element, animationDuration, animationDelay }) => {
-    setAnimationProgress(element, animationDuration, percent, animationDelay)
-  })
+  html.animatedOnScroll.value
+    .filter(({ element }) => element)
+    .forEach(({ element, animationDuration, animationDelay }) => {
+      setAnimationProgress(element, animationDuration, percent, animationDelay)
+    })
 }
 function getLetterAnimationDelayMs(idx: number): number {
   return (0.1 + idx * 0.1) * 1000
@@ -155,7 +163,7 @@ function addElementAnimatedOnScroll(
     },
     "en": {
       "title": "Exhibition\nscenography",
-      "description": ""
+      "description": "lorem ipsum  begzegezg"
     }
   }
 </i18n>

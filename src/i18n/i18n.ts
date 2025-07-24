@@ -8,15 +8,36 @@ const SUPPORT_LOCALES_NAMES = {
 export const SUPPORT_LOCALES = Object.keys(SUPPORT_LOCALES_NAMES)
 const DEFAULT_LOCALE = SUPPORT_LOCALES[1]
 
+export function onI18nLocaleChanged(listener: (e: CustomEventInit<LocaleChangedEvent>) => void) {
+  window.addEventListener('onI18nLocaleChanged', listener)
+}
+
 const i18n: I18n = createI18n({
   legacy: false,
   locale: getNavigatorLanguage(),
   fallbackLocale: DEFAULT_LOCALE,
 })
 
+interface LocaleChangedEvent {
+  previousLocale: string
+  locale: string
+}
+
 export function setI18nLocale(locale: string) {
-  ;(<WritableComputedRef<string, string>>i18n.global.locale).value = locale
+  const localeRef = <WritableComputedRef<string, string>>i18n.global.locale
+  const previousLocale = localeRef.value
+  localeRef.value = locale
   document.querySelector('html')!.setAttribute('lang', locale)
+  setTimeout(() => {
+    window.dispatchEvent(
+      new CustomEvent('onI18nLocaleChanged', {
+        detail: {
+          previousLocale,
+          locale,
+        },
+      }),
+    )
+  })
 }
 
 export function getI18nLocale(): string {
