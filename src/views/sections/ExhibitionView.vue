@@ -20,6 +20,7 @@ const navbarTextColor = ref('var(--color-hex-beige-light)')
 const folderAnimationDurationMs = 2000
 const letterAnimationDurationMs = 500
 const descriptionAnimationDurationMs = 1000
+const arrowAnimationDurationMs = 1500
 
 const titleWords = ref(
   t('title')
@@ -27,10 +28,14 @@ const titleWords = ref(
     .map((word) => word.split('')) as string[][],
 )
 onI18nLocaleChanged((_event) => {
-  console.log('New title', t('title'), _event.detail)
   titleWords.value = t('title')
     .split(/[ \n]+/)
     .map((word) => word.split('')) as string[][]
+  html.animatedOnScroll.value
+    .filter(({ element }) => element)
+    .forEach(({ element, animationDuration, animationDelay }) => {
+      setAnimationProgress(element, animationDuration, 0, animationDelay, false)
+    })
 })
 
 /**
@@ -73,13 +78,16 @@ function setAnimationProgress(
   duration: number,
   progress: number,
   delay: number,
+  pause: boolean = true,
 ) {
   const totalTime = delay + duration
   const currentTime = progress * totalTime
   element.getAnimations().forEach((animation) => {
     animation.currentTime = currentTime
-    if (animation.playState != 'paused') {
+    if (pause && animation.playState != 'paused') {
       animation.pause()
+    } else if (!pause && animation.playState == 'paused') {
+      animation.play()
     }
   })
 }
@@ -117,17 +125,18 @@ function addElementAnimatedOnScroll(
     <div class="content">
       <div class="folder-separator line-break">
         <h1 :ref="(el) => addElementAnimatedOnScroll(el, folderAnimationDurationMs)">
-          <span v-for="word in titleWords" class="d-flex">
+          <span v-for="(word, wIdx) in titleWords" :key="wIdx" class="d-flex">
             <div
-              v-for="(letter, idx) in word"
+              v-for="(letter, lIdx) in word"
+              :key="lIdx"
               class="char"
-              :style="{ 'animation-delay': `${getLetterAnimationDelayMs(idx)}ms` }"
+              :style="{ 'animation-delay': `${getLetterAnimationDelayMs(lIdx)}ms` }"
               :ref="
                 (el) =>
                   addElementAnimatedOnScroll(
                     el,
                     letterAnimationDurationMs,
-                    getLetterAnimationDelayMs(idx),
+                    getLetterAnimationDelayMs(lIdx),
                   )
               "
             >
@@ -141,7 +150,19 @@ function addElementAnimatedOnScroll(
         >
           {{ t('description') }}
         </div>
-        <div class="btn-open-folder">▼</div>
+        <div
+          class="btn-open-folder"
+          :ref="
+            (el) =>
+              addElementAnimatedOnScroll(
+                el,
+                arrowAnimationDurationMs,
+                2 * descriptionAnimationDurationMs,
+              )
+          "
+        >
+          ▼
+        </div>
       </div>
       <section :ref="(el) => (html.section.value = el as HTMLElement)">
         <CamargueMuseumArticle />
@@ -215,8 +236,8 @@ function addElementAnimatedOnScroll(
 .btn-open-folder {
   opacity: 0;
   color: var(--color-hex-beige-light);
-  animation: arrow-animation 1.5s linear calc(2ms * v-bind(descriptionAnimationDurationMs)) infinite
-    none;
+  animation: arrow-animation calc(1ms * v-bind(arrowAnimationDurationMs)) linear
+    calc(2ms * v-bind(descriptionAnimationDurationMs)) infinite none;
 }
 @media (orientation: portrait) {
   .folder-separator {
