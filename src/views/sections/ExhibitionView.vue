@@ -112,6 +112,9 @@ function animateFolderOnScroll(sectionPosition: number) {
 function getLetterAnimationDelayMs(idx: number): number {
   return (0.1 + idx * 0.1) * 1000
 }
+function smoothScrollToSection(): void {
+  html.section.value?.scrollIntoView({ behavior: 'smooth' })
+}
 </script>
 
 <template>
@@ -171,6 +174,7 @@ function getLetterAnimationDelayMs(idx: number): number {
                 animationDelay: 2 * descriptionAnimationDurationMs,
               })
           "
+          @click="smoothScrollToSection()"
         >
           ▼
         </div>
@@ -232,6 +236,9 @@ function getLetterAnimationDelayMs(idx: number): number {
   line-height: 1;
   font-size: 5rem;
   align-self: flex-start;
+  font-family: var(--font-family-cormorant-infant);
+  font-weight: var(--font-weight-light);
+  text-transform: uppercase;
   animation: folder-h1-animation calc(1ms * v-bind(folderAnimationDurationMs))
     cubic-bezier(0, 0, 0.2, 1) both;
 }
@@ -241,6 +248,7 @@ function getLetterAnimationDelayMs(idx: number): number {
     cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 .folder-description {
+  padding-top: 4em;
   animation: folder-description-animation calc(1ms * v-bind(descriptionAnimationDurationMs))
     cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
@@ -249,6 +257,7 @@ function getLetterAnimationDelayMs(idx: number): number {
   color: var(--color-hex-beige-light);
   animation: arrow-animation calc(1ms * v-bind(arrowAnimationDurationMs)) linear
     calc(2ms * v-bind(descriptionAnimationDurationMs)) infinite none;
+  padding: 0 50% 2em 50%;
 }
 @media (orientation: portrait) {
   .folder-separator {
