@@ -26,7 +26,7 @@ const html = {
   animatedOnLocalChanged: ref<HTMLAnimated[]>([]),
 }
 const navbarTextColor = ref(`var(${props.navbarTextColor?.onFolder}`)
-const folderHeightPercentVh = 0.9
+const folderHeightPercentVh = 0.95
 const folderAnimationDurationMs = 2000
 const letterAnimationDurationMs = 500
 const descriptionAnimationDurationMs = 1000
@@ -198,6 +198,9 @@ function smoothScrollToSection(): void {
   width: 100%;
   height: auto;
 }
+.content .folder {
+  padding: 10vh var(--padding-x) 0 var(--padding-x);
+}
 .folder {
   position: sticky;
   top: 0;
@@ -207,9 +210,6 @@ function smoothScrollToSection(): void {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 10vh;
-  padding-left: 20vh;
-  padding-right: 20vh;
 }
 .folder h1 {
   line-height: 1;
@@ -227,7 +227,7 @@ function smoothScrollToSection(): void {
     cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 .folder-description {
-  padding-top: 4em;
+  padding: 4em 0 0 0;
   animation: folder-description-animation calc(1ms * v-bind(descriptionAnimationDurationMs))
     cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
@@ -236,20 +236,22 @@ function smoothScrollToSection(): void {
   color: var(--color-hex-beige-light);
   animation: arrow-animation calc(1ms * v-bind(arrowAnimationDurationMs)) linear
     calc(2ms * v-bind(descriptionAnimationDurationMs)) infinite none;
-  padding: 0 50% 2em 50%;
+  padding: 2em 50%;
 }
 section {
   position: sticky;
   top: 0;
   background-color: white;
   line-height: 2;
-  padding: 10vw;
+  padding-top: 10vw;
+  padding-bottom: 10vw;
 }
 @media (orientation: portrait) {
-  .folder-separator {
-    padding-bottom: 5vh;
-    padding-left: 0;
-    padding-right: 0;
+  .content .folder {
+    padding: 2rem var(--padding-x) 0 var(--padding-x);
+  }
+  .folder h1 {
+    font-size: 3rem;
   }
 }
 @keyframes letter-animation {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import CamargueMuseumArticle from '@/components/sections/exhibition/CamargueMuseumArticle.vue'
-import BigNorthBigSouthArticle from '@/components/sections/exhibition/BigNorthBigSouthArticle.vue'
+// import BigNorthBigSouthArticle from '@/components/sections/exhibition/BigNorthBigSouthArticle.vue'
 import DynamicSection from '@/components/DynamicSection.vue'
 import { ref, watch } from 'vue'
 
@@ -21,8 +21,8 @@ watch(locale, () => {
       {{ t('description') }}
     </template>
     <template #articles>
-      <CamargueMuseumArticle />
-      <BigNorthBigSouthArticle />
+      <CamargueMuseumArticle articleId="01" />
+      <!-- <BigNorthBigSouthArticle articleId="02" /> -->
     </template>
   </DynamicSection>
 </template>
@@ -45,8 +45,6 @@ watch(locale, () => {
 </i18n>
 
 <style scoped>
-@import '@/assets/sections-view.css';
-
 :deep(.folder) {
   color: var(--color-hex-beige-light);
   background: var(--color-hex-orange);

@@ -7,7 +7,7 @@ const props = defineProps({
   },
 })
 
-const container = ref<HTMLElement | null>(null)
+const content = ref<HTMLElement | null>(null)
 const isVisible = ref(false)
 const delay = ref(props.delay || '0')
 
@@ -22,11 +22,11 @@ onBeforeUnmount(() => {
 })
 
 function updateVisibility() {
-  if (!container.value) {
+  if (!content.value) {
     return
   }
 
-  const { top, left, bottom, right } = container.value.getBoundingClientRect()
+  const { top, left, bottom, right } = content.value.getBoundingClientRect()
   const { innerHeight, innerWidth } = window
   isVisible.value =
     ((top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)) &&
@@ -36,12 +36,11 @@ function updateVisibility() {
     window.removeEventListener('resize', updateVisibility)
   }
 }
+updateVisibility()
 </script>
 
 <template>
-  <div class="container" :class="{ 'is-visible': isVisible }" ref="container">
-    <slot></slot>
-  </div>
+  <slot :class="{ 'is-visible': isVisible }" ref="content"></slot>
 </template>
 
 <style scoped>

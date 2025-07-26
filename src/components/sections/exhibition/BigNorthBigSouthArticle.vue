@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import FadeIn from '@/components/FadeIn.vue'
+import FadeIn from '@/components/FadeInViewport.vue'
 
 const { t } = useI18n()
 </script>
@@ -89,6 +89,4 @@ const { t } = useI18n()
   }
 </i18n> -->
 
-<style scoped>
-@import '@/assets/sections-view.css';
-</style>
+<style scoped></style>

@@ -7,18 +7,19 @@
   margin: 0;
 }
 :root {
-  font-size: 1.5vw;
+  font-size: 1vw;
+  --padding-x: 4rem;
 }
 @media (orientation: portrait) {
   :root {
     font-size: 1.5vh;
+    --padding-x: 2rem;
   }
 }
 body {
   /* Fonts */
   font-family: var(--font-family-montserrat);
   font-weight: var(--font-weight-light);
-  font-size: 1.083rem;
   line-height: 1.6;
   text-rendering: geometricPrecision;
   color: var(--color-hex-black);
@@ -52,8 +53,7 @@ body {
   font-family: var(--font-family-asterisk);
 }
 img {
-  width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .comments {
   font-family: var(--font-family-montserrat);
@@ -65,6 +65,6 @@ img {
 .d-flex {
   display: flex;
 }
-.first-paragraph {
+.text-indent {
   text-indent: 2em;
 }

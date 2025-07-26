@@ -1,60 +1,81 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import FadeIn from '@/components/FadeIn.vue'
+import FadeInViewport from '@/components/FadeInViewport.vue'
+import ArticleHeader from '@/components/ArticleHeader.vue'
 
 const { t } = useI18n()
+defineProps({
+  articleId: {
+    type: String,
+    required: true,
+  },
+})
 </script>
 
 <template>
   <article>
-    <img
-      class="folder-image"
-      ref="folderSeparator"
-      src="@/assets/images/sections/exhibition/coupe-concept.jpg"
-      alt="Exhibition main image"
-    />
     <header>
-      <h3>01</h3>
-      <!-- <h1>{{ t('title') }}</h1> -->
+      <ArticleHeader :id="articleId">
+        <template #title> {{ t('title') }} </template>
+        <template #text> {{ t('paragraphs[0]') }} </template>
+        <template #image>
+          <img class="header-image" src="@/assets/images/sections/exhibition/coupe-concept.jpg" />
+        </template>
+      </ArticleHeader>
     </header>
-    <!-- <p class="first-paragraph">{{ t('paragraphs[0]') }}</p>
-    <p>{{ t('paragraphs[1]') }}</p>
-    <p>{{ t('paragraphs[2]') }}</p> -->
-    <FadeIn delay="0.5s">
-      <slot>
+    <div class="page">
+      <FadeInViewport delay="0.5s">
         <img
-          src="@/assets/images/sections/exhibition/coupe-partie-3.png"
-          alt="Project 3d elevation"
+          class="page-first-image"
+          src="@/assets/images/sections/exhibition/partie-1-entree.jpg"
         />
-        <!-- <div class="comments text-center">{{ t('image.elevation') }}</div> -->
-      </slot>
-    </FadeIn>
-    <FadeIn delay="0.5s">
+      </FadeInViewport>
+      <div class="right-part">
+        <p>{{ t('paragraphs[1]') }}</p>
+        <div class="color-palette">
+          <div style="background-color: #ececeb"></div>
+          <div style="background-color: #ecd7b2"></div>
+          <div style="background-color: #b19a83"></div>
+          <div style="background-color: #60705b"></div>
+          <div style="background-color: #6e8661"></div>
+        </div>
+      </div>
+    </div>
+    <div class="page">
+      <FadeInViewport delay="0.5s">
+        <img
+          class="page-first-image"
+          src="@/assets/images/sections/exhibition/partie-1-sortie.jpg"
+        />
+      </FadeInViewport>
+      <FadeInViewport delay="0.5s">
+        <img class="page-second-image" src="@/assets/images/sections/exhibition/partie-2.jpg" />
+      </FadeInViewport>
+    </div>
+    <!-- <FadeInViewport delay="0.5s">
+      <img src="@/assets/images/sections/exhibition/partie-2.jpg" />
+    </FadeInViewport>
+    <FadeInViewport delay="0.5s">
       <slot>
         <img
           src="@/assets/images/sections/exhibition/partie-3.jpg"
-          alt="Immersive view 1 of the project"
         />
       </slot>
-    </FadeIn>
-    <FadeIn delay="0.5s">
+    </FadeInViewport>
+    <FadeInViewport delay="0.5s">
       <slot>
         <img
           src="@/assets/images/sections/exhibition/partie-4-mapping2.jpg"
-          alt="Immersive view 2 of the project"
         />
-        <!-- <div class="comments text-center">{{ t('image.immersiveViews') }}</div> -->
       </slot>
-    </FadeIn>
-    <FadeIn delay="0.5s">
+    </FadeInViewport>
+    <FadeInViewport delay="0.5s">
       <slot>
         <img
           src="@/assets/images/sections/exhibition/zoning-musee-camargue.jpg"
-          alt="Zoning of the project"
         />
-        <!-- <div class="comments text-center">{{ t('image.zoning') }}</div> -->
       </slot>
-    </FadeIn>
+    </FadeInViewport> -->
   </article>
 </template>
 
@@ -66,15 +87,12 @@ const { t } = useI18n()
         "Ce projet est mon macro projet de fin d'étude. Il prend la forme d'une scénographie
         d'exposition au musée de la Camargue situé près d'Arles. Les changements climatiques
         conditionnent la pérennité de la Camargue, le sel est un acteur majeur de dégradation de la
-        région.",
-        "L'exposition se doit d'être impactante au vu de l'urgence de la situation. Elle
+        région. L'exposition se doit d'être impactante au vu de l'urgence de la situation. Elle
         doit faire sentir grandir, subtilement et par un travail entre matière et lumière, une
         menace permanente autour du visiteur.",
         "Au sein de ce projet la scénographie peut dialoguer avec le paysage par l'utilisation
         de la matière. Cette plasticité permet d'évoquer matériellement la prolifération du sel
         au sein de l'exposition."
-      ],
-      "comments": [
       ],
       "image": {
         "zoning": "Moodboard conceptuel du projet",
@@ -88,5 +106,44 @@ const { t } = useI18n()
 </i18n>
 
 <style scoped>
-@import '@/assets/sections-view.css';
+article {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20vh;
+}
+header {
+  display: flex;
+  padding-left: var(--padding-x);
+}
+.header-image {
+  width: 100%;
+}
+.page {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-left: var(--padding-x);
+  padding-right: var(--padding-x);
+}
+.page .right-part {
+  width: 40vw;
+  padding-left: var(--padding-x);
+}
+.page-first-image {
+  width: 60vw;
+}
+.page-second-image {
+  width: 100%;
+  padding-left: var(--padding-x);
+}
+.color-palette {
+  display: flex;
+  margin-top: 4em;
+}
+.color-palette div {
+  width: 2em;
+  height: 2em;
+  margin: 0.2em;
+  border-radius: 50%;
+}
 </style>
