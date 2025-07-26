@@ -51,7 +51,20 @@ body {
 .asterisk {
   font-family: var(--font-family-asterisk);
 }
-.folder-title {
-  font-family: var(--font-family-cormorant-infant);
-  text-transform: uppercase;
+img {
+  width: 100%;
+  object-fit: cover;
+}
+.comments {
+  font-family: var(--font-family-montserrat);
+  font-weight: var(--font-weight-light);
+  font-style: italic;
+  font-size: 0.817rem;
+  text-align: center;
+}
+.d-flex {
+  display: flex;
+}
+.first-paragraph {
+  text-indent: 2em;
 }
