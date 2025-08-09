@@ -2,6 +2,7 @@
 import { useI18n } from 'vue-i18n'
 import FadeInViewport from '@/components/FadeInViewport.vue'
 import ArticleHeader from '@/components/ArticleHeader.vue'
+import CarouselWithArrow from '@/components/CarouselWithArrow.vue'
 
 const { t } = useI18n()
 defineProps({
@@ -24,12 +25,11 @@ defineProps({
       </ArticleHeader>
     </header>
     <div class="page">
-      <FadeInViewport delay="0.5s">
-        <img
-          class="page-first-image"
-          src="@/assets/images/sections/exhibition/partie-1-entree.jpg"
-        />
-      </FadeInViewport>
+      <div class="left-part">
+        <FadeInViewport delay="0.5s">
+          <img src="@/assets/images/sections/exhibition/partie-1-entree.jpg" />
+        </FadeInViewport>
+      </div>
       <div class="right-part">
         <p>{{ t('paragraphs[1]') }}</p>
         <div class="color-palette">
@@ -42,16 +42,28 @@ defineProps({
       </div>
     </div>
     <div class="page">
-      <FadeInViewport delay="0.5s">
-        <img
-          class="page-first-image"
-          src="@/assets/images/sections/exhibition/partie-1-sortie.jpg"
-        />
-      </FadeInViewport>
-      <FadeInViewport delay="0.5s">
-        <img class="page-second-image" src="@/assets/images/sections/exhibition/partie-2.jpg" />
-      </FadeInViewport>
+      <div class="left-part">
+        <FadeInViewport delay="0.5s">
+          <img src="@/assets/images/sections/exhibition/partie-1-sortie.jpg" />
+        </FadeInViewport>
+      </div>
+      <div class="right-part">
+        <FadeInViewport delay="0.5s">
+          <img src="@/assets/images/sections/exhibition/partie-2.jpg" />
+        </FadeInViewport>
+      </div>
     </div>
+    <FadeInViewport delay="0.5s">
+      <img src="@/assets/images/sections/exhibition/partie-3.jpg" />
+    </FadeInViewport>
+    <FadeInViewport delay="0.5s">
+      <CarouselWithArrow>
+        <img src="@/assets/images/sections/exhibition/coupe-partie-3.png" />
+        <img src="@/assets/images/sections/exhibition/coupe-partie-4.png" />
+        <img src="@/assets/images/sections/exhibition/coupe-partie-2.png" />
+        <img src="@/assets/images/sections/exhibition/coupe-partie-1.jpg" />
+      </CarouselWithArrow>
+    </FadeInViewport>
     <!-- <FadeInViewport delay="0.5s">
       <img src="@/assets/images/sections/exhibition/partie-2.jpg" />
     </FadeInViewport>
@@ -113,28 +125,33 @@ article {
 }
 header {
   display: flex;
+  align-items: flex-end;
   padding-left: var(--padding-x);
+  padding-right: var(--padding-x);
 }
 .header-image {
   width: 100%;
 }
 .page {
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
   padding-left: var(--padding-x);
   padding-right: var(--padding-x);
 }
+.page .left-part {
+  min-width: 60vw;
+  display: flex;
+  align-items: flex-end;
+  padding-right: var(--half-padding-x);
+}
 .page .right-part {
-  width: 40vw;
-  padding-left: var(--padding-x);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-right: var(--half-padding-x);
 }
-.page-first-image {
-  width: 60vw;
-}
-.page-second-image {
+.page img {
   width: 100%;
-  padding-left: var(--padding-x);
 }
 .color-palette {
   display: flex;

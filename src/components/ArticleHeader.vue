@@ -29,6 +29,7 @@ defineProps({
 <style scoped>
 .text-part {
   max-width: 30vw;
+  margin-right: var(--half-padding-x);
 }
 h1 {
   font-size: 7em;

@@ -8,7 +8,8 @@
 }
 :root {
   font-size: 1vw;
-  --padding-x: 4rem;
+  --padding-x: 8rem;
+  --half-padding-x: calc(var(--padding-x) / 2);
 }
 @media (orientation: portrait) {
   :root {
