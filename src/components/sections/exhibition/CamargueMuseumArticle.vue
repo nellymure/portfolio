@@ -2,7 +2,8 @@
 import { useI18n } from 'vue-i18n'
 import FadeInViewport from '@/components/FadeInViewport.vue'
 import ArticleHeader from '@/components/ArticleHeader.vue'
-import CarouselWithArrow from '@/components/CarouselWithArrow.vue'
+import CarouselWithTranslate from '@/components/CarouselWithTranslate.vue'
+import CarouselWithFade from '@/components/CarouselWithFade.vue'
 
 const { t } = useI18n()
 defineProps({
@@ -56,38 +57,34 @@ defineProps({
     <FadeInViewport delay="0.5s">
       <img src="@/assets/images/sections/exhibition/partie-3.jpg" />
     </FadeInViewport>
+    <div class="carousel-arrow">
+      <FadeInViewport delay="0.5s">
+        <CarouselWithTranslate enableArrows>
+          <img src="@/assets/images/sections/exhibition/coupe-partie-3.png" />
+          <img src="@/assets/images/sections/exhibition/coupe-partie-4.png" />
+          <img src="@/assets/images/sections/exhibition/coupe-partie-2.png" />
+          <img src="@/assets/images/sections/exhibition/coupe-partie-1.jpg" />
+        </CarouselWithTranslate>
+      </FadeInViewport>
+    </div>
+    <div class="carousel-interval">
+      <FadeInViewport delay="0.5s">
+        <CarouselWithFade :intervalTimer="2000">
+          <img src="@/assets/images/sections/exhibition/partie-4.jpg" />
+          <img src="@/assets/images/sections/exhibition/partie-4-mapping1.jpg" />
+          <img src="@/assets/images/sections/exhibition/partie-4-mapping2.jpg" />
+          <img src="@/assets/images/sections/exhibition/partie-4-mapping3.jpg" />
+        </CarouselWithFade>
+      </FadeInViewport>
+    </div>
     <FadeInViewport delay="0.5s">
-      <CarouselWithArrow>
-        <img src="@/assets/images/sections/exhibition/coupe-partie-3.png" />
-        <img src="@/assets/images/sections/exhibition/coupe-partie-4.png" />
-        <img src="@/assets/images/sections/exhibition/coupe-partie-2.png" />
-        <img src="@/assets/images/sections/exhibition/coupe-partie-1.jpg" />
-      </CarouselWithArrow>
+      <img src="@/assets/images/sections/exhibition/partie-4-bis.jpg" />
     </FadeInViewport>
-    <!-- <FadeInViewport delay="0.5s">
-      <img src="@/assets/images/sections/exhibition/partie-2.jpg" />
-    </FadeInViewport>
-    <FadeInViewport delay="0.5s">
-      <slot>
-        <img
-          src="@/assets/images/sections/exhibition/partie-3.jpg"
-        />
-      </slot>
-    </FadeInViewport>
-    <FadeInViewport delay="0.5s">
-      <slot>
-        <img
-          src="@/assets/images/sections/exhibition/partie-4-mapping2.jpg"
-        />
-      </slot>
-    </FadeInViewport>
-    <FadeInViewport delay="0.5s">
-      <slot>
-        <img
-          src="@/assets/images/sections/exhibition/zoning-musee-camargue.jpg"
-        />
-      </slot>
-    </FadeInViewport> -->
+    <div class="last-image-container">
+      <FadeInViewport delay="0.5s">
+        <img src="@/assets/images/sections/exhibition/partie-4-cabane.jpg" />
+      </FadeInViewport>
+    </div>
   </article>
 </template>
 
@@ -148,9 +145,15 @@ header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-right: var(--half-padding-x);
 }
 .page img {
+  width: 100%;
+}
+.last-image-container {
+  padding-left: var(--padding-x);
+  padding-right: var(--padding-x);
+}
+.last-image-container img {
   width: 100%;
 }
 .color-palette {
@@ -162,5 +165,21 @@ header {
   height: 2em;
   margin: 0.2em;
   border-radius: 50%;
+}
+.carousel-arrow {
+  padding-left: var(--padding-x);
+  padding-right: var(--padding-x);
+}
+.carousel-arrow img {
+  width: 100%;
+  height: auto;
+}
+.carousel-interval {
+  padding-left: var(--padding-x);
+  padding-right: var(--padding-x);
+}
+.carousel-interval img {
+  width: 80%;
+  height: auto;
 }
 </style>

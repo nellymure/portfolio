@@ -7,7 +7,7 @@ const { t } = useI18n()
 
 <template>
   <div class="navbar">
-    <div class="left"><span class="arrow">◀</span> {{ t('buttons.back') }}</div>
+    <div class="left">{{ t('buttons.back') }}</div>
     <div class="right">
       <LanguageSelector class="language-selector" />
       <div class="btn-about">{{ t('buttons.about') }}</div>
