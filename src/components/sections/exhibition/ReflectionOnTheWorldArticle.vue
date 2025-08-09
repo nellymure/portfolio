@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import FadeInViewport from '@/components/FadeInViewport.vue'
+import ColorPalette from '@/components/ColorPalette.vue'
 
 const { t } = useI18n()
 defineProps({
@@ -33,11 +34,12 @@ defineProps({
       </div>
     </header>
     <FadeInViewport delay="0.5s">
-      <img src="@/assets/images/sections/exhibition/dispositif-miroir.jpg" />
+      <img class="full-img" src="@/assets/images/sections/exhibition/dispositif-miroir.jpg" />
     </FadeInViewport>
     <div class="page">
       <div class="left-part">
         <p>{{ t('paragraphs[1]') }}</p>
+        <ColorPalette :colors="['#A2ADB8', '#CCBEA9', '#988069', '#7F796E', '#363530']" />
       </div>
       <div class="right-part">
         <FadeInViewport delay="0.5s">
@@ -46,7 +48,7 @@ defineProps({
       </div>
     </div>
     <FadeInViewport delay="0.5s">
-      <img src="@/assets/images/sections/exhibition/ethnologie.jpg" />
+      <img class="full-img" src="@/assets/images/sections/exhibition/ethnologie.jpg" />
     </FadeInViewport>
   </article>
 </template>
@@ -100,7 +102,6 @@ header {
   align-items: flex-end;
   padding-left: var(--padding-x);
   padding-right: var(--padding-x);
-  height: calc(100vh - var(--padding-x) * 2);
 }
 .header-image {
   height: 100%;
@@ -116,17 +117,16 @@ header {
 }
 .page .left-part {
   display: flex;
+  flex-direction: column;
   width: 40vw;
   padding-right: var(--half-padding-x);
 }
-.page .right-part {
-  width: 40vw;
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: 3em;
-}
 .page img {
+  width: 40vw;
+}
+.full-img {
   width: 100%;
+  height: auto;
 }
 .last-image-container {
   padding-left: var(--padding-x);

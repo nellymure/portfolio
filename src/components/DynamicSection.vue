@@ -19,6 +19,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+    required: true,
+  },
 })
 const html = {
   section: ref<HTMLElement | null>(null),
@@ -166,7 +170,7 @@ function smoothScrollToSection(): void {
               })
           "
         >
-          <slot name="folder-description"> </slot>
+          <div>{{ description }}</div>
         </div>
         <div
           class="btn-open-folder"
@@ -184,7 +188,7 @@ function smoothScrollToSection(): void {
         </div>
       </div>
       <section :ref="(el) => (html.section.value = el as HTMLElement)">
-        <slot name="articles"> </slot>
+        <slot></slot>
       </section>
     </div>
   </div>
@@ -249,7 +253,7 @@ section {
   padding-bottom: 10vw;
   display: flex;
   flex-direction: column;
-  row-gap: 50vh;
+  row-gap: 20vh;
 }
 @media (orientation: portrait) {
   .content .folder {

@@ -2,6 +2,7 @@
 import { useI18n } from 'vue-i18n'
 import FadeInViewport from '@/components/FadeInViewport.vue'
 import CarouselWithFade from '@/components/CarouselWithFade.vue'
+import ColorPalette from '@/components/ColorPalette.vue'
 
 const { t } = useI18n()
 defineProps({
@@ -38,10 +39,11 @@ defineProps({
       </div>
       <div class="right-part">
         <p>{{ t('paragraphs[1]') }}</p>
+        <ColorPalette :colors="['#EEEDED', '#A1BDCA', '#D0B293', '#654D35', '#BF5435']" />
       </div>
     </div>
     <FadeInViewport delay="0.5s">
-      <img src="@/assets/images/sections/exhibition/13.jpg" />
+      <img class="full-img" src="@/assets/images/sections/exhibition/13.jpg" />
     </FadeInViewport>
     <div class="carousel-interval">
       <FadeInViewport delay="0.5s">
@@ -54,7 +56,7 @@ defineProps({
       </FadeInViewport>
     </div>
     <FadeInViewport delay="0.5s">
-      <img src="@/assets/images/sections/exhibition/4.jpg" />
+      <img class="full-img" src="@/assets/images/sections/exhibition/4.jpg" />
     </FadeInViewport>
   </article>
 </template>
@@ -93,7 +95,6 @@ header {
   align-items: flex-end;
   padding-left: var(--padding-x);
   padding-right: var(--padding-x);
-  height: calc(100vh - var(--padding-x) * 2);
 }
 .text-part {
   max-width: 35vw;
@@ -136,6 +137,10 @@ h1 {
 }
 .page img {
   width: 100%;
+}
+.full-img {
+  width: 100%;
+  height: auto;
 }
 .last-image-container {
   padding-left: var(--padding-x);

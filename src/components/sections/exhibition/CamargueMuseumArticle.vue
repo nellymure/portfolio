@@ -3,6 +3,7 @@ import { useI18n } from 'vue-i18n'
 import FadeInViewport from '@/components/FadeInViewport.vue'
 import CarouselWithTranslate from '@/components/CarouselWithTranslate.vue'
 import CarouselWithFade from '@/components/CarouselWithFade.vue'
+import ColorPalette from '@/components/ColorPalette.vue'
 
 const { t } = useI18n()
 defineProps({
@@ -27,7 +28,9 @@ defineProps({
       </div>
       <div class="img-part">
         <FadeInViewport delay="0.5s">
-          <img class="header-image" src="@/assets/images/sections/exhibition/coupe-concept.jpg" />
+          <template #default>
+            <img class="header-image" src="@/assets/images/sections/exhibition/coupe-concept.jpg" />
+          </template>
         </FadeInViewport>
       </div>
     </header>
@@ -39,13 +42,7 @@ defineProps({
       </div>
       <div class="right-part">
         <p>{{ t('paragraphs[1]') }}</p>
-        <div class="color-palette">
-          <div style="background-color: #ececeb"></div>
-          <div style="background-color: #ecd7b2"></div>
-          <div style="background-color: #b19a83"></div>
-          <div style="background-color: #60705b"></div>
-          <div style="background-color: #6e8661"></div>
-        </div>
+        <ColorPalette :colors="['#ececeb', '#ecd7b2', '#b19a83', '#60705b', '#6e8661']" />
       </div>
     </div>
     <div class="page">
@@ -61,7 +58,7 @@ defineProps({
       </div>
     </div>
     <FadeInViewport delay="0.5s">
-      <img src="@/assets/images/sections/exhibition/partie-3.jpg" />
+      <img class="full-img" src="@/assets/images/sections/exhibition/partie-3.jpg" />
     </FadeInViewport>
     <div class="carousel-arrow">
       <FadeInViewport delay="0.5s">
@@ -84,10 +81,10 @@ defineProps({
       </FadeInViewport>
     </div>
     <FadeInViewport delay="0.5s">
-      <img src="@/assets/images/sections/exhibition/partie-4-bis.jpg" />
+      <img class="full-img" src="@/assets/images/sections/exhibition/partie-4-bis.jpg" />
     </FadeInViewport>
     <div class="last-image-container">
-      <FadeInViewport delay="0.5s">
+      <FadeInViewport delay="0.5s" :debug="true">
         <img src="@/assets/images/sections/exhibition/partie-4-cabane.jpg" />
       </FadeInViewport>
     </div>
@@ -174,22 +171,16 @@ header {
 .page img {
   width: 100%;
 }
+.full-img {
+  width: 100%;
+  height: auto;
+}
 .last-image-container {
   padding-left: var(--padding-x);
   padding-right: var(--padding-x);
 }
 .last-image-container img {
   width: 100%;
-}
-.color-palette {
-  display: flex;
-  margin-top: 4em;
-}
-.color-palette div {
-  width: 2em;
-  height: 2em;
-  margin: 0.2em;
-  border-radius: 50%;
 }
 .carousel-arrow {
   padding-left: var(--padding-x);

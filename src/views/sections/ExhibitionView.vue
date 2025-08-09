@@ -8,24 +8,22 @@ import { ref, watch } from 'vue'
 
 const { t, locale } = useI18n()
 const title = ref(t('title'))
+const description = ref(t('description'))
 watch(locale, () => {
   title.value = t('title')
+  description.value = t('description')
 })
 </script>
 
 <template>
   <DynamicSection
     :title="title"
+    :description="description"
     :navbar-text-color="{ default: '--color-hex-black', onFolder: '--color-hex-beige-light' }"
   >
-    <template #folder-description>
-      {{ t('description') }}
-    </template>
-    <template #articles>
-      <CamargueMuseumArticle articleId="01" />
-      <BigNorthBigSouthArticle articleId="02" />
-      <ReflectionOnTheWorldArticle articleId="03" />
-    </template>
+    <CamargueMuseumArticle articleId="01" />
+    <BigNorthBigSouthArticle articleId="02" />
+    <ReflectionOnTheWorldArticle articleId="03" />
   </DynamicSection>
 </template>
 

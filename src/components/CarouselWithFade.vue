@@ -42,7 +42,6 @@ function getCardClasses(idx: number): string {
 
 onMounted(() => {
   cards.value = slots.default ? slots.default() : []
-  console.log('card to pop:', cards.value)
   const card = cards.value.pop()
   if (!card) {
     throw new Error('No card to pop')
@@ -68,15 +67,7 @@ onMounted(() => {
 }
 .inner {
   display: grid;
-  position: relative;
   width: 100%;
-}
-.card {
-  width: 100%;
-  margin: auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 .card-fade {
   grid-area: 1 / 1;

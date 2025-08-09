@@ -1,19 +1,15 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 
-const props = defineProps({
-  delay: {
-    type: String,
-  },
-  debug: {
-    type: Boolean,
-    default: false,
+defineProps({
+  colors: {
+    type: Array as () => string[],
+    required: true,
   },
 })
 
 const content = ref<HTMLElement | null>(null)
 const isVisible = ref(false)
-const delay = ref(props.delay || '0')
 
 onMounted(() => {
   window.addEventListener('scroll', updateVisibility)
@@ -42,26 +38,39 @@ updateVisibility()
 </script>
 
 <template>
-  <div ref="content" class="content" :class="{ 'is-visible': isVisible }">
-    <slot></slot>
+  <div class="color-palette" ref="content">
+    <div
+      v-for="(color, idx) in colors"
+      :key="idx"
+      :class="{ 'fade-in': isVisible }"
+      :style="{
+        'background-color': color,
+        animationDelay: idx * 0.2 + 's',
+      }"
+    ></div>
   </div>
 </template>
 
-<style scoped>
-.content {
+<style lang="css" scoped>
+.color-palette {
+  display: flex;
+  margin-top: 4em;
+}
+.color-palette div {
+  width: 2em;
+  height: 2em;
+  margin: 0.2em;
+  border-radius: 50%;
   opacity: 0;
 }
-.is-visible {
-  animation: fade-in-bottom 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
-  animation-delay: v-bind(delay);
+.fade-in {
+  animation: fadeIn 0.6s forwards linear;
 }
-@keyframes fade-in-bottom {
-  0% {
-    transform: translateY(50px);
+@keyframes fadeIn {
+  from {
     opacity: 0;
   }
-  100% {
-    transform: translateY(0);
+  to {
     opacity: 1;
   }
 }
