@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import FadeInViewport from '@/components/FadeInViewport.vue'
-import ArticleHeader from '@/components/ArticleHeader.vue'
-import CarouselWithTranslate from '@/components/CarouselWithTranslate.vue'
 import CarouselWithFade from '@/components/CarouselWithFade.vue'
 
 const { t } = useI18n()
@@ -17,13 +15,20 @@ defineProps({
 <template>
   <article>
     <header>
-      <ArticleHeader :id="articleId">
-        <template #title> {{ t('title') }} </template>
-        <template #text> {{ t('paragraphs[0]') }} </template>
-        <template #image>
+      <div class="text-part">
+        <div>
+          <h3>{{ articleId }}</h3>
+          <h1>{{ t('title') }}</h1>
+        </div>
+        <p class="text-indent">
+          {{ t('paragraphs[0]') }}
+        </p>
+      </div>
+      <div class="img-part">
+        <FadeInViewport delay="0.5s">
           <img class="header-image" src="@/assets/images/sections/exhibition/2.jpg" />
-        </template>
-      </ArticleHeader>
+        </FadeInViewport>
+      </div>
     </header>
     <div class="page">
       <div class="left-part">
@@ -78,6 +83,21 @@ defineProps({
 </i18n>
 
 <style scoped>
+.text-part {
+  max-width: 35vw;
+  margin-right: var(--half-padding-x);
+}
+.img-part {
+  height: 100vh;
+}
+h1 {
+  font-size: 7em;
+  font-family: var(--font-family-adobe-song);
+  font-weight: var(--font-weight-light);
+  line-height: 1;
+  text-align: left;
+  margin-bottom: 1em;
+}
 article {
   display: flex;
   flex-direction: column;

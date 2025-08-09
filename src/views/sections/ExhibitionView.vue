@@ -2,6 +2,7 @@
 import { useI18n } from 'vue-i18n'
 import CamargueMuseumArticle from '@/components/sections/exhibition/CamargueMuseumArticle.vue'
 import BigNorthBigSouthArticle from '@/components/sections/exhibition/BigNorthBigSouthArticle.vue'
+import ReflectionOnTheWorldArticle from '@/components/sections/exhibition/ReflectionOnTheWorldArticle.vue'
 import DynamicSection from '@/components/DynamicSection.vue'
 import { ref, watch } from 'vue'
 
@@ -23,6 +24,7 @@ watch(locale, () => {
     <template #articles>
       <CamargueMuseumArticle articleId="01" />
       <BigNorthBigSouthArticle articleId="02" />
+      <ReflectionOnTheWorldArticle articleId="03" />
     </template>
   </DynamicSection>
 </template>
