@@ -85,6 +85,14 @@ defineProps({
         <img src="@/assets/images/sections/exhibition/partie-4-cabane.jpg" />
       </FadeInViewport>
     </div>
+    <div class="carousel-interval">
+      <FadeInViewport delay="0.5s">
+        <CarouselWithFade :intervalTimer="2000">
+          <img src="@/assets/images/sections/exhibition/zoning-musee-camargue2.jpg" />
+          <img src="@/assets/images/sections/exhibition/zoning-musee-camargue3.jpg" />
+        </CarouselWithFade>
+      </FadeInViewport>
+    </div>
   </article>
 </template>
 
