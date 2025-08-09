@@ -110,12 +110,7 @@ defineProps({
         "Au sein de ce projet la scénographie peut dialoguer avec le paysage par l'utilisation
         de la matière. Cette plasticité permet d'évoquer matériellement la prolifération du sel
         au sein de l'exposition."
-      ],
-      "image": {
-        "zoning": "Moodboard conceptuel du projet",
-        "elevation": "Élévation sensible du projet",
-        "immersiveViews": "Vues immersives du projet"
-      }
+      ]
     },
     "en": {
     }
@@ -145,6 +140,7 @@ header {
 }
 .page .left-part {
   min-width: 60vw;
+  width: 60vw;
   display: flex;
   align-items: flex-end;
   padding-right: var(--half-padding-x);

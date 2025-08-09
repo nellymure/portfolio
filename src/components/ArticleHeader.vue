@@ -21,15 +21,21 @@ defineProps({
       <slot name="text"></slot>
     </p>
   </div>
-  <FadeInViewport delay="0.5s">
-    <slot name="image"></slot>
-  </FadeInViewport>
+  <div class="img-part">
+    <FadeInViewport delay="0.5s">
+      <slot name="image"></slot>
+    </FadeInViewport>
+  </div>
 </template>
 
 <style scoped>
 .text-part {
-  max-width: 30vw;
+  max-width: 35vw;
   margin-right: var(--half-padding-x);
+}
+.img-part {
+  min-height: 100%;
+  height: 100%;
 }
 h1 {
   font-size: 7em;

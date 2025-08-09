@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import CamargueMuseumArticle from '@/components/sections/exhibition/CamargueMuseumArticle.vue'
-// import BigNorthBigSouthArticle from '@/components/sections/exhibition/BigNorthBigSouthArticle.vue'
+import BigNorthBigSouthArticle from '@/components/sections/exhibition/BigNorthBigSouthArticle.vue'
 import DynamicSection from '@/components/DynamicSection.vue'
 import { ref, watch } from 'vue'
 
@@ -22,7 +22,7 @@ watch(locale, () => {
     </template>
     <template #articles>
       <CamargueMuseumArticle articleId="01" />
-      <!-- <BigNorthBigSouthArticle articleId="02" /> -->
+      <BigNorthBigSouthArticle articleId="02" />
     </template>
   </DynamicSection>
 </template>

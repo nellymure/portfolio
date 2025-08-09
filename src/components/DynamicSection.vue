@@ -247,6 +247,9 @@ section {
   line-height: 2;
   padding-top: 10vw;
   padding-bottom: 10vw;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20vh;
 }
 @media (orientation: portrait) {
   .content .folder {
