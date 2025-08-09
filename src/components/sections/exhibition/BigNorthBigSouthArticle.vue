@@ -83,21 +83,6 @@ defineProps({
 </i18n>
 
 <style scoped>
-.text-part {
-  max-width: 35vw;
-  margin-right: var(--half-padding-x);
-}
-.img-part {
-  height: 100vh;
-}
-h1 {
-  font-size: 7em;
-  font-family: var(--font-family-adobe-song);
-  font-weight: var(--font-weight-light);
-  line-height: 1;
-  text-align: left;
-  margin-bottom: 1em;
-}
 article {
   display: flex;
   flex-direction: column;
@@ -110,9 +95,24 @@ header {
   padding-right: var(--padding-x);
   height: calc(100vh - var(--padding-x) * 2);
 }
+.text-part {
+  max-width: 35vw;
+  margin-right: var(--half-padding-x);
+}
+h1 {
+  font-size: 7em;
+  font-family: var(--font-family-adobe-song);
+  font-weight: var(--font-weight-light);
+  line-height: 1;
+  text-align: left;
+  margin-bottom: 1em;
+}
+.img-part {
+  height: 80vh;
+}
 .header-image {
-  height: 100%;
   width: 100%;
+  height: 80vh;
   object-fit: cover;
 }
 .page {

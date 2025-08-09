@@ -249,7 +249,7 @@ section {
   padding-bottom: 10vw;
   display: flex;
   flex-direction: column;
-  row-gap: 20vh;
+  row-gap: 50vh;
 }
 @media (orientation: portrait) {
   .content .folder {

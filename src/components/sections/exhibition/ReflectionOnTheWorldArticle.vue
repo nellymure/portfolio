@@ -75,11 +75,12 @@ defineProps({
 
 <style scoped>
 .text-part {
-  max-width: 35vw;
+  max-width: 30vw;
   margin-right: var(--half-padding-x);
 }
 .img-part {
-  width: 100%;
+  min-height: 100%;
+  object-fit: contain;
 }
 h1 {
   font-size: 7em;
