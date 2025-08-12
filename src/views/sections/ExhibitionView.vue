@@ -39,7 +39,11 @@ watch(locale, () => {
     },
     "en": {
       "title": "Exhibition\nscenography",
-      "description": "lorem ipsum  begzegezg"
+      "description": "I have always been passionate about scenography: I love designing spaces that
+      tell stories, suggest ideas and inspire wonder. Highlighting an object, guiding the eye and
+      revealing a story is a form of spatial narration, a compositional game that serves a purpose,
+      a place and an audience. Being a scenographer means communicating and educating in a different
+      way through space, rhythm and emotion."
     }
   }
 </i18n>

@@ -61,7 +61,7 @@ const router = createRouter({
         {
           name: `fr.${routes.MEDIATION.name}`,
           path: 'mediation',
-          component: () => import('@/views/sections/ExhibitionView.vue'),
+          component: () => import('@/views/sections/CulturalMediationView.vue'),
         },
         {
           name: `fr.${routes.MODELS.name}`,
@@ -96,7 +96,7 @@ const router = createRouter({
         {
           name: `en.${routes.MEDIATION.name}`,
           path: 'mediation',
-          component: () => import('@/views/sections/ExhibitionView.vue'),
+          component: () => import('@/views/sections/CulturalMediationView.vue'),
         },
         {
           name: `en.${routes.MODELS.name}`,

@@ -39,7 +39,10 @@ watch(locale, () => {
     },
     "en": {
       "title": "Event\ndesign",
-      "description": "lorem ipsum  begzegezg"
+      "description": "Event design is a unique field of expression, where creativity is used to
+      create memorable experiences. Designing a powerful, meaningful moment that combines identity,
+      message and ambition is a challenge that I find fascinating. This sector combines imagination,
+      organisation and emotion: a stimulating balance between design, staging and impact."
     }
   }
 </i18n>
