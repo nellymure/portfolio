@@ -125,7 +125,7 @@ header {
   width: 40vw;
 }
 .full-img {
-  width: 100%;
+  width: 100vw;
   height: auto;
 }
 .last-image-container {

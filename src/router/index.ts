@@ -15,8 +15,8 @@ export const routes = {
   EXHIBITION: {
     name: 'exhibition',
   },
-  EVENTS: {
-    name: 'events',
+  EVENT_DESIGN: {
+    name: 'design-events',
   },
   MEDIATION: {
     name: 'mediation',
@@ -54,9 +54,9 @@ const router = createRouter({
           component: () => import('@/views/sections/ExhibitionView.vue'),
         },
         {
-          name: `fr.${routes.EVENTS.name}`,
-          path: 'evenementiel',
-          component: () => import('@/views/sections/ExhibitionView.vue'),
+          name: `fr.${routes.EVENT_DESIGN.name}`,
+          path: 'design-evenementiel',
+          component: () => import('@/views/sections/DesignEvenView.vue'),
         },
         {
           name: `fr.${routes.MEDIATION.name}`,
@@ -89,9 +89,9 @@ const router = createRouter({
           component: () => import('@/views/sections/ExhibitionView.vue'),
         },
         {
-          name: `en.${routes.EVENTS.name}`,
-          path: 'events',
-          component: () => import('@/views/sections/ExhibitionView.vue'),
+          name: `en.${routes.EVENT_DESIGN.name}`,
+          path: 'event-design',
+          component: () => import('@/views/sections/DesignEvenView.vue'),
         },
         {
           name: `en.${routes.MEDIATION.name}`,
