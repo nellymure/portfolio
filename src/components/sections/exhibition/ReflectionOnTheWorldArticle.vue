@@ -36,7 +36,7 @@ defineProps({
     <FadeInViewport delay="0.5s">
       <img class="full-img" src="@/assets/images/sections/exhibition/dispositif-miroir.jpg" />
     </FadeInViewport>
-    <div class="page">
+    <div class="container">
       <div class="left-part">
         <p>{{ t('paragraphs[1]') }}</p>
         <ColorPalette :colors="['#A2ADB8', '#CCBEA9', '#988069', '#7F796E', '#363530']" />
@@ -108,20 +108,20 @@ header {
   width: 100%;
   object-fit: cover;
 }
-.page {
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-left: var(--padding-x);
   padding-right: var(--padding-x);
 }
-.page .left-part {
+.container .left-part {
   display: flex;
   flex-direction: column;
   width: 40vw;
   padding-right: var(--half-padding-x);
 }
-.page img {
+.container img {
   width: 40vw;
 }
 .full-img {

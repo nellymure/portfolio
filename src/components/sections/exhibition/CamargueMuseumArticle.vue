@@ -34,7 +34,7 @@ defineProps({
         </FadeInViewport>
       </div>
     </header>
-    <div class="page">
+    <div class="container">
       <div class="left-part">
         <FadeInViewport delay="0.5s">
           <img src="@/assets/images/sections/exhibition/partie-1-entree.jpg" />
@@ -45,7 +45,7 @@ defineProps({
         <ColorPalette :colors="['#ececeb', '#ecd7b2', '#b19a83', '#60705b', '#6e8661']" />
       </div>
     </div>
-    <div class="page">
+    <div class="container">
       <div class="left-part">
         <FadeInViewport delay="0.5s">
           <img src="@/assets/images/sections/exhibition/partie-1-sortie.jpg" />
@@ -150,26 +150,26 @@ header {
 .header-image {
   width: 100%;
 }
-.page {
+.container {
   display: flex;
+  justify-content: center;
   align-items: flex-end;
   padding-left: var(--padding-x);
   padding-right: var(--padding-x);
 }
-.page .left-part {
+.container .left-part img {
   min-width: 60vw;
   width: 60vw;
-  display: flex;
-  align-items: flex-end;
   padding-right: var(--half-padding-x);
 }
-.page .right-part {
+.container .right-part {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.page img {
+.container img {
   width: 100%;
+  display: flex;
 }
 .full-img {
   width: 100vw;

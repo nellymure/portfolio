@@ -31,7 +31,7 @@ defineProps({
         </FadeInViewport>
       </div>
     </header>
-    <div class="page">
+    <div class="container">
       <div class="left-part">
         <FadeInViewport delay="0.5s">
           <img src="@/assets/images/sections/exhibition/plan-cote-GNGS.jpg" />
@@ -116,26 +116,26 @@ h1 {
   height: 80vh;
   object-fit: cover;
 }
-.page {
+.container {
   display: flex;
   align-items: flex-end;
   padding-left: var(--padding-x);
   padding-right: var(--padding-x);
 }
-.page .left-part {
+.container .left-part {
   min-width: 60vw;
   width: 60vw;
   display: flex;
   align-items: flex-end;
   padding-right: var(--half-padding-x);
 }
-.page .right-part {
+.container .right-part {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding-bottom: 3em;
 }
-.page img {
+.container img {
   width: 100%;
 }
 .full-img {
