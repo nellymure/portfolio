@@ -158,7 +158,6 @@ header {
   padding-right: var(--padding-x);
 }
 .container .left-part img {
-  min-width: 60vw;
   width: 60vw;
   padding-right: var(--half-padding-x);
 }

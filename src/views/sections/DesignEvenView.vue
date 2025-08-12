@@ -4,6 +4,7 @@ import DynamicSection from '@/components/DynamicSection.vue'
 import { ref, watch } from 'vue'
 import JonakXJO2024Article from '@/components/sections/design-event/JonakXJO2024Article.vue'
 import CaVaPasTropMalArticle from '@/components/sections/design-event/CaVaPasTropMalArticle.vue'
+import FestivalOfLights2021Article from '@/components/sections/design-event/FestivalOfLights2021Article.vue'
 
 const { t, locale } = useI18n()
 const title = ref(t('title'))
@@ -22,6 +23,7 @@ watch(locale, () => {
   >
     <JonakXJO2024Article articleId="01" />
     <CaVaPasTropMalArticle articleId="02" />
+    <FestivalOfLights2021Article articleId="03" />
   </DynamicSection>
 </template>
 
