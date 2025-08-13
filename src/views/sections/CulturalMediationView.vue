@@ -5,7 +5,7 @@ import { ref, watch } from 'vue'
 import MediationBookletArticle from '@/components/sections/cultural-mediation/MediationBookletArticle.vue'
 import MediationToolArticle from '@/components/sections/cultural-mediation/MediationToolArticle.vue'
 import MediationArticle from '@/components/sections/cultural-mediation/MediationArticle.vue'
-import Material1Experiments100 from '@/components/sections/cultural-mediation/Material1Experiments100.vue'
+import Material1Experiments100 from '@/components/sections/cultural-mediation/Material1Experiments100Article.vue'
 
 const { t, locale } = useI18n()
 const title = ref(t('title'))

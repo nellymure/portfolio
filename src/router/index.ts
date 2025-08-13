@@ -66,7 +66,7 @@ const router = createRouter({
         {
           name: `fr.${routes.MODELS.name}`,
           path: 'maquettes',
-          component: () => import('@/views/sections/ExhibitionView.vue'),
+          component: () => import('@/views/sections/ModelMakingView.vue'),
         },
         {
           name: `fr.${routes.ABOUT.name}`,
@@ -101,7 +101,7 @@ const router = createRouter({
         {
           name: `en.${routes.MODELS.name}`,
           path: 'models',
-          component: () => import('@/views/sections/ExhibitionView.vue'),
+          component: () => import('@/views/sections/ModelMakingView.vue'),
         },
         {
           name: `en.${routes.ABOUT.name}`,
