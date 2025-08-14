@@ -130,47 +130,49 @@ function smoothScrollToSection(): void {
     <SectionNavbar />
     <div class="content">
       <div class="folder line-break">
-        <h1
-          :ref="
-            (element) =>
-              html.animatedOnScroll.value.push({
-                element: element as HTMLElement,
-                animationDuration: folderAnimationDurationMs,
-                animationDelay: 0,
-              })
-          "
-        >
-          <span v-for="(word, wIdx) in titleWords" :key="wIdx" class="d-flex">
-            <div
-              v-for="(letter, lIdx) in word"
-              :key="lIdx"
-              class="char"
-              :style="{ 'animation-delay': `${getLetterAnimationDelayMs(lIdx)}ms` }"
-              :ref="
-                (element) =>
-                  html.animatedOnScroll.value.push({
-                    element: element as HTMLElement,
-                    animationDuration: letterAnimationDurationMs,
-                    animationDelay: getLetterAnimationDelayMs(lIdx),
-                  })
-              "
-            >
-              {{ letter }}
-            </div>
-          </span>
-        </h1>
-        <div
-          class="folder-description"
-          :ref="
-            (element) =>
-              html.animatedOnScroll.value.push({
-                element: element as HTMLElement,
-                animationDuration: descriptionAnimationDurationMs,
-                animationDelay: 0,
-              })
-          "
-        >
-          <div>{{ description }}</div>
+        <div class="folder-text">
+          <h1
+            :ref="
+              (element) =>
+                html.animatedOnScroll.value.push({
+                  element: element as HTMLElement,
+                  animationDuration: folderAnimationDurationMs,
+                  animationDelay: 0,
+                })
+            "
+          >
+            <span v-for="(word, wIdx) in titleWords" :key="wIdx" class="d-flex">
+              <div
+                v-for="(letter, lIdx) in word"
+                :key="lIdx"
+                class="char"
+                :style="{ 'animation-delay': `${getLetterAnimationDelayMs(lIdx)}ms` }"
+                :ref="
+                  (element) =>
+                    html.animatedOnScroll.value.push({
+                      element: element as HTMLElement,
+                      animationDuration: letterAnimationDurationMs,
+                      animationDelay: getLetterAnimationDelayMs(lIdx),
+                    })
+                "
+              >
+                {{ letter }}
+              </div>
+            </span>
+          </h1>
+          <div
+            class="folder-description"
+            :ref="
+              (element) =>
+                html.animatedOnScroll.value.push({
+                  element: element as HTMLElement,
+                  animationDuration: descriptionAnimationDurationMs,
+                  animationDelay: 0,
+                })
+            "
+          >
+            <div>{{ description }}</div>
+          </div>
         </div>
         <div
           class="btn-open-folder"
@@ -204,7 +206,7 @@ function smoothScrollToSection(): void {
   overflow: hidden;
 }
 .content .folder {
-  padding: 10vh var(--padding-x) 0 var(--padding-x);
+  padding: var(--padding-x) var(--padding-x) 0 var(--padding-x);
 }
 .folder {
   height: calc(100vh * v-bind(folderHeightPercentVh));
@@ -213,6 +215,11 @@ function smoothScrollToSection(): void {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.folder-text {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
 }
 .folder h1 {
   line-height: 1;
@@ -230,7 +237,6 @@ function smoothScrollToSection(): void {
     cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 .folder-description {
-  margin-right: 25%;
   font-size: 1.2rem;
   padding: 4em 0 0 0;
   animation: folder-description-animation calc(1ms * v-bind(descriptionAnimationDurationMs))
@@ -240,7 +246,7 @@ function smoothScrollToSection(): void {
   opacity: 0;
   animation: arrow-animation calc(1ms * v-bind(arrowAnimationDurationMs)) linear
     calc(2ms * v-bind(descriptionAnimationDurationMs)) infinite none;
-  padding: 2em 50%;
+  padding: 2em 0;
 }
 .section {
   background-color: white;
