@@ -2,6 +2,7 @@
 import { useI18n } from 'vue-i18n'
 import FadeInViewport from '@/components/FadeInViewport.vue'
 import ColorPalette from '@/components/ColorPalette.vue'
+import CarouselWithFade from '@/components/CarouselWithFade.vue'
 
 const { t } = useI18n()
 defineProps({
@@ -31,20 +32,29 @@ defineProps({
         </FadeInViewport>
       </div>
     </header>
-    <div class="container-1 no-gap">
+    <div class="container-1">
       <div class="left-part">
         <FadeInViewport delay="0.5s">
           <img src="@/assets/images/sections/model-making/IMG_4595-1.png" />
         </FadeInViewport>
       </div>
-      <div class="right-part">
+      <div class="right-part description">
         <p>{{ t('paragraphs[1]') }}</p>
       </div>
     </div>
     <FadeInViewport delay="0.5s">
-      <img class="full-img no-gap" src="@/assets/images/sections/model-making/IMG_4620-2.jpg" />
+      <img class="full-img" src="@/assets/images/sections/model-making/IMG_4620-2.jpg" />
     </FadeInViewport>
-    <div class="container-2">
+    <div class="container-2 d-none-landscape">
+      <FadeInViewport delay="0.5s">
+        <CarouselWithFade :intervalTimer="2000" :smoothPercent="0.2">
+          <img src="@/assets/images/sections/model-making/IMG_5957.png" />
+          <img src="@/assets/images/sections/model-making/IMG_5956.png" />
+          <img src="@/assets/images/sections/model-making/IMG_5948_2.png" />
+        </CarouselWithFade>
+      </FadeInViewport>
+    </div>
+    <div class="container-2 d-none-portrait">
       <FadeInViewport delay="0.5s">
         <img src="@/assets/images/sections/model-making/IMG_5957.png" />
       </FadeInViewport>
@@ -55,16 +65,16 @@ defineProps({
         <img src="@/assets/images/sections/model-making/IMG_5948_2.png" />
       </FadeInViewport>
     </div>
-    <p class="text-indent no-gap pt-half">
+    <p class="description">
       {{ t('paragraphs[2]') }}
     </p>
     <FadeInViewport delay="0.5s">
       <img class="img-80" src="@/assets/images/sections/model-making/IMG_5965.png" />
     </FadeInViewport>
     <FadeInViewport delay="0.5s">
-      <img class="full-img" src="@/assets/images/sections/model-making/IMG_5964.png" />
+      <img class="full-img last-img" src="@/assets/images/sections/model-making/IMG_5964.png" />
     </FadeInViewport>
-    <p class="text-indent">
+    <p class="description">
       {{ t('paragraphs[3]') }}
     </p>
   </article>
@@ -100,20 +110,19 @@ defineProps({
 article {
   display: flex;
   flex-direction: column;
-  row-gap: 20vh;
 }
-.no-gap {
-  margin-top: -20vh;
+.d-none-portrait {
+  display: flex !important;
 }
-.pt-half {
-  padding-top: var(--half-padding-x);
+.d-none-landscape {
+  display: none !important;
 }
 header {
   display: flex;
   padding-left: var(--padding-x);
   padding-right: var(--padding-x);
 }
-.text-part {
+header .text-part {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -131,8 +140,10 @@ h1 {
   text-align: left;
   margin-bottom: 1em;
 }
-.img-part {
+header .img-part {
   width: 50vw;
+  display: flex;
+  align-items: flex-end;
 }
 header img {
   height: 80vh;
@@ -141,10 +152,16 @@ header img {
 .full-img {
   width: 100vw;
   height: auto;
+  display: flex;
+}
+.description {
+  padding-top: 1em;
+  padding-left: var(--half-padding-x);
 }
 .container-1 {
   display: flex;
   justify-content: flex-start;
+  margin-top: 10vh;
   padding-left: 0;
   padding-right: 0;
 }
@@ -152,7 +169,6 @@ header img {
   display: flex;
   width: calc(50vw - var(--half-padding-x));
   height: 100vh;
-  padding-right: var(--half-padding-x);
   object-fit: cover;
 }
 .container-1 .right-part {
@@ -161,31 +177,93 @@ header img {
   justify-content: flex-end;
   padding-bottom: var(--half-padding-x);
 }
-.full-img {
-  width: 100vw;
-  height: auto;
-}
 .container-2 {
-  height: 50vh;
+  align-self: center;
   display: flex;
-}
-.container-2 > div :deep(.content) {
-  display: flex;
-  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 20vh;
+  height: 80vh;
+  width: calc(100vw - var(--padding-x));
 }
 .container-2 img {
-  height: 50vh;
+  height: 80vh;
   display: flex;
-  padding-left: calc(var(--half-padding-x) / 4);
-  padding-right: calc(var(--half-padding-x) / 4);
   object-fit: cover;
 }
 .container-2 .big-one {
   width: 45vw;
+  padding-left: calc(var(--half-padding-x) / 2);
+  padding-right: calc(var(--half-padding-x) / 2);
 }
 .img-80 {
-  width: 80vw;
+  display: flex;
+  margin-top: 20vh;
   height: auto;
-  margin-left: 10vw;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+.last-img {
+  margin-top: 20vh;
+}
+@media (orientation: portrait) {
+  .d-none-portrait {
+    display: none !important;
+  }
+  .d-none-landscape {
+    display: flex !important;
+  }
+  .description {
+    text-align: center;
+    padding-bottom: 1em;
+    padding-left: 0;
+  }
+  header {
+    flex-direction: column;
+  }
+  header .text-part {
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+    align-items: flex-start;
+  }
+  header .img-part {
+    width: 100%;
+  }
+  header img {
+    height: auto;
+    object-fit: contain;
+  }
+  h1 {
+    font-size: 5em;
+  }
+  .container-1 {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .container-1 .left-part img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    padding-right: 0;
+  }
+  .container-1 .right-part {
+    padding-bottom: 1em;
+  }
+  .container-2 {
+    height: 50vh;
+    width: 100%;
+  }
+  .container-2 img {
+    height: 50vh;
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
+  }
+  .img-80 {
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
+  }
+  .last-img {
+    margin-top: var(--padding-x);
+  }
 }
 </style>

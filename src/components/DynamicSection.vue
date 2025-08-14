@@ -129,7 +129,7 @@ function smoothScrollToSection(): void {
   <div class="dynamic-section">
     <SectionNavbar />
     <div class="content">
-      <div class="folder line-break">
+      <div class="folder line-break" @click="smoothScrollToSection()">
         <div class="folder-text">
           <h1
             :ref="
@@ -184,7 +184,6 @@ function smoothScrollToSection(): void {
                 animationDelay: 2 * descriptionAnimationDurationMs,
               })
           "
-          @click="smoothScrollToSection()"
         >
           ▼
         </div>
@@ -248,11 +247,11 @@ function smoothScrollToSection(): void {
     calc(2ms * v-bind(descriptionAnimationDurationMs)) infinite none;
   padding: 2em 0;
 }
-.section {
+section {
   background-color: white;
   line-height: 2;
-  padding-top: 10vw;
-  padding-bottom: 10vw;
+  padding-top: 20vh;
+  padding-bottom: 10vh;
   display: flex;
   flex-direction: column;
   row-gap: 20vh;
@@ -260,6 +259,9 @@ function smoothScrollToSection(): void {
 @media (orientation: portrait) {
   .content .folder {
     padding: 2rem var(--padding-x) 0 var(--padding-x);
+  }
+  .folder-text {
+    width: 100%;
   }
   .folder h1 {
     font-size: 3rem;
