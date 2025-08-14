@@ -242,6 +242,7 @@ function smoothScrollToSection(): void {
     cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
 .btn-open-folder {
+  justify-self: flex-end;
   opacity: 0;
   animation: arrow-animation calc(1ms * v-bind(arrowAnimationDurationMs)) linear
     calc(2ms * v-bind(descriptionAnimationDurationMs)) infinite none;
@@ -275,6 +276,10 @@ section {
   }
   .folder-description {
     margin-right: 0;
+  }
+  section {
+    padding-top: 10vh;
+    padding-bottom: 5vh;
   }
 }
 @keyframes letter-animation {

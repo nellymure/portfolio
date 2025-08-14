@@ -161,7 +161,8 @@ header img {
 .container-1 {
   display: flex;
   justify-content: flex-start;
-  margin-top: 10vh;
+  margin-top: 20vh;
+  margin-bottom: 20vh;
   padding-left: 0;
   padding-right: 0;
 }
@@ -239,6 +240,8 @@ header img {
   .container-1 {
     flex-direction: column;
     justify-content: center;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
   }
   .container-1 .left-part img {
     width: 100%;
@@ -250,6 +253,7 @@ header img {
     padding-bottom: 1em;
   }
   .container-2 {
+    margin-top: 10vh;
     height: 50vh;
     width: 100%;
   }
@@ -259,11 +263,12 @@ header img {
     padding-right: var(--padding-x);
   }
   .img-80 {
+    margin-top: 5vh;
     padding-left: var(--padding-x);
     padding-right: var(--padding-x);
   }
   .last-img {
-    margin-top: var(--padding-x);
+    margin-top: calc(5vh + 2em);
   }
 }
 </style>
