@@ -201,13 +201,12 @@ function smoothScrollToSection(): void {
 .dynamic-section {
   width: 100%;
   height: auto;
+  overflow: hidden;
 }
 .content .folder {
   padding: 10vh var(--padding-x) 0 var(--padding-x);
 }
 .folder {
-  position: sticky;
-  top: 0;
   height: calc(100vh * v-bind(folderHeightPercentVh));
   width: 100%;
   display: flex;
@@ -244,9 +243,7 @@ function smoothScrollToSection(): void {
     calc(2ms * v-bind(descriptionAnimationDurationMs)) infinite none;
   padding: 2em 50%;
 }
-section {
-  position: sticky;
-  top: 0;
+.section {
   background-color: white;
   line-height: 2;
   padding-top: 10vw;
