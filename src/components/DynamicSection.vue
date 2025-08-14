@@ -238,7 +238,6 @@ function smoothScrollToSection(): void {
 }
 .btn-open-folder {
   opacity: 0;
-  color: var(--color-hex-beige-light);
   animation: arrow-animation calc(1ms * v-bind(arrowAnimationDurationMs)) linear
     calc(2ms * v-bind(descriptionAnimationDurationMs)) infinite none;
   padding: 2em 50%;
