@@ -18,7 +18,7 @@ defineProps({
   <article>
     <header>
       <div class="text-part">
-        <div>
+        <div class="title">
           <h3>{{ articleId }}</h3>
           <h1>{{ t('title') }}</h1>
         </div>
@@ -45,7 +45,7 @@ defineProps({
         <ColorPalette :colors="['#ececeb', '#ecd7b2', '#b19a83', '#60705b', '#6e8661']" />
       </div>
     </div>
-    <div class="container">
+    <div class="container container-2">
       <div class="left-part">
         <FadeInViewport delay="0.5s">
           <img src="@/assets/images/sections/exhibition/partie-1-sortie.jpg" />
@@ -196,5 +196,66 @@ header {
 .carousel-interval img {
   width: 80%;
   height: auto;
+}
+@media (orientation: portrait) {
+  article {
+    row-gap: 5vh;
+  }
+  header {
+    flex-direction: column;
+  }
+  header .text-part {
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+    align-items: flex-start;
+    margin-right: 0;
+  }
+  header .text-part .title {
+    text-align: center;
+  }
+  h1 {
+    text-align: center;
+  }
+  header .img-part {
+    margin-top: 5vh;
+    width: 100%;
+  }
+  header img {
+    height: auto;
+    object-fit: contain;
+  }
+  .container {
+    flex-direction: column;
+    padding-left: var(--half-padding-x);
+    padding-right: var(--half-padding-x);
+  }
+  .container .left-part img {
+    width: calc(100vw - var(--padding-x));
+    height: 50vh;
+    object-fit: cover;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container .right-part {
+    padding-top: 5vh;
+  }
+  .container-2 {
+    margin-top: -3vh;
+  }
+  .carousel-arrow {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .carousel-arrow :deep(.nav-btn) {
+    width: 10vw;
+  }
+  .carousel-interval img {
+    width: 100%;
+  }
+  .carousel-interval {
+    padding-left: var(--half-padding-x);
+    padding-right: var(--half-padding-x);
+  }
 }
 </style>

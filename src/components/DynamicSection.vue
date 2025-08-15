@@ -280,6 +280,7 @@ section {
   section {
     padding-top: 10vh;
     padding-bottom: 5vh;
+    row-gap: 10vh;
   }
 }
 @keyframes letter-animation {

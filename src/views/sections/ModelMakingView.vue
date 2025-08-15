@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n'
 import DynamicSection from '@/components/DynamicSection.vue'
 import { ref, watch } from 'vue'
-import ModelMakingView from '@/components/sections/model-making/ModelMakingView.vue'
+import ModelMakingArticle from '@/components/sections/model-making/ModelMakingArticle.vue'
 
 const { t, locale } = useI18n()
 const title = ref(t('title'))
@@ -19,7 +19,7 @@ watch(locale, () => {
     :description="description"
     :navbar-text-color="{ default: '--color-hex-black', onFolder: '--color-hex-black' }"
   >
-    <ModelMakingView articleId="01" />
+    <ModelMakingArticle articleId="01" />
   </DynamicSection>
 </template>
 

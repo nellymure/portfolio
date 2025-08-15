@@ -16,7 +16,7 @@ defineProps({
   <article>
     <header>
       <div class="text-part">
-        <div>
+        <div class="title">
           <h3>{{ articleId }}</h3>
           <h1>{{ t('title') }}</h1>
         </div>
@@ -128,19 +128,56 @@ header {
   width: 100vw;
   height: auto;
 }
-.last-image-container {
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
-}
-.last-image-container img {
-  width: 100%;
-}
-.carousel-interval {
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
-}
-.carousel-interval img {
-  width: 80%;
-  height: auto;
+@media (orientation: portrait) {
+  article {
+    row-gap: 5vh;
+  }
+  header {
+    flex-direction: column;
+  }
+  header .text-part {
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+    align-items: flex-start;
+    margin-right: 0;
+  }
+  header .text-part .title {
+    text-align: center;
+  }
+  h1 {
+    text-align: center;
+  }
+  header .img-part {
+    margin-top: 5vh;
+    width: 100%;
+  }
+  header img {
+    height: auto;
+    object-fit: contain;
+  }
+  .container {
+    flex-direction: column;
+    padding-left: var(--half-padding-x);
+    padding-right: var(--half-padding-x);
+  }
+  .container .left-part {
+    width: calc(100vw - var(--padding-x));
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container .left-part img {
+    width: calc(100vw - var(--padding-x));
+    height: 50vh;
+    object-fit: cover;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container .right-part {
+    padding-top: 5vh;
+  }
+  .container .right-part img {
+    width: 100%;
+  }
 }
 </style>

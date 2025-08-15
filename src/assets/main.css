@@ -71,3 +71,17 @@ img {
 .text-indent {
   text-indent: 2em;
 }
+.d-none-portrait {
+  display: flex !important;
+}
+.d-none-landscape {
+  display: none !important;
+}
+@media (orientation: portrait) {
+  .d-none-portrait {
+    display: none !important;
+  }
+  .d-none-landscape {
+    display: flex !important;
+  }
+}
