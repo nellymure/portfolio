@@ -51,11 +51,13 @@ const router = createRouter({
         {
           name: `fr.${routes.EXHIBITION.name}`,
           path: 'exposition',
+          alias: ['expositions'],
           component: () => import('@/views/sections/ExhibitionView.vue'),
         },
         {
           name: `fr.${routes.EVENT_DESIGN.name}`,
           path: 'design-evenementiel',
+          alias: ['events', 'event-design'],
           component: () => import('@/views/sections/DesignEvenView.vue'),
         },
         {
@@ -66,11 +68,13 @@ const router = createRouter({
         {
           name: `fr.${routes.MODELS.name}`,
           path: 'maquettes',
+          alias: ['maquette'],
           component: () => import('@/views/sections/ModelMakingView.vue'),
         },
         {
           name: `fr.${routes.ABOUT.name}`,
           path: 'a-propos',
+          alias: ['about'],
           component: () => import('@/views/AboutView.vue'),
         },
       ],
