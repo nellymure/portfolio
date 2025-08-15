@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import FadeInViewport from '@/components/FadeInViewport.vue'
+import CarouselWithFade from '@/components/CarouselWithFade.vue'
 import ColorPalette from '@/components/ColorPalette.vue'
 
 const { t } = useI18n()
@@ -16,7 +17,7 @@ defineProps({
   <article>
     <header>
       <div class="text-part">
-        <div>
+        <div class="title">
           <h3>{{ articleId }}</h3>
           <h1>{{ t('title-1') }}<br />{{ t('title-2') }}</h1>
         </div>
@@ -57,7 +58,16 @@ defineProps({
     <FadeInViewport delay="0.5s">
       <img class="full-img no-gap" src="@/assets/images/sections/cultural-mediation/IMG_2914.jpg" />
     </FadeInViewport>
-    <div class="container-2">
+    <div class="container-2 d-none-landscape">
+      <FadeInViewport delay="0.5s">
+        <CarouselWithFade :intervalTimer="2000">
+          <img src="@/assets/images/sections/cultural-mediation/IMG_2663.jpg" />
+          <img src="@/assets/images/sections/cultural-mediation/IMG_2559.jpg" />
+          <img src="@/assets/images/sections/cultural-mediation/IMG_2825.jpg" />
+        </CarouselWithFade>
+      </FadeInViewport>
+    </div>
+    <div class="container-2 d-none-portrait">
       <FadeInViewport delay="0.5s">
         <img src="@/assets/images/sections/cultural-mediation/IMG_2663.jpg" />
         <img src="@/assets/images/sections/cultural-mediation/IMG_2559.jpg" />
@@ -78,7 +88,16 @@ defineProps({
         </FadeInViewport>
       </div>
     </div>
-    <div class="container-4">
+    <div class="container-4 d-none-landscape">
+      <FadeInViewport delay="0.5s">
+        <CarouselWithFade :intervalTimer="2000">
+          <img src="@/assets/images/sections/cultural-mediation/IMG_3139-1.jpg" />
+          <img src="@/assets/images/sections/cultural-mediation/IMG_3092-1.jpg" />
+          <img src="@/assets/images/sections/cultural-mediation/IMG_3089-1.jpg" />
+        </CarouselWithFade>
+      </FadeInViewport>
+    </div>
+    <div class="container-4 d-none-portrait">
       <FadeInViewport delay="0.5s">
         <img src="@/assets/images/sections/cultural-mediation/IMG_3139-1.jpg" />
       </FadeInViewport>
@@ -144,6 +163,7 @@ article {
 }
 header {
   display: flex;
+  align-items: center;
   padding-left: var(--padding-x);
   padding-right: var(--padding-x);
 }
@@ -163,8 +183,9 @@ h1 {
   width: 50vw;
 }
 header img {
-  height: 80vh;
+  height: 90vh;
   object-fit: cover;
+  display: flex;
 }
 .container {
   width: 100%;
@@ -207,6 +228,7 @@ header img {
   width: 50%;
 }
 .full-img {
+  display: flex;
   width: 100vw;
   height: auto;
 }
@@ -255,5 +277,91 @@ header img {
 }
 .container-4 .big-one {
   width: 40vw;
+}
+
+@media (orientation: portrait) {
+  article {
+    row-gap: 5vh;
+  }
+  .no-gap {
+    margin-top: 0;
+  }
+  header {
+    flex-direction: column;
+  }
+  header .text-part {
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+    align-items: center;
+    margin-right: 0;
+  }
+  header .text-part .title {
+    text-align: center;
+  }
+  header .img-part {
+    margin-top: 3vh;
+    height: auto;
+    width: 100%;
+  }
+  header img {
+    height: auto;
+    object-fit: contain;
+  }
+  h1 {
+    font-size: 5em;
+    text-align: center;
+  }
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+  }
+  .container .left-part {
+    width: 100%;
+  }
+  .container .left-part img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    padding-right: 0;
+  }
+  .container .right-part {
+    margin-top: 5vh;
+    width: 100%;
+    height: auto;
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
+  }
+  .container-1 {
+    margin-bottom: -4vh;
+  }
+  .container-1 .right-part img {
+    width: 100%;
+  }
+  .container-2 {
+    height: 50vh;
+    width: 100%;
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
+  }
+  .container-2 img {
+    height: 50vh;
+    width: 100%;
+  }
+  .container-3 .right-part .img-container {
+    height: 50vh;
+    width: 100%;
+  }
+  .container-4 {
+    height: 50vh;
+    width: 100%;
+  }
+  .container-4 img {
+    height: 50vh;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 </style>

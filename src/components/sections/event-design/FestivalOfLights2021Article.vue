@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import FadeInViewport from '@/components/FadeInViewport.vue'
-import CarouselWithTranslate from '@/components/CarouselWithTranslate.vue'
 import ColorPalette from '@/components/ColorPalette.vue'
 
 const { t } = useI18n()

@@ -17,7 +17,7 @@ defineProps({
   <article>
     <header>
       <div class="text-part">
-        <div>
+        <div class="title">
           <h3>{{ articleId }}</h3>
           <h1>{{ t('title') }}</h1>
         </div>
@@ -109,5 +109,38 @@ header img {
 .carousel-arrow img {
   width: 100%;
   height: auto;
+}
+@media (orientation: portrait) {
+  article {
+    row-gap: 5vh;
+  }
+  header {
+    flex-direction: column;
+  }
+  header .text-part {
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+    align-items: center;
+  }
+  header .text-part .title {
+    text-align: center;
+  }
+  header .img-part {
+    width: 100%;
+  }
+  header img {
+    height: auto;
+    object-fit: contain;
+    margin-top: 3vh;
+  }
+  h1 {
+    font-size: 5em;
+    text-align: center;
+  }
+  .carousel-arrow {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 </style>
