@@ -124,4 +124,9 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
 }
+@media (orientation: portrait) {
+  .carousel-container .nav-btn {
+    width: 10vw;
+  }
+}
 </style>

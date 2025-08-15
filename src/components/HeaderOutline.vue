@@ -21,7 +21,7 @@ defineProps({
 .container {
   display: flex;
   flex-direction: row;
-  font-family: var(--font-family-adobe-song);
+  font-family: var(--font-family-antic-didone);
   font-weight: var(--font-weight-light);
   font-size: 1.783rem;
   color: var(--color-hex-black-orange);

@@ -58,7 +58,7 @@ const router = createRouter({
           name: `fr.${routes.EVENT_DESIGN.name}`,
           path: 'design-evenementiel',
           alias: ['events', 'event-design'],
-          component: () => import('@/views/sections/DesignEvenView.vue'),
+          component: () => import('@/views/sections/EventDesignView.vue'),
         },
         {
           name: `fr.${routes.MEDIATION.name}`,
@@ -95,7 +95,7 @@ const router = createRouter({
         {
           name: `en.${routes.EVENT_DESIGN.name}`,
           path: 'event-design',
-          component: () => import('@/views/sections/DesignEvenView.vue'),
+          component: () => import('@/views/sections/EventDesignView.vue'),
         },
         {
           name: `en.${routes.MEDIATION.name}`,

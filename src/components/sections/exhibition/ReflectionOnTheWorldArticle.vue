@@ -86,7 +86,7 @@ defineProps({
 }
 h1 {
   font-size: 7em;
-  font-family: var(--font-family-adobe-song);
+  font-family: var(--font-family-antic-didone);
   font-weight: var(--font-weight-light);
   line-height: 1;
   text-align: left;
@@ -146,6 +146,7 @@ header {
     text-align: center;
   }
   h1 {
+    font-size: 5em;
     text-align: center;
   }
   header .img-part {

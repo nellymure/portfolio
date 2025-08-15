@@ -7,10 +7,10 @@
   --font-weight-black: 900; /* Black */
 }
 @font-face {
-  font-family: 'Adobe Song Std';
-  src: url('@/assets/fonts/AdobeSongStd-Light.otf') format('opentype');
+  font-family: 'Antic Didone';
+  src: url('@/assets/fonts/AnticDidone-Regular.ttf') format('truetype');
   font-style: normal;
-  font-weight: var(--font-weight-light);
+  font-weight: var(--font-weight-normal);
 }
 @font-face {
   font-family: 'Cormorant Infant';
@@ -73,7 +73,7 @@
   font-weight: var(--font-weight-normal);
 }
 :root {
-  --font-family-adobe-song: 'Adobe Song Std';
+  --font-family-antic-didone: 'Antic Didone';
   --font-family-cormorant-infant: 'Cormorant Infant';
   --font-family-le-murmure: 'Le Murmure';
   --font-family-minion-pro: 'Minion Pro';

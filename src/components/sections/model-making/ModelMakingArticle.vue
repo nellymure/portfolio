@@ -128,7 +128,7 @@ header .text-part {
 }
 h1 {
   font-size: 7em;
-  font-family: var(--font-family-adobe-song);
+  font-family: var(--font-family-antic-didone);
   font-weight: var(--font-weight-light);
   line-height: 1;
   text-align: left;
