@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import LanguageSelector from '@/components/LanguageSelector.vue'
 import NellyMure from '@/components/NellyMure.vue'
 import NavBar from './NavBar.vue'
 import { useI18n } from 'vue-i18n'
@@ -12,7 +11,6 @@ const { t } = useI18n()
       <NellyMure class="nelly-mure" />
     </template>
     <template #right>
-      <LanguageSelector class="language-selector" />
       <div class="btn-about">{{ t('buttons.about') }}</div>
     </template>
   </NavBar>
@@ -35,14 +33,12 @@ const { t } = useI18n()
 
 <style lang="css" scoped>
 .hub-navbar {
+  color: var(--color-hex-orange);
   font-family: var(--font-family-montserrat);
   font-weight: var(--font-weight-semi-bold);
 }
 .nelly-mure {
   font-size: 3rem;
-}
-.language-selector {
-  width: 1.783rem;
 }
 .btn-about {
   margin-left: 1em;

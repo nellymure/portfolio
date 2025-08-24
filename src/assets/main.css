@@ -20,39 +20,10 @@ body {
 .line-break {
   white-space: pre-line;
 }
-.text-body {
-  font-family: var(--font-family-montserrat);
-  font-weight: var(--font-weight-light);
-  font-size: 1.083rem;
-  color: var(--color-hex-black);
-}
-.text-body-bold {
-  font-family: var(--font-family-montserrat);
-  font-weight: var(--font-weight-semi-bold);
-  font-size: 1.175rem;
-  color: var(--color-hex-black);
-}
-.text-header-outlined {
-  font-family: var(--font-family-antic-didone);
-  font-weight: var(--font-weight-light);
-  font-size: 1.783rem;
-  color: var(--color-hex-black-orange);
-  border-radius: 25px;
-}
-.asterisk {
-  font-family: var(--font-family-asterisk);
-}
 img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-.comments {
-  font-family: var(--font-family-montserrat);
-  font-weight: var(--font-weight-light);
-  font-style: italic;
-  font-size: 0.817rem;
-  text-align: center;
 }
 .d-flex {
   display: flex;
@@ -79,4 +50,11 @@ img {
 }
 .obj-pos-bottom {
   object-position: bottom;
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: none;
 }

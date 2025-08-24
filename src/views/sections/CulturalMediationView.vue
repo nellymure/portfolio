@@ -20,7 +20,7 @@ watch(locale, () => {
   <DynamicSection
     :title="title"
     :description="description"
-    :navbar-text-color="{ default: '--color-hex-black', onFolder: '--color-hex-black' }"
+    :navbar-text-color="{ default: '--color-hex-orange', onFolder: '--color-hex-black' }"
   >
     <MediationBookletArticle articleId="01" />
     <MediationToolArticle articleId="02" />
