@@ -16,25 +16,25 @@ function getTransitionName(route: RouteLocationNormalizedLoadedGeneric): string 
   </main>
 </template>
 
-<style lang="css" scoped>
+<style scoped>
 .component {
   position: absolute;
   z-index: 2;
   width: 100vw;
   height: 100vh;
 }
-
 .slide-right-leave-active,
 .slide-right-enter-active {
-  transition: all 1s ease-out;
+  transition: transform 1s ease-out;
 }
 .slide-right-enter-from {
   transform: translateX(100vw);
 }
-
-.fade-leave-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-out;
+}
 .fade-enter-active {
-  transition: all 1s ease-out;
+  transition: opacity 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .fade-enter-from {
   opacity: 0;
