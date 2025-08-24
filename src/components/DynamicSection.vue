@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, watch, type PropType } from 'vue'
 import SectionNavbar from '@/components/navbars/SectionNavbar.vue'
+import IconChevron from './IconChevron.vue'
 
 interface HTMLAnimated {
   element: HTMLElement
@@ -185,7 +186,7 @@ function smoothScrollToSection(): void {
               })
           "
         >
-          ▼
+          <IconChevron direction="bottom" />
         </div>
       </div>
       <section :ref="(el) => (html.section.value = el as HTMLElement)">

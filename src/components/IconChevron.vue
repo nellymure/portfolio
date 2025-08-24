@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { onMounted, ref, type VNodeRef } from 'vue'
+import { computed, onMounted, ref, type VNodeRef } from 'vue'
 
-defineProps({
+const props = defineProps({
   direction: {
-    type: String as () => 'left' | 'right',
+    type: String as () => 'top' | 'right' | 'bottom' | 'left',
     required: true,
   },
   size: {
@@ -13,6 +13,18 @@ defineProps({
 })
 const svgRef = ref<VNodeRef | null>(null)
 const color = ref<string>('#000000')
+const transform2 = computed(() => {
+  switch (props.direction) {
+    case 'bottom':
+      return 'rotate(90)'
+    case 'left':
+      return 'rotate(180)'
+    case 'top':
+      return 'rotate(270)'
+    default:
+      return ''
+  }
+})
 
 onMounted(() => {
   const parentStyles = getComputedStyle(svgRef.value.parentElement as HTMLElement)
@@ -28,7 +40,7 @@ onMounted(() => {
     viewBox="-19.04 0 75.804 75.804"
     xmlns="http://www.w3.org/2000/svg"
     fill="#000000"
-    :transform="direction === 'left' ? 'matrix(-1, 0, 0, 1, 0, 0)' : ''"
+    :transform="transform2"
   >
     <g stroke-width="0"></g>
     <g stroke-linecap="round" stroke-linejoin="round"></g>
