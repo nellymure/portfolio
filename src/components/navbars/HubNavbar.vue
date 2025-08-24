@@ -33,7 +33,7 @@ const { t } = useI18n()
   }
 </i18n>
 
-<style scoped>
+<style lang="css" scoped>
 .hub-navbar {
   font-family: var(--font-family-montserrat);
   font-weight: var(--font-weight-semi-bold);

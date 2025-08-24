@@ -54,7 +54,7 @@ function goToNextPage() {
   }
 </i18n>
 
-<style scoped>
+<style lang="css" scoped>
 .hover-container {
   z-index: 1;
   width: 100vw;

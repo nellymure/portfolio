@@ -35,7 +35,7 @@ const { t } = useI18n()
   }
 </i18n>
 
-<style scoped>
+<style lang="css" scoped>
 .container {
   width: 100vw;
   height: 100vh;

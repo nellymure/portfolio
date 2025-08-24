@@ -106,7 +106,7 @@ defineProps({
   }
 </i18n>
 
-<style scoped>
+<style lang="css" scoped>
 article {
   display: flex;
   flex-direction: column;

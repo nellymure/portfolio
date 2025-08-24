@@ -16,7 +16,7 @@ function getTransitionName(route: RouteLocationNormalizedLoadedGeneric): string 
   </main>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .component {
   position: absolute;
   z-index: 2;

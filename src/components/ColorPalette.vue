@@ -14,6 +14,7 @@ const isVisible = ref(false)
 onMounted(() => {
   window.addEventListener('scroll', updateVisibility)
   window.addEventListener('resize', updateVisibility)
+  updateVisibility()
 })
 
 onBeforeUnmount(() => {
@@ -34,7 +35,6 @@ function updateVisibility() {
     window.removeEventListener('resize', updateVisibility)
   }
 }
-updateVisibility()
 </script>
 
 <template>

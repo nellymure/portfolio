@@ -49,7 +49,7 @@ watch(locale, () => {
   }
 </i18n>
 
-<style scoped>
+<style lang="css" scoped>
 :deep(.folder) {
   color: var(--color-hex-black);
   background: var(--color-hex-beige2);

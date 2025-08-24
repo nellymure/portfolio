@@ -28,9 +28,7 @@ defineProps({
       </div>
       <div class="img-part">
         <FadeInViewport delay="0.5s">
-          <template #default>
-            <img class="header-image" src="@/assets/images/sections/exhibition/coupe-concept.jpg" />
-          </template>
+          <img class="header-image" src="@/assets/images/sections/exhibition/coupe-concept.jpg" />
         </FadeInViewport>
       </div>
     </header>
@@ -120,7 +118,7 @@ defineProps({
   }
 </i18n>
 
-<style scoped>
+<style lang="css" scoped>
 .text-part {
   max-width: 35vw;
   margin-right: var(--half-padding-x);
@@ -139,7 +137,7 @@ h1 {
 article {
   display: flex;
   flex-direction: column;
-  row-gap: 20vh;
+  row-gap: var(--article-row-gap);
 }
 header {
   display: flex;
@@ -198,9 +196,6 @@ header {
   height: auto;
 }
 @media (orientation: portrait) {
-  article {
-    row-gap: 5vh;
-  }
   header {
     flex-direction: column;
   }

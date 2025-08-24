@@ -75,7 +75,7 @@ defineProps({
   }
 </i18n>
 
-<style scoped>
+<style lang="css" scoped>
 .text-part {
   max-width: 30vw;
   margin-right: var(--half-padding-x);
@@ -95,7 +95,7 @@ h1 {
 article {
   display: flex;
   flex-direction: column;
-  row-gap: 20vh;
+  row-gap: var(--article-row-gap);
 }
 header {
   display: flex;
@@ -129,9 +129,6 @@ header {
   height: auto;
 }
 @media (orientation: portrait) {
-  article {
-    row-gap: 5vh;
-  }
   header {
     flex-direction: column;
   }

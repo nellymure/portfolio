@@ -18,6 +18,7 @@ const delay = ref(props.delay || '0')
 onMounted(() => {
   window.addEventListener('scroll', updateVisibility)
   window.addEventListener('resize', updateVisibility)
+  updateVisibility()
 })
 
 onBeforeUnmount(() => {
@@ -31,24 +32,23 @@ function updateVisibility() {
   }
 
   const { top, bottom } = content.value.getBoundingClientRect()
-  const { innerHeight } = window
+  const innerHeight = window.innerHeight + 1 // Add 1px to account for any potential scrollbars
   isVisible.value = (top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)
   if (isVisible.value) {
     window.removeEventListener('scroll', updateVisibility)
     window.removeEventListener('resize', updateVisibility)
   }
 }
-updateVisibility()
 </script>
 
 <template>
-  <div ref="content" class="content" :class="{ 'is-visible': isVisible }">
+  <div ref="content" class="fade-in-container" :class="{ 'is-visible': isVisible }">
     <slot></slot>
   </div>
 </template>
 
-<style scoped>
-.content {
+<style lang="css" scoped>
+.fade-in-container {
   opacity: 0;
 }
 .is-visible {

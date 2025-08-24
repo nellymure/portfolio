@@ -195,7 +195,7 @@ function smoothScrollToSection(): void {
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .navbar {
   color: v-bind(navbarTextColor);
 }
@@ -251,11 +251,11 @@ function smoothScrollToSection(): void {
 section {
   background-color: white;
   line-height: 2;
-  padding-top: 20vh;
-  padding-bottom: 10vh;
+  padding-top: var(--section-row-gap);
+  padding-bottom: calc(var(--section-row-gap) / 2);
   display: flex;
   flex-direction: column;
-  row-gap: 20vh;
+  row-gap: var(--section-row-gap);
 }
 @media (orientation: portrait) {
   .content .folder {
@@ -276,11 +276,6 @@ section {
   }
   .folder-description {
     margin-right: 0;
-  }
-  section {
-    padding-top: 10vh;
-    padding-bottom: 5vh;
-    row-gap: 10vh;
   }
 }
 @keyframes letter-animation {

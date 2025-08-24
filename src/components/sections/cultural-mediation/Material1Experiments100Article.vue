@@ -152,14 +152,14 @@ defineProps({
   }
 </i18n>
 
-<style scoped>
+<style lang="css" scoped>
 article {
   display: flex;
   flex-direction: column;
-  row-gap: 20vh;
+  row-gap: var(--article-row-gap);
 }
 .no-gap {
-  margin-top: -20vh;
+  margin-top: calc(var(--article-row-gap) * -1);
 }
 header {
   display: flex;
@@ -278,11 +278,7 @@ header img {
 .container-4 .big-one {
   width: 40vw;
 }
-
 @media (orientation: portrait) {
-  article {
-    row-gap: 5vh;
-  }
   .no-gap {
     margin-top: 0;
   }

@@ -6,17 +6,6 @@
   box-sizing: border-box;
   margin: 0;
 }
-:root {
-  font-size: 1vw;
-  --padding-x: 8rem;
-  --half-padding-x: calc(var(--padding-x) / 2);
-}
-@media (orientation: portrait) {
-  :root {
-    font-size: 1.5vh;
-    --padding-x: 2rem;
-  }
-}
 body {
   /* Fonts */
   font-family: var(--font-family-montserrat);
@@ -84,4 +73,10 @@ img {
   .d-none-landscape {
     display: flex !important;
   }
+}
+.obj-pos-top {
+  object-position: top;
+}
+.obj-pos-bottom {
+  object-position: bottom;
 }

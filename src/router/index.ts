@@ -154,7 +154,7 @@ router.afterEach((to, from) => {
   to.meta.transition = routes.HOME.name === from.name ? 'slide-right' : 'fade'
 })
 
-interface Route {
+export interface Route {
   name: string
 }
 

@@ -65,11 +65,11 @@ defineProps({
   }
 </i18n>
 
-<style scoped>
+<style lang="css" scoped>
 article {
   display: flex;
   flex-direction: column;
-  row-gap: 20vh;
+  row-gap: var(--article-row-gap);
 }
 header {
   display: flex;
@@ -94,9 +94,6 @@ h1 {
   object-fit: cover;
 }
 @media (orientation: portrait) {
-  article {
-    row-gap: 5vh;
-  }
   header {
     flex-direction: column;
     padding-left: 0;

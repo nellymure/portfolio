@@ -49,7 +49,7 @@ const { t } = useI18n()
   }
 </i18n>
 
-<style scoped>
+<style lang="css" scoped>
 .about {
   width: 100vw;
   height: 100vh;

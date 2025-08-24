@@ -17,7 +17,7 @@ defineProps({
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .container {
   display: flex;
   flex-direction: row;

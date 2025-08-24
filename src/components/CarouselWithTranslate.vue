@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref, reactive, onMounted, useSlots, type VNode } from 'vue'
+import IconChevron from '@/components/IconChevron.vue'
 
 const props = defineProps({
   enableArrows: {
@@ -82,7 +83,7 @@ onMounted(() => {
 <template>
   <div class="carousel-container">
     <div v-if="enableArrows" class="nav-btn" @click="prev">
-      <img src="@/assets/images/common/chevron-gauche.png" />
+      <IconChevron direction="left" size="2.5em" />
     </div>
     <div class="carousel">
       <div class="inner" ref="inner" :style="innerStyles">
@@ -92,12 +93,12 @@ onMounted(() => {
       </div>
     </div>
     <div v-if="enableArrows" class="nav-btn" @click="next">
-      <img src="@/assets/images/common/chevron-droit.png" />
+      <IconChevron direction="right" size="2.5em" />
     </div>
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .carousel-container {
   display: flex;
 }
@@ -106,9 +107,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   background-color: transparent;
-}
-.carousel-container .nav-btn img {
-  width: 45%;
+  width: 10%;
 }
 .carousel {
   width: 100%;

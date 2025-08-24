@@ -60,7 +60,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .carousel {
   width: 100%;
   overflow: hidden;
