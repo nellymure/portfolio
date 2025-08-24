@@ -111,9 +111,6 @@ const { t } = useI18n()
   padding-left: var(--half-padding-x);
   padding-right: var(--half-padding-x);
 }
-.sections:last-child {
-  flex: 0;
-}
 .section {
   font-family: 'Courier New', Courier, monospace;
   width: var(--section-width);
@@ -122,6 +119,9 @@ const { t } = useI18n()
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: var(--quarter-padding-x);
+}
+.section:last-child {
+  flex: 0;
 }
 .square {
   height: var(--section-width);
@@ -149,13 +149,29 @@ const { t } = useI18n()
 }
 @media (orientation: portrait) {
   .hub {
-    height: auto;
+    --section-width: calc(100vw / 2 - var(--half-padding-x));
+    justify-content: center;
   }
-  .hub .container {
-    flex-direction: column;
+  .sections {
+    flex-wrap: wrap;
+    row-gap: var(--half-padding-x);
   }
-  .hub .container > div {
+  .sections {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .section {
     padding: var(--quarter-padding-x);
+  }
+  .section:last-child {
+    flex: 1;
+  }
+  .square {
+    width: auto;
+    font-size: 8em;
+  }
+  .square h1 {
+    transform: translate(-15%, 0);
   }
 }
 </style>

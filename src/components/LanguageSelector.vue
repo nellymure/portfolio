@@ -33,7 +33,8 @@ function toggle() {
 }
 @media (orientation: portrait) {
   .languageSelector {
-    bottom: 10vh;
+    bottom: var(--padding-x);
+    left: var(--padding-x);
   }
 }
 </style>
