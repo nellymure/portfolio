@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import LanguageSelector from '@/components/LanguageSelector.vue'
+import NavBar from './NavBar.vue'
 
 const { t } = useI18n()
 </script>
 
 <template>
-  <div class="navbar">
-    <div class="left">{{ t('buttons.back') }}</div>
-    <div class="right">
+  <NavBar class="section-navbar">
+    <template #left>
+      <div class="arrow">←</div>
+      <div>{{ t('buttons.back') }}</div>
+    </template>
+    <template #right>
       <LanguageSelector class="language-selector" />
       <div class="btn-about">{{ t('buttons.about') }}</div>
-    </div>
-  </div>
+    </template>
+  </NavBar>
 </template>
 
 <i18n>
@@ -33,35 +37,14 @@ const { t } = useI18n()
 </i18n>
 
 <style scoped>
-.navbar {
-  position: fixed;
-  top: 0;
-  z-index: 100;
-  width: 100vw;
-  padding: 2rem 4rem 0 4rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.section-navbar {
   font-family: var(--font-family-montserrat);
   font-weight: var(--font-weight-semi-bold);
   text-transform: uppercase;
 }
-@media (orientation: portrait) {
-  .navbar {
-    padding: 2rem 2rem 0 2rem;
-  }
-}
-.left {
-  display: flex;
-  align-items: center;
-}
-.left .arrow {
+.arrow {
   padding-right: 1rem;
   margin-bottom: 0.2em;
-}
-.right {
-  display: flex;
-  align-items: center;
 }
 .language-selector {
   width: 1.783rem;
