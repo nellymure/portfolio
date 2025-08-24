@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { type RouteLocationNormalizedLoadedGeneric } from 'vue-router'
+import LanguageSelector from '@/components/LanguageSelector.vue'
 
 function getTransitionName(route: RouteLocationNormalizedLoadedGeneric): string {
   return <string>route.meta!.transition
@@ -13,6 +14,7 @@ function getTransitionName(route: RouteLocationNormalizedLoadedGeneric): string 
         <component class="component" :is="Component" :key="route.path" />
       </transition>
     </router-view>
+    <LanguageSelector />
   </main>
 </template>
 
