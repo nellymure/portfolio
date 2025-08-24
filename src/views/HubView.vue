@@ -45,7 +45,7 @@ const { t } = useI18n()
       </router-link>
       <router-link class="section model-making" :to="{ name: getRouteName(routes.MODELS) }">
         <FadeInViewport delay="0.5s">
-          <img class="obj-pos-bottom" src="@/assets/images/hub/cultural-mediation.png" />
+          <img class="obj-pos-bottom" src="@/assets/images/hub/model-making.png" />
         </FadeInViewport>
         <div class="on-hover">
           {{ t('modelMaking.title') }}
