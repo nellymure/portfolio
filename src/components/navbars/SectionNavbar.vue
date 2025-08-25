@@ -13,7 +13,11 @@ const { t } = useI18n()
       <router-link :to="{ name: getRouteName(routes.HUB) }">{{ t('buttons.back') }}</router-link>
     </template>
     <template #right>
-      <div class="btn-about">{{ t('buttons.about') }}</div>
+      <router-link class="btn-about" :to="{ name: getRouteName(routes.ABOUT) }">
+        <div class="title">
+          {{ t('buttons.about') }}
+        </div>
+      </router-link>
     </template>
   </NavBar>
 </template>
@@ -36,11 +40,6 @@ const { t } = useI18n()
 </i18n>
 
 <style lang="css" scoped>
-.section-navbar {
-  font-family: var(--font-family-montserrat);
-  font-weight: var(--font-weight-semi-bold);
-  text-transform: uppercase;
-}
 .btn-about {
   margin-left: 1em;
 }

@@ -20,6 +20,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: var(--font-family-montserrat);
+  font-weight: var(--font-weight-semi-bold);
+  text-transform: uppercase;
 }
 @media (orientation: portrait) {
   .navbar {

@@ -19,7 +19,7 @@ watch(locale, () => {
   <DynamicSection
     :title="title"
     :description="description"
-    :navbar-text-color="{ default: '--color-hex-orange', onFolder: '--color-hex-beige-light' }"
+    :navbarTextColor="{ default: '--color-hex-orange', onFolder: '--color-hex-beige-light' }"
   >
     <CamargueMuseumArticle articleId="01" />
     <BigNorthBigSouthArticle articleId="02" />

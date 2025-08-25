@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import NellyMure from '@/components/NellyMure.vue'
 import NavBar from './NavBar.vue'
-import { useI18n } from 'vue-i18n'
+import { routes, getRouteName } from '@/router'
+import { RouterLink } from 'vue-router'
+
 const { t } = useI18n()
 </script>
 
@@ -11,7 +14,11 @@ const { t } = useI18n()
       <NellyMure class="nelly-mure" />
     </template>
     <template #right>
-      <div class="btn-about">{{ t('buttons.about') }}</div>
+      <router-link class="btn-about" :to="{ name: getRouteName(routes.ABOUT) }">
+        <div class="title">
+          {{ t('buttons.about') }}
+        </div>
+      </router-link>
     </template>
   </NavBar>
 </template>
@@ -34,8 +41,6 @@ const { t } = useI18n()
 <style lang="css" scoped>
 .hub-navbar {
   color: var(--color-hex-orange);
-  font-family: var(--font-family-montserrat);
-  font-weight: var(--font-weight-semi-bold);
 }
 .nelly-mure {
   font-size: 3rem;
