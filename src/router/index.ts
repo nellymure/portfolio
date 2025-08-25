@@ -150,8 +150,18 @@ router.beforeEach((to, from) => {
   setI18nLocale(locale)
 })
 
-router.afterEach((to, from) => {
-  to.meta.transition = routes.HOME.name === from.name ? 'slide-right' : 'fade'
+router.afterEach((to, _from) => {
+  if (routes.HOME.name === to.name) {
+    return
+  }
+  const toRoute = to.name ? (to.name as string).substring(3) : ''
+  let transition
+  if (routes.HUB.name === toRoute) {
+    transition = 'slide-left'
+  } else {
+    transition = 'slide-right'
+  }
+  to.meta.transition = transition
 })
 
 export interface Route {

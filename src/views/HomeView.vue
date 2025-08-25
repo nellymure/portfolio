@@ -68,6 +68,16 @@ function goToNextPage() {
   justify-content: space-between;
   user-select: none;
   overflow: hidden;
+  opacity: 0;
+  animation: fade-in-bottom 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+}
+@keyframes fade-in-bottom {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .banner {
   display: flex;

@@ -93,6 +93,7 @@ const { t } = useI18n()
   flex-direction: column;
   justify-content: flex-end;
   --section-width: calc(100vw / 4 - var(--half-padding-x));
+  background-color: white;
 }
 .page-title {
   padding-bottom: var(--article-row-gap);

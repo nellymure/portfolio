@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { routes } from '@/router'
 import { type RouteLocationNormalizedLoadedGeneric } from 'vue-router'
 import LanguageSelector from '@/components/LanguageSelector.vue'
 
@@ -8,9 +9,9 @@ function getTransitionName(route: RouteLocationNormalizedLoadedGeneric): string 
 </script>
 
 <template>
-  <LanguageSelector />
   <main>
     <router-view v-slot="{ Component, route }">
+      <LanguageSelector v-if="routes.HOME.name !== route.name" />
       <transition :name="getTransitionName(route)">
         <component class="component" :is="Component" :key="route.path" />
       </transition>
@@ -32,13 +33,11 @@ function getTransitionName(route: RouteLocationNormalizedLoadedGeneric): string 
 .slide-right-enter-from {
   transform: translateX(100vw);
 }
-.fade-leave-active {
-  transition: opacity 0.3s ease-out;
+.slide-left-leave-active,
+.slide-left-enter-active {
+  transition: transform 1s ease-out;
 }
-.fade-enter-active {
-  transition: opacity 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.fade-enter-from {
-  opacity: 0;
+.slide-left-enter-from {
+  transform: translateX(-100vw);
 }
 </style>

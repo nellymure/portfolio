@@ -22,18 +22,20 @@ function toggle() {
 <style lang="css" scoped>
 .languageSelector {
   position: fixed;
-  bottom: var(--quarter-padding-x);
-  left: var(--quarter-padding-x);
+  --img-size: 50px;
+  --img-offset: calc(var(--img-size) / 2);
+  top: calc(100vh - var(--half-padding-x) - var(--img-offset));
+  left: calc(var(--half-padding-x) - var(--img-offset));
   z-index: 200;
 }
 .languageSelector img {
   cursor: pointer;
-  width: 50px;
-  height: 50px;
+  width: var(--img-size);
+  height: var(--img-size);
 }
 @media (orientation: portrait) {
   .languageSelector {
-    bottom: var(--padding-x);
+    top: calc(100vh - var(--padding-x) * 1.5 - var(--img-offset));
     left: var(--padding-x);
   }
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import NavBar from '@/components/navbars/NavBar.vue'
+import FadeInViewport from '@/components/FadeInViewport.vue'
 import { routes, getRouteName } from '@/router'
 import { RouterLink } from 'vue-router'
 
@@ -18,10 +19,12 @@ const { t } = useI18n()
       <p class="text-indent">
         {{ t('about') }}
       </p>
-      <img class="selfie" src="@/assets/images/about/selfie.jpg" alt="selfie" />
-      <div class="asterisk asterisk-1"><span>*</span></div>
-      <div class="asterisk asterisk-2"><span>*</span></div>
-      <div class="asterisk asterisk-3"><span>*</span></div>
+      <FadeInViewport delay="0.5s">
+        <img class="selfie" src="@/assets/images/about/selfie.jpg" alt="selfie" />
+      </FadeInViewport>
+      <div class="asterisk asterisk-1"><span>✳</span></div>
+      <div class="asterisk asterisk-2"><span>✳</span></div>
+      <div class="asterisk asterisk-3"><span>✳</span></div>
     </div>
   </div>
 </template>
@@ -57,6 +60,7 @@ const { t } = useI18n()
 .about {
   display: flex;
   align-items: center;
+  background-color: white;
 }
 .navbar {
   color: var(--color-hex-orange);
@@ -82,17 +86,19 @@ const { t } = useI18n()
 }
 .asterisk {
   position: absolute;
+  z-index: 1;
   width: var(--asterisk-size);
   height: var(--asterisk-size);
   font-family: var(--font-family-minion-pro);
-  font-size: 22rem;
+  font-size: calc(var(--asterisk-size) * 1.6);
   animation: swirl-in-bottom-fwd 0.6s ease-out both;
+  animation-delay: 1s;
 }
 .asterisk span {
   width: var(--asterisk-size);
   height: var(--asterisk-size);
   display: block;
-  line-height: 0.8;
+  line-height: 0.5;
   overflow: hidden;
 }
 .asterisk-1 {
@@ -127,31 +133,34 @@ const { t } = useI18n()
   }
 }
 @media (orientation: portrait) {
+  .about {
+    align-items: flex-start;
+  }
   .content {
     flex-direction: column;
-  }
-  .selfie {
-    height: auto;
-    width: 100%;
-  }
-  .content {
     padding: var(--navbar-height) var(--padding-x) var(--padding-x) var(--padding-x);
+    height: auto;
   }
   .content p {
     padding-right: 0;
     padding-bottom: var(--padding-x);
   }
+  .selfie {
+    height: auto;
+    width: 100%;
+  }
   .asterisk-1 {
-    bottom: 60vh;
-    left: 0;
+    top: calc(70vh + var(--asterisk-offset));
+    left: calc(2rem + var(--asterisk-offset));
   }
   .asterisk-2 {
-    bottom: 100vh;
-    left: 80vw;
+    top: calc(2vh + var(--asterisk-offset));
+    left: calc(95vw + var(--asterisk-offset));
   }
   .asterisk-3 {
-    bottom: 10vh;
-    left: 70vw;
+    top: calc(100vh + var(--asterisk-size));
+    left: calc(95vw + var(--asterisk-offset));
+    height: var(--asterisk-size);
   }
 }
 </style>
