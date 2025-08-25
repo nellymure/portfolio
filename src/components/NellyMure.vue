@@ -26,10 +26,10 @@ function animate() {
 .title {
   display: flex;
   flex-direction: row;
-  color: var(--color-hex-black-orange);
   font-family: var(--font-family-le-murmure);
   font-weight: var(--font-weight-normal);
   line-height: 1;
+  text-transform: none;
 }
 .title-animated {
   animation: jello-diagonal-2 0.8s both;

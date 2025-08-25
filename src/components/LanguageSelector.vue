@@ -12,10 +12,8 @@ function toggle() {
 
 <template>
   <div class="languageSelector" @click="toggle">
-    <FadeInViewport delay="0.5s">
-      <img v-if="isToggled" src="@/assets/images/mouth-opened.png" />
-      <img v-else src="@/assets/images/mouth-closed.png" />
-    </FadeInViewport>
+    <img v-if="isToggled" src="@/assets/images/mouth-opened.png" />
+    <img v-else src="@/assets/images/mouth-closed.png" />
   </div>
 </template>
 
@@ -27,6 +25,44 @@ function toggle() {
   top: calc(100vh - var(--half-padding-x) - var(--img-offset));
   left: calc(var(--half-padding-x) - var(--img-offset));
   z-index: 200;
+  animation: bounce-in-bck 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation-delay: 1s;
+}
+@keyframes bounce-in-bck {
+  0% {
+    transform: scale(7);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    transform: scale(1.5);
+    animation-timing-function: ease-in;
+  }
+  72% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+  81% {
+    transform: scale(1.24);
+    animation-timing-function: ease-in;
+  }
+  89% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+  95% {
+    transform: scale(1.04);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
 }
 .languageSelector img {
   cursor: pointer;

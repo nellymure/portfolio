@@ -28,16 +28,22 @@ function getTransitionName(route: RouteLocationNormalizedLoadedGeneric): string 
 }
 .slide-right-leave-active,
 .slide-right-enter-active {
-  transition: transform 1s ease-out;
+  transition: all 1s ease-out;
 }
 .slide-right-enter-from {
   transform: translateX(100vw);
 }
+.slide-right-leave-to {
+  opacity: 0;
+}
 .slide-left-leave-active,
 .slide-left-enter-active {
-  transition: transform 1s ease-out;
+  transition: all 1s ease-out;
 }
 .slide-left-enter-from {
   transform: translateX(-100vw);
+}
+.slide-left-leave-to {
+  opacity: 0;
 }
 </style>

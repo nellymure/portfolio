@@ -91,8 +91,8 @@ const { t } = useI18n()
   height: var(--asterisk-size);
   font-family: var(--font-family-minion-pro);
   font-size: calc(var(--asterisk-size) * 1.6);
-  animation: swirl-in-bottom-fwd 0.6s ease-out both;
-  animation-delay: 1s;
+  animation: scale-in 0.6s ease-out both;
+  animation-delay: 0.6s;
 }
 .asterisk span {
   width: var(--asterisk-size);
@@ -120,21 +120,18 @@ const { t } = useI18n()
 .asterisk-3 span {
   height: calc(var(--asterisk-size) * 0.91);
 }
-@keyframes swirl-in-bottom-fwd {
+@keyframes scale-in {
   0% {
-    transform: rotate(-540deg) scale(0);
-    transform-origin: 50% 100%;
-    opacity: 0;
+    transform: scale(0);
   }
   100% {
-    transform: rotate(0) scale(1);
-    transform-origin: 50% 100%;
-    opacity: 1;
+    transform: scale(1);
   }
 }
 @media (orientation: portrait) {
   .about {
     align-items: flex-start;
+    overflow: hidden;
   }
   .content {
     flex-direction: column;
@@ -142,6 +139,7 @@ const { t } = useI18n()
     height: auto;
   }
   .content p {
+    font-size: 1rem;
     padding-right: 0;
     padding-bottom: var(--padding-x);
   }
@@ -158,7 +156,8 @@ const { t } = useI18n()
     left: calc(95vw + var(--asterisk-offset));
   }
   .asterisk-3 {
-    top: calc(100vh + var(--asterisk-size));
+    top: auto;
+    bottom: 0;
     left: calc(95vw + var(--asterisk-offset));
     height: var(--asterisk-size);
   }
