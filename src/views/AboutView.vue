@@ -55,8 +55,6 @@ const { t } = useI18n()
 
 <style lang="css" scoped>
 .about {
-  width: 100vw;
-  height: 100vh;
   display: flex;
   align-items: center;
 }
@@ -64,45 +62,57 @@ const { t } = useI18n()
   color: var(--color-hex-orange);
 }
 .content {
-  margin-top: var(--navbar-height);
-  height: 100%;
   display: flex;
   align-items: flex-end;
-  padding: var(--navbar-height) 20vw 20vh 20vw;
+  padding-right: var(--half-padding-x);
+  padding-left: var(--half-padding-x);
+  overflow: hidden;
+  height: 90vh;
+  --asterisk-size: 9rem;
+  --asterisk-offset: var(--asterisk-size) / -2;
 }
 .content p {
+  font-size: 1.5rem;
   padding-right: var(--half-padding-x);
   padding-bottom: var(--half-padding-x);
 }
 .selfie {
-  height: auto;
-  width: 20vw;
+  height: 90vh;
+  width: auto;
 }
 .asterisk {
   position: absolute;
-  width: 9rem;
-  height: 9rem;
+  width: var(--asterisk-size);
+  height: var(--asterisk-size);
   font-family: var(--font-family-minion-pro);
-  font-size: 20rem;
+  font-size: 22rem;
   animation: swirl-in-bottom-fwd 0.6s ease-out both;
 }
 .asterisk span {
+  width: var(--asterisk-size);
+  height: var(--asterisk-size);
+  display: block;
   line-height: 0.8;
+  overflow: hidden;
 }
 .asterisk-1 {
-  bottom: 60vh;
-  left: 14vw;
+  top: calc(40vh + var(--asterisk-offset));
+  left: calc(2rem + var(--asterisk-offset));
   color: var(--color-hex-salmon-dark);
 }
 .asterisk-2 {
-  bottom: 75vh;
-  left: 73vw;
+  top: calc(18vh + var(--asterisk-offset));
+  left: calc(94vw + var(--asterisk-offset));
   color: var(--color-hex-violet2);
 }
 .asterisk-3 {
-  bottom: 5vh;
-  left: 55vw;
+  top: calc(100vh - var(--asterisk-size) * 0.91);
+  left: calc(68vw + var(--asterisk-offset));
+  height: calc(var(--asterisk-size) * 0.91);
   color: var(--color-hex-orange);
+}
+.asterisk-3 span {
+  height: calc(var(--asterisk-size) * 0.91);
 }
 @keyframes swirl-in-bottom-fwd {
   0% {
