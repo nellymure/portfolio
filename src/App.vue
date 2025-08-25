@@ -8,13 +8,13 @@ function getTransitionName(route: RouteLocationNormalizedLoadedGeneric): string 
 </script>
 
 <template>
+  <LanguageSelector />
   <main>
     <router-view v-slot="{ Component, route }">
       <transition :name="getTransitionName(route)">
         <component class="component" :is="Component" :key="route.path" />
       </transition>
     </router-view>
-    <LanguageSelector />
   </main>
 </template>
 

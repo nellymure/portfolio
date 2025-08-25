@@ -22,9 +22,9 @@ function toggle() {
 <style lang="css" scoped>
 .languageSelector {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
+  bottom: var(--quarter-padding-x);
+  left: var(--quarter-padding-x);
+  z-index: 200;
 }
 .languageSelector img {
   cursor: pointer;

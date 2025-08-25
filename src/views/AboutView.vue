@@ -19,13 +19,9 @@ const { t } = useI18n()
         {{ t('about') }}
       </p>
       <img class="selfie" src="@/assets/images/about/selfie.jpg" alt="selfie" />
-      <div class="asterisks">
-        <div>*</div>
-        <div>*</div>
-        <div>*</div>
-      </div>
-      <!-- <div class="asterisk">*</div> -->
-      <!-- <div class="asterisk">*</div> -->
+      <div class="asterisk asterisk-1"><span>*</span></div>
+      <div class="asterisk asterisk-2"><span>*</span></div>
+      <div class="asterisk asterisk-3"><span>*</span></div>
     </div>
   </div>
 </template>
@@ -63,12 +59,12 @@ const { t } = useI18n()
   height: 100vh;
   display: flex;
   align-items: center;
-  padding: var(--navbar-height) 0 0 0;
 }
 .navbar {
   color: var(--color-hex-orange);
 }
 .content {
+  margin-top: var(--navbar-height);
   height: 100%;
   display: flex;
   align-items: flex-end;
@@ -82,29 +78,30 @@ const { t } = useI18n()
   height: auto;
   width: 20vw;
 }
-.asterisks {
-  font-family: var(--font-family-minion-pro);
-  font-size: 20rem;
-}
-.asterisks > div {
+.asterisk {
   position: absolute;
   width: 9rem;
   height: 9rem;
+  font-family: var(--font-family-minion-pro);
+  font-size: 20rem;
   animation: swirl-in-bottom-fwd 0.6s ease-out both;
 }
-.asterisks :nth-child(1) {
+.asterisk span {
+  line-height: 0.8;
+}
+.asterisk-1 {
   bottom: 60vh;
   left: 14vw;
   color: var(--color-hex-salmon-dark);
 }
-.asterisks :nth-child(2) {
-  bottom: 70vh;
-  right: 17vw;
+.asterisk-2 {
+  bottom: 75vh;
+  left: 73vw;
   color: var(--color-hex-violet2);
 }
-.asterisks :nth-child(3) {
-  bottom: 30vh;
-  right: 38vw;
+.asterisk-3 {
+  bottom: 5vh;
+  left: 55vw;
   color: var(--color-hex-orange);
 }
 @keyframes swirl-in-bottom-fwd {
@@ -117,6 +114,34 @@ const { t } = useI18n()
     transform: rotate(0) scale(1);
     transform-origin: 50% 100%;
     opacity: 1;
+  }
+}
+@media (orientation: portrait) {
+  .content {
+    flex-direction: column;
+  }
+  .selfie {
+    height: auto;
+    width: 100%;
+  }
+  .content {
+    padding: var(--navbar-height) var(--padding-x) var(--padding-x) var(--padding-x);
+  }
+  .content p {
+    padding-right: 0;
+    padding-bottom: var(--padding-x);
+  }
+  .asterisk-1 {
+    bottom: 60vh;
+    left: 0;
+  }
+  .asterisk-2 {
+    bottom: 100vh;
+    left: 80vw;
+  }
+  .asterisk-3 {
+    bottom: 10vh;
+    left: 70vw;
   }
 }
 </style>
