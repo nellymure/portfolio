@@ -71,6 +71,19 @@ defineProps({
       ]
     },
     "en": {
+      "title": "Reflections on the\nWorld",
+      "paragraphs": [
+        "The exhibition Les Reflets du Monde (Reflections of the World) presents the autochromes
+        collected by philanthropist Albert Kahn through a dreamlike and fantastical landscape, that
+        of the Archives de la Planète (Archives of the Planet). The autochromes express a poetic
+        dimension through their narrative expression. Transposed onto glass and backlit, they
+        generate reflections and plays of light to tell the story of the world and its secrets. The
+        idea of the imaginary landscape complements the idea of travel and discovery in a setting
+        with blurred boundaries that encourage visitors to escape.",
+        "The exhibition is structured around different themes: ethnology, current events, geography,
+        and travel. Visitors experience them by adopting different points of view and postures, such
+        as contemplation or overlooking a new landscape."
+      ]
     }
   }
 </i18n>

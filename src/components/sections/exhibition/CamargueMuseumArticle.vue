@@ -114,6 +114,17 @@ defineProps({
       ]
     },
     "en": {
+      "title": "With or without salt",
+      "paragraphs": [
+        "This project is my final year macro project. It takes the form of an exhibition design for
+        the Camargue Museum located near Arles. Climate change is affecting the sustainability of
+        the Camargue, with salt playing a major role in the degradation of the region. The
+        exhibition must be impactful given the urgency of the situation. It must subtly convey a
+        growing sense of permanent threat to visitors through the interplay of materials and light.",
+        "Within this project, the scenography can interact with the landscape through the use
+        of materials. This plasticity allows the proliferation of salt to be physically
+        evoked within the exhibition."
+      ]
     }
   }
 </i18n>

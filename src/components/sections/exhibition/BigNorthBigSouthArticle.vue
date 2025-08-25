@@ -80,6 +80,19 @@ defineProps({
       ]
     },
     "en": {
+      "title": "Big North\nBig South",
+      "paragraphs": [
+        "The Grand Nord Grand Sud exhibition project was my final-year degree project. It explores
+        the links between two indigenous arts from opposite sides of the globe: Inuit art and
+        Aboriginal art. These two arts, which appear to be polar opposites, are connected by their
+        spiritual function: they are not intended to be seen by a community but by spirits.",
+        "The scenography must therefore encourage visitors to question themselves and adapt their
+        position in order to merit access to these objects. Through an initiatory journey, they are
+        led to question their dominant position in order to communicate with the divine.",
+        "A hot-cold contrast allows visitors to grasp the nature of the geographical poles they are
+        exploring. These will then be brought together under the theme of the celestial: we open
+        ourselves up to another cosmology."
+      ]
     }
   }
 </i18n>
