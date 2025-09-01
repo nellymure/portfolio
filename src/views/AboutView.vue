@@ -16,7 +16,7 @@ const { t } = useI18n()
         <router-link :to="{ name: getRouteName(routes.HUB) }">{{ t('buttons.back') }}</router-link>
       </template>
     </NavBar>
-    <div class="content">
+    <div class="content d-none-portrait">
       <p class="text-indent">
         {{ t('about') }}
       </p>
@@ -30,6 +30,25 @@ const { t } = useI18n()
         <IconAsterisk />
       </div>
       <div class="asterisk asterisk-3">
+        <IconAsterisk />
+      </div>
+    </div>
+    <div class="content d-none-landscape">
+      <p class="text-indent">
+        {{ t('about') }}
+      </p>
+      <FadeInViewport delay="0.5s">
+        <div class="selfie">
+          <img src="@/assets/images/about/selfie.jpg" alt="selfie" />
+          <div class="asterisk asterisk-1">
+            <IconAsterisk />
+          </div>
+          <div class="asterisk asterisk-3">
+            <IconAsterisk />
+          </div>
+        </div>
+      </FadeInViewport>
+      <div class="asterisk asterisk-2">
         <IconAsterisk />
       </div>
     </div>
@@ -79,7 +98,7 @@ const { t } = useI18n()
   padding-right: var(--half-padding-x);
   overflow: hidden;
   height: 90vh;
-  --asterisk-size: 9rem;
+  --asterisk-size: 20vh;
   --asterisk-offset: var(--asterisk-size) / -2;
 }
 .content p {
@@ -146,6 +165,7 @@ const { t } = useI18n()
     flex-direction: column;
     padding: var(--navbar-height) var(--padding-x) var(--padding-x) var(--padding-x);
     height: auto;
+    --asterisk-size: 30vw;
   }
   .content p {
     font-size: 1rem;
@@ -158,28 +178,17 @@ const { t } = useI18n()
     width: 100%;
   }
   .asterisk-1 {
-    top: calc(70vh + var(--asterisk-offset));
-    left: calc(2rem + var(--asterisk-offset));
+    top: calc(-0.1 * var(--asterisk-size));
+    left: calc(-0.4 * var(--asterisk-size));
   }
   .asterisk-2 {
     top: calc(2vh + var(--asterisk-offset));
     left: calc(95vw + var(--asterisk-offset));
   }
   .asterisk-3 {
-    top: auto;
-    bottom: 0;
-    left: calc(95vw + var(--asterisk-offset));
+    top: 40vh;
+    left: calc(100% + var(--asterisk-offset));
     height: var(--asterisk-size);
-  }
-}
-
-@media ((max-width: 500px)) {
-  .asterisk-1 {
-    top: calc(90vh + var(--asterisk-offset));
-    left: calc(2rem + var(--asterisk-offset));
-  }
-  .asterisk-3 {
-    top: 120vh;
   }
 }
 </style>
