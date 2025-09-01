@@ -163,6 +163,8 @@ const { t } = useI18n()
   }
   .section {
     padding: var(--quarter-padding-x);
+    width: calc(50vw - var(--half-padding-x));
+    min-width: calc(50vw - var(--half-padding-x));
   }
   .section:last-child {
     flex: 1;
@@ -170,9 +172,6 @@ const { t } = useI18n()
   .square {
     width: auto;
     font-size: 8em;
-  }
-  .square h1 {
-    transform: translate(-15%, 0);
   }
 }
 </style>
