@@ -134,7 +134,7 @@ const { t } = useI18n()
   overflow: hidden;
 }
 .square h1 {
-  transform: translate(-15%, 10%);
+  transform: translate(-0.125em, 0.125em);
 }
 .exhibition .square {
   background: var(--color-hex-orange);
