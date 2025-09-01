@@ -31,8 +31,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         with:
-          lfs: 'true'
-          submodules: 'recursive'
+          # actions/checkout + LFS doesn't work on GhES without subdomain isolation (actions/checkout#415)
+          lfs: false
+      - name: LFS checkout
+        run: |
+          git lfs install --local
+          # disable credentials by actions/checkout for LFS endpoints
+          git  -c "http.${GITHUB_SERVER_URL}/storage/lfs/.extraHeader=" lfs pull
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
