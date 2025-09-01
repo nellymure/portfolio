@@ -20,7 +20,7 @@ function toggle() {
 <style lang="css" scoped>
 .languageSelector {
   position: fixed;
-  --img-size: 50px;
+  --img-size: 5rem;
   --img-offset: calc(var(--img-size) / 2);
   top: calc(100vh - var(--half-padding-x) - var(--img-offset));
   left: calc(var(--half-padding-x) - var(--img-offset));
