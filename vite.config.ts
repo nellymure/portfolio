@@ -17,6 +17,7 @@ import vueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/portfolio/',
   plugins: [vue(), vueDevTools(), vueI18nPlugin()],
   resolve: {
     alias: {
