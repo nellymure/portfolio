@@ -34,7 +34,6 @@ function updateVisibility() {
   const { top, bottom } = content.value.getBoundingClientRect()
   const innerHeight = window.innerHeight + 1 // Add 1px to account for any potential scrollbars
   isVisible.value = (top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)
-  console.log('isVisible.value', isVisible.value, top, bottom, innerHeight)
   if (isVisible.value) {
     window.removeEventListener('scroll', updateVisibility)
     window.removeEventListener('resize', updateVisibility)

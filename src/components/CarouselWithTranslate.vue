@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, reactive, onMounted, useSlots, type VNode } from 'vue'
-import IconChevron from '@/components/IconChevron.vue'
+import IconChevron from '@/components/icons/IconChevron.vue'
 
 const props = defineProps({
   enableArrows: {

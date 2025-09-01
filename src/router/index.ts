@@ -132,7 +132,6 @@ function isPreviousPageFromOurDomain(from: RouteLocationNormalizedLoadedGeneric)
 }
 
 router.beforeEach((to, from) => {
-  console.log('go to', to.path)
   // If target the home page
   if (to.path === '/') {
     if (isPreviousPageFromOurDomain(from) && routes.ERROR_NOT_FOUND.name != from.name) {

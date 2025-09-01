@@ -2,6 +2,7 @@
 import router, { routes, getRouteName } from '@/router'
 import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import IconAsterisk from '@/components/icons/IconAsterisk.vue'
 
 const { t } = useI18n()
 const nextPage = routes.HUB
@@ -22,15 +23,15 @@ function goToNextPage() {
       <div class="banner">
         <div>
           nelly mure
-          <span class="asterisk">✳</span>
+          <IconAsterisk />
         </div>
         <div>
           {{ t('spatial design') }}
-          <span class="asterisk">✳</span>
+          <IconAsterisk />
         </div>
         <div>
           {{ t('scenography') }}
-          <span class="sd-asterisk">✳</span>
+          <IconAsterisk class="sd-asterisk" />
         </div>
       </div>
       <div class="main-title-container">
@@ -86,6 +87,7 @@ function goToNextPage() {
   margin-left: 0.92em;
   letter-spacing: 0.92em;
   flex-direction: row;
+  justify-content: center;
   row-gap: 0.5em;
   text-align: center;
   font-family: var(--font-family-reem-kufi);
@@ -94,8 +96,9 @@ function goToNextPage() {
   color: var(--color-hex-beige-light);
   text-transform: uppercase;
 }
-.asterisk {
-  margin-right: 1em;
+.icon-asterisk {
+  margin-right: 2em;
+  font-size: 0.8em;
 }
 .sd-asterisk {
   display: none;
@@ -166,7 +169,7 @@ function goToNextPage() {
     bottom: 0;
     font-size: 25vh;
     line-height: 1;
-    transform: rotate(-90deg) translateY(-0.15em) translateX(-1.02em);
+    transform: rotate(-90deg) translateX(-1.02em);
     transform-origin: top left;
   }
   .gradient-bg {

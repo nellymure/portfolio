@@ -13,14 +13,14 @@ const props = defineProps({
 })
 const svgRef = ref<VNodeRef | null>(null)
 const color = ref<string>('#000000')
-const transform2 = computed(() => {
+const rotate = computed(() => {
   switch (props.direction) {
     case 'bottom':
-      return 'rotate(90)'
+      return 'rotate(90deg)'
     case 'left':
-      return 'rotate(180)'
+      return 'rotate(180deg)'
     case 'top':
-      return 'rotate(270)'
+      return 'rotate(270deg)'
     default:
       return ''
   }
@@ -40,7 +40,6 @@ onMounted(() => {
     viewBox="-19.04 0 75.804 75.804"
     xmlns="http://www.w3.org/2000/svg"
     fill="#000000"
-    :transform="transform2"
   >
     <g stroke-width="0"></g>
     <g stroke-linecap="round" stroke-linejoin="round"></g>
@@ -54,3 +53,9 @@ onMounted(() => {
     </g>
   </svg>
 </template>
+
+<style lang="css" scoped>
+.icon-chevron {
+  transform: v-bind(rotate);
+}
+</style>

@@ -4,6 +4,7 @@ import NavBar from '@/components/navbars/NavBar.vue'
 import FadeInViewport from '@/components/FadeInViewport.vue'
 import { routes, getRouteName } from '@/router'
 import { RouterLink } from 'vue-router'
+import IconAsterisk from '@/components/icons/IconAsterisk.vue'
 
 const { t } = useI18n()
 </script>
@@ -22,9 +23,15 @@ const { t } = useI18n()
       <FadeInViewport delay="0.5s">
         <img class="selfie" src="@/assets/images/about/selfie.jpg" alt="selfie" />
       </FadeInViewport>
-      <div class="asterisk asterisk-1"><span>✳</span></div>
-      <div class="asterisk asterisk-2"><span>✳</span></div>
-      <div class="asterisk asterisk-3"><span>✳</span></div>
+      <div class="asterisk asterisk-1">
+        <IconAsterisk />
+      </div>
+      <div class="asterisk asterisk-2">
+        <IconAsterisk />
+      </div>
+      <div class="asterisk asterisk-3">
+        <IconAsterisk />
+      </div>
     </div>
   </div>
 </template>
@@ -94,7 +101,7 @@ const { t } = useI18n()
   animation: scale-in 0.6s ease-out both;
   animation-delay: 0.6s;
 }
-.asterisk span {
+.asterisk .icon-asterisk {
   width: var(--asterisk-size);
   height: var(--asterisk-size);
   display: block;
@@ -117,7 +124,7 @@ const { t } = useI18n()
   height: calc(var(--asterisk-size) * 0.91);
   color: var(--color-hex-orange);
 }
-.asterisk-3 span {
+.asterisk-3 .icon-asterisk {
   height: calc(var(--asterisk-size) * 0.91);
 }
 @keyframes scale-in {
