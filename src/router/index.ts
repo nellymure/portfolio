@@ -1,7 +1,7 @@
 import { setI18nLocale, getI18nLocale, SUPPORT_LOCALES } from '@/i18n/i18n'
 import {
   createRouter,
-  createWebHistory,
+  createWebHashHistory,
   type RouteLocationNormalizedLoadedGeneric,
 } from 'vue-router'
 
@@ -33,7 +33,7 @@ export const routes = {
 }
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       name: routes.HOME.name,
