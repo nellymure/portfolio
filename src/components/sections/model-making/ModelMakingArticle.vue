@@ -1,0 +1,266 @@
+<script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import FadeInViewport from '@/components/FadeInViewport.vue'
+import ColorPalette from '@/components/ColorPalette.vue'
+import CarouselWithFade from '@/components/CarouselWithFade.vue'
+
+const { t } = useI18n()
+defineProps({
+  articleId: {
+    type: String,
+    required: true,
+  },
+})
+</script>
+
+<template>
+  <article>
+    <header>
+      <div class="text-part">
+        <div class="title">
+          <h3>{{ articleId }}</h3>
+          <h1>{{ t('title') }}</h1>
+        </div>
+        <p class="text-indent">
+          {{ t('paragraphs[0]') }}
+          <ColorPalette :colors="['#382422', '#66544D', '#988068', '#EBD8BC', '#50522D']" />
+        </p>
+      </div>
+      <div class="img-part">
+        <FadeInViewport delay="0.5s">
+          <img src="@/assets/images/sections/model-making/capture-ecran-2025-07-25-181538.png" />
+        </FadeInViewport>
+      </div>
+    </header>
+    <div class="container-1">
+      <div class="left-part">
+        <FadeInViewport delay="0.5s">
+          <img src="@/assets/images/sections/model-making/IMG_4595-1.png" />
+        </FadeInViewport>
+      </div>
+      <div class="right-part description">
+        <p>{{ t('paragraphs[1]') }}</p>
+      </div>
+    </div>
+    <FadeInViewport delay="0.5s">
+      <img class="full-img" src="@/assets/images/sections/model-making/IMG_4620-2.jpg" />
+    </FadeInViewport>
+    <div class="container-2 d-none-landscape">
+      <FadeInViewport delay="0.5s">
+        <CarouselWithFade :intervalTimer="2000" :smoothPercent="0.2">
+          <img src="@/assets/images/sections/model-making/IMG_5957.png" />
+          <img src="@/assets/images/sections/model-making/IMG_5956.png" />
+          <img src="@/assets/images/sections/model-making/IMG_5948_2.png" />
+        </CarouselWithFade>
+      </FadeInViewport>
+    </div>
+    <div class="container-2 d-none-portrait">
+      <FadeInViewport delay="0.5s">
+        <img src="@/assets/images/sections/model-making/IMG_5957.png" />
+      </FadeInViewport>
+      <FadeInViewport delay="0.5s">
+        <img class="big-one" src="@/assets/images/sections/model-making/IMG_5956.png" />
+      </FadeInViewport>
+      <FadeInViewport delay="0.5s">
+        <img src="@/assets/images/sections/model-making/IMG_5948_2.png" />
+      </FadeInViewport>
+    </div>
+    <p class="description">
+      {{ t('paragraphs[2]') }}
+    </p>
+    <FadeInViewport delay="0.5s">
+      <img class="img-80" src="@/assets/images/sections/model-making/IMG_5965.png" />
+    </FadeInViewport>
+    <FadeInViewport delay="0.5s">
+      <img class="full-img last-img" src="@/assets/images/sections/model-making/IMG_5964.png" />
+    </FadeInViewport>
+    <p class="description">
+      {{ t('paragraphs[3]') }}
+    </p>
+  </article>
+</template>
+
+<i18n>
+  {
+    "fr": {
+      "title": "Maquettes",
+      "paragraphs": [
+        "La maquette est un outil de communication qu'il me plaît d'utiliser dans mes projets. Elle
+        permet de se projeter plus facilement dans le projet et de saisir l'intérêt et la complexité
+        de certains principes.",
+        "Maquette de contexte d'étude - Grand Nord Grand Sud",
+        "Maquette de contexte d'étude - Avec ou sans sel",
+        "Maquette salle d'exposition - Grand Nord Grand Sud"
+      ]
+    },
+    "en": {
+      "title": "Model making",
+      "paragraphs": [
+        "Models are a communication tool that I enjoy using in my projects. They make it easier to
+        visualise the project and grasp the significance and complexity of certain principles.",
+        "Study context model - Far North Far South",
+        "Study context model - With or without salt",
+        "Exhibition room model - Far North Far South"
+      ]
+    }
+  }
+</i18n>
+
+<style lang="css" scoped>
+article {
+  display: flex;
+  flex-direction: column;
+}
+header {
+  display: flex;
+  padding-left: var(--padding-x);
+  padding-right: var(--padding-x);
+}
+header .text-part {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 80vh;
+  max-width: 35vw;
+  margin-right: var(--half-padding-x);
+  padding-bottom: var(--half-padding-x);
+}
+h1 {
+  font-size: 7em;
+  font-family: var(--font-family-antic-didone);
+  font-weight: var(--font-weight-light);
+  line-height: 1;
+  text-align: left;
+  margin-bottom: 1em;
+}
+header .img-part {
+  width: 50vw;
+  display: flex;
+  align-items: flex-end;
+}
+header img {
+  height: 80vh;
+  object-fit: cover;
+}
+.full-img {
+  width: 100vw;
+  height: auto;
+  display: flex;
+}
+.description {
+  padding-top: 1em;
+  padding-left: var(--half-padding-x);
+}
+.container-1 {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20vh;
+  margin-bottom: 20vh;
+  padding-left: 0;
+  padding-right: 0;
+}
+.container-1 .left-part img {
+  display: flex;
+  width: calc(50vw - var(--half-padding-x));
+  height: 100vh;
+  object-fit: cover;
+}
+.container-1 .right-part {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: var(--half-padding-x);
+}
+.container-2 {
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20vh;
+  height: 80vh;
+  width: calc(100vw - var(--padding-x));
+}
+.container-2 img {
+  height: 80vh;
+  display: flex;
+  object-fit: cover;
+}
+.container-2 .big-one {
+  width: 45vw;
+  padding-left: calc(var(--half-padding-x) / 2);
+  padding-right: calc(var(--half-padding-x) / 2);
+}
+.img-80 {
+  display: flex;
+  margin-top: 20vh;
+  height: auto;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+.last-img {
+  margin-top: 20vh;
+}
+@media (orientation: portrait) {
+  .description {
+    text-align: center;
+    padding-bottom: 1em;
+    padding-left: 0;
+  }
+  header {
+    flex-direction: column;
+  }
+  header .text-part {
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+    align-items: center;
+  }
+  header .text-part .title {
+    text-align: center;
+  }
+  header .img-part {
+    width: 100%;
+  }
+  header img {
+    height: auto;
+    object-fit: contain;
+  }
+  h1 {
+    font-size: 5em;
+    text-align: center;
+  }
+  .container-1 {
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+  }
+  .container-1 .left-part img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    padding-right: 0;
+  }
+  .container-1 .right-part {
+    padding-bottom: 1em;
+  }
+  .container-2 {
+    margin-top: 10vh;
+    height: 50vh;
+    width: 100%;
+  }
+  .container-2 img {
+    height: 50vh;
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
+  }
+  .img-80 {
+    margin-top: 5vh;
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
+  }
+  .last-img {
+    margin-top: calc(5vh + 2em);
+  }
+}
+</style>

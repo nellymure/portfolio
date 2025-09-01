@@ -1,0 +1,110 @@
+:root {
+  /* Font weights (source: https://learn.microsoft.com/en-us/typography/opentype/spec/os2#usweightclass) */
+  --font-weight-light: 100; /* Thin */
+  --font-weight-normal: 400; /* Regular */
+  --font-weight-medium: 500; /* Medium */
+  --font-weight-semi-bold: 600; /* Semi-Bold */
+  --font-weight-black: 900; /* Black */
+}
+@font-face {
+  font-family: 'Antic Didone';
+  src: url('@/assets/fonts/AnticDidone-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: var(--font-weight-normal);
+}
+@font-face {
+  font-family: 'Cormorant Infant';
+  src: url('@/assets/fonts/CormorantInfant-Italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: var(--font-weight-normal);
+}
+@font-face {
+  font-family: 'Cormorant Infant';
+  src: url('@/assets/fonts/CormorantInfant-Medium.ttf') format('truetype');
+  font-style: normal;
+  font-weight: var(--font-weight-medium);
+}
+@font-face {
+  font-family: 'Cormorant Infant';
+  src: url('@/assets/fonts/CormorantInfant-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: var(--font-weight-normal);
+}
+@font-face {
+  font-family: 'Le Murmure';
+  src: url('@/assets/fonts/le-murmure.ttf') format('truetype');
+  font-style: normal;
+  font-weight: var(--font-weight-normal);
+}
+@font-face {
+  font-family: 'Minion Pro';
+  src: url('@/assets/fonts/MinionPro-Regular.otf') format('opentype');
+  font-style: normal;
+  font-weight: var(--font-weight-normal);
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('@/assets/fonts/Montserrat-Black.ttf') format('truetype');
+  font-style: normal;
+  font-weight: var(--font-weight-black);
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('@/assets/fonts/Montserrat-Medium.ttf') format('truetype');
+  font-style: normal;
+  font-weight: var(--font-weight-medium);
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('@/assets/fonts/Montserrat-SemiBold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: var(--font-weight-semi-bold);
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('@/assets/fonts/Montserrat-Thin.ttf') format('truetype');
+  font-style: normal;
+  font-weight: var(--font-weight-light);
+}
+@font-face {
+  font-family: 'Reem Kufi';
+  src: url('@/assets/fonts/ReemKufi-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: var(--font-weight-normal);
+}
+:root {
+  font-size: 1vw;
+  --font-family-antic-didone: 'Antic Didone';
+  --font-family-cormorant-infant: 'Cormorant Infant';
+  --font-family-le-murmure: 'Le Murmure';
+  --font-family-minion-pro: 'Minion Pro';
+  --font-family-montserrat: 'Montserrat';
+  --font-family-reem-kufi: 'Reem Kufi';
+
+  --padding-x: 8rem;
+  --half-padding-x: calc(var(--padding-x) / 2);
+  --quarter-padding-x: calc(var(--padding-x) / 4);
+  --navbar-height: 6rem;
+  --section-row-gap: 20vh;
+  --article-row-gap: 20vh;
+
+  /* Nelly's color palette */
+  --color-hex-black: #231f20;
+  --color-hex-grey: #ebebeb;
+  --color-hex-salmon: #fbbb96;
+  --color-hex-salmon-dark: #f19d72;
+  --color-hex-orange: #ef6146;
+  --color-hex-violet: #cfb4dd;
+  --color-hex-violet2: #c2aad0;
+  --color-hex-beige: #d7cec7;
+  --color-hex-beige2: #ffeede;
+  --color-hex-beige-light: #fff3e5;
+}
+@media (orientation: portrait) {
+  :root {
+    font-size: 1.5vh;
+    --padding-x: 2rem;
+    --section-row-gap: 10vh;
+    --article-row-gap: 5vh;
+  }
+}
