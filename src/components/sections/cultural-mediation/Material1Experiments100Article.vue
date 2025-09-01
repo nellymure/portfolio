@@ -30,9 +30,7 @@ defineProps({
       </div>
       <div class="img-part">
         <FadeInViewport delay="0.5s">
-          <img
-            src="@/assets/images/sections/cultural-mediation/52B08C58-A3B6-4CCF-BA03-109CA5140C28.JPG"
-          />
+          <img src="@/assets/images/sections/cultural-mediation/IMG_100mat.png" />
         </FadeInViewport>
       </div>
     </header>
