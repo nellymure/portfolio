@@ -221,7 +221,7 @@ header {
     text-align: center;
   }
   h1 {
-    font-size: 5em;
+    font-size: 4em;
     text-align: center;
   }
   header .img-part {
@@ -234,18 +234,21 @@ header {
   }
   .container {
     flex-direction: column;
-    padding-left: var(--half-padding-x);
-    padding-right: var(--half-padding-x);
-  }
-  .container .left-part img {
-    width: calc(100vw - var(--padding-x));
-    height: 50vh;
-    object-fit: cover;
+    align-items: flex-start;
     padding-left: 0;
     padding-right: 0;
   }
+  .container .left-part img {
+    width: 100vw;
+    height: 50vh;
+    object-fit: cover;
+    padding-left: var(--half-padding-x);
+    padding-right: var(--half-padding-x);
+  }
   .container .right-part {
     padding-top: 5vh;
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
   }
   .container-2 {
     margin-top: -3vh;

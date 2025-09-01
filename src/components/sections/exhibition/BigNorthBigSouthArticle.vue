@@ -185,7 +185,7 @@ h1 {
     text-align: center;
   }
   h1 {
-    font-size: 5em;
+    font-size: 4em;
     text-align: center;
   }
   header .img-part {
@@ -199,15 +199,19 @@ h1 {
   }
   .container {
     flex-direction: column;
-    padding-left: var(--half-padding-x);
-    padding-right: var(--half-padding-x);
+    padding-left: 0;
+    padding-right: 0;
     margin-bottom: -7vh;
   }
   .container .left-part {
-    width: calc(100vw - var(--padding-x));
+    width: 100vw;
+    padding-left: var(--half-padding-x);
+    padding-right: var(--half-padding-x);
   }
   .container .right-part {
     padding-top: 5vh;
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
   }
   .carousel-interval img {
     width: 100%;

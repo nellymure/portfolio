@@ -260,7 +260,7 @@ section {
 }
 @media (orientation: portrait) {
   .content .folder {
-    padding: 2rem var(--padding-x) 0 var(--padding-x);
+    padding: 4rem var(--padding-x) 0 var(--padding-x);
   }
   .folder-text {
     width: 100%;
@@ -272,11 +272,12 @@ section {
     flex-direction: column;
   }
   .folder h1 span {
-    font-size: 3rem;
+    font-size: 2rem;
     align-self: center;
   }
   .folder-description {
     margin-right: 0;
+    padding: 2em 0 0 0;
   }
 }
 @keyframes letter-animation {

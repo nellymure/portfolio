@@ -71,7 +71,7 @@ function toggle() {
 }
 @media (orientation: portrait) {
   .languageSelector {
-    top: calc(100vh - var(--padding-x) * 1.5 - var(--img-offset));
+    top: calc(100% - var(--padding-x) * 1.5 - var(--img-offset));
     left: var(--padding-x);
   }
 }

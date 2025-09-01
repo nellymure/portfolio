@@ -102,7 +102,7 @@
 }
 @media (orientation: portrait) {
   :root {
-    font-size: 1.5vh;
+    font-size: 2vh;
     --padding-x: 2rem;
     --section-row-gap: 10vh;
     --article-row-gap: 5vh;

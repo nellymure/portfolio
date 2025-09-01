@@ -42,7 +42,9 @@ const { t } = useI18n()
             <div class="square"><h1>03</h1></div>
           </router-link>
           <router-link class="section model-making" :to="{ name: getRouteName(routes.MODELS) }">
-            {{ t('modelMaking.title') }}
+            <div class="title">
+              {{ t('modelMaking.title') }}
+            </div>
             <div class="square"><h1>04</h1></div>
           </router-link>
         </div>
@@ -134,7 +136,7 @@ const { t } = useI18n()
   overflow: hidden;
 }
 .square h1 {
-  transform: translate(-0.125em, 0.125em);
+  transform: translate(calc(var(--section-width) * -0.15), calc(var(--section-width) * 0.1));
 }
 .exhibition .square {
   background: var(--color-hex-orange);
@@ -153,6 +155,12 @@ const { t } = useI18n()
     --section-width: calc(100vw / 2 - var(--half-padding-x));
     justify-content: center;
   }
+  .page-title {
+    padding-top: var(--article-row-gap);
+  }
+  .page-title h1 {
+    font-size: 3.5em;
+  }
   .sections {
     flex-wrap: wrap;
     row-gap: var(--half-padding-x);
@@ -169,9 +177,15 @@ const { t } = useI18n()
   .section:last-child {
     flex: 1;
   }
+  .section .title {
+    font-size: 0.8em;
+  }
   .square {
     width: auto;
-    font-size: 8em;
+    font-size: 6em;
+  }
+  .square h1 {
+    transform: translate(calc(var(--section-width) * -0.15), calc(var(--section-width) * 0.25));
   }
 }
 </style>

@@ -210,6 +210,8 @@ h1 {
   }
   .container .right-part {
     padding-top: 5vh;
+    padding-left: var(--half-padding-x);
+    padding-right: var(--half-padding-x);
   }
   .carousel-arrow {
     width: 100%;

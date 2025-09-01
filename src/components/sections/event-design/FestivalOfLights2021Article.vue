@@ -231,6 +231,10 @@ header img {
     width: 100%;
     height: auto;
   }
+  .container-1 .right-part {
+    padding-left: var(--half-padding-x);
+    padding-right: var(--half-padding-x);
+  }
   .container-2 .left-part img {
     width: 100%;
     height: auto;

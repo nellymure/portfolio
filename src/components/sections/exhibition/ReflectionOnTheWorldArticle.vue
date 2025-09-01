@@ -156,7 +156,7 @@ header {
     text-align: center;
   }
   h1 {
-    font-size: 5em;
+    font-size: 4em;
     text-align: center;
   }
   header .img-part {
@@ -168,27 +168,26 @@ header {
     object-fit: contain;
   }
   .container {
+    width: 100vw;
     flex-direction: column;
-    padding-left: var(--half-padding-x);
-    padding-right: var(--half-padding-x);
-  }
-  .container .left-part {
-    width: calc(100vw - var(--padding-x));
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .container .left-part img {
-    width: calc(100vw - var(--padding-x));
-    height: 50vh;
-    object-fit: cover;
     padding-left: 0;
     padding-right: 0;
   }
   .container .right-part {
-    padding-top: 5vh;
+    width: calc(100vw - var(--padding-x));
+    padding-left: var(--half-padding-x);
+    padding-right: var(--half-padding-x);
   }
   .container .right-part img {
     width: 100%;
+    height: 50vh;
+    object-fit: contain;
+  }
+  .container .left-part {
+    width: 100%;
+    padding-top: 5vh;
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
   }
 }
 </style>

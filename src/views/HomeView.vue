@@ -109,6 +109,7 @@ function goToNextPage() {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  hyphens: none;
 }
 .main-title {
   color: var(--color-hex-beige-light);

@@ -75,8 +75,8 @@ const { t } = useI18n()
 .content {
   display: flex;
   align-items: flex-end;
-  padding-right: var(--half-padding-x);
   padding-left: var(--half-padding-x);
+  padding-right: var(--half-padding-x);
   overflow: hidden;
   height: 90vh;
   --asterisk-size: 9rem;
@@ -84,6 +84,7 @@ const { t } = useI18n()
 }
 .content p {
   font-size: 1.5rem;
+  padding-left: var(--half-padding-x);
   padding-right: var(--half-padding-x);
   padding-bottom: var(--half-padding-x);
 }
@@ -138,7 +139,8 @@ const { t } = useI18n()
 @media (orientation: portrait) {
   .about {
     align-items: flex-start;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
   }
   .content {
     flex-direction: column;
@@ -147,6 +149,7 @@ const { t } = useI18n()
   }
   .content p {
     font-size: 1rem;
+    padding-left: 0;
     padding-right: 0;
     padding-bottom: var(--padding-x);
   }
@@ -167,6 +170,16 @@ const { t } = useI18n()
     bottom: 0;
     left: calc(95vw + var(--asterisk-offset));
     height: var(--asterisk-size);
+  }
+}
+
+@media ((max-width: 500px)) {
+  .asterisk-1 {
+    top: calc(90vh + var(--asterisk-offset));
+    left: calc(2rem + var(--asterisk-offset));
+  }
+  .asterisk-3 {
+    top: 120vh;
   }
 }
 </style>
