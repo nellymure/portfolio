@@ -97,8 +97,12 @@ const { t } = useI18n()
   --section-width: calc(100vw / 4 - var(--half-padding-x));
   background-color: white;
 }
-.page-title {
-  padding-bottom: var(--article-row-gap);
+.container {
+  margin-top: var(--navbar-height);
+  min-height: calc(var(--section-width) + 5em);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .page-title h1 {
   text-align: center;

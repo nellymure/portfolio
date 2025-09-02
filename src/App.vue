@@ -23,8 +23,6 @@ function getTransitionName(route: RouteLocationNormalizedLoadedGeneric): string 
 .component {
   position: absolute;
   z-index: 2;
-  width: 100vw;
-  height: 100vh;
 }
 .slide-right-leave-active,
 .slide-right-enter-active {
