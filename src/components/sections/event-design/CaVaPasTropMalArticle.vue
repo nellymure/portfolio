@@ -321,7 +321,7 @@ h1 {
 .container-4 .right-part img {
   width: calc(25vw - var(--half-padding-x));
 }
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 5/4) {
   header {
     flex-direction: column;
   }

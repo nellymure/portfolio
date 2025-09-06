@@ -153,7 +153,7 @@ h1 {
 .carousel-arrow img {
   width: 100%;
 }
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 5/4) {
   header {
     flex-direction: column;
   }

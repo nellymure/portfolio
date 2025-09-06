@@ -258,7 +258,7 @@ section {
   flex-direction: column;
   row-gap: var(--section-row-gap);
 }
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 5/4) {
   .content .folder {
     padding: 4rem var(--padding-x) 0 var(--padding-x);
   }

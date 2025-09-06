@@ -93,7 +93,7 @@ h1 {
   width: 100%;
   object-fit: cover;
 }
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 5/4) {
   header {
     flex-direction: column;
     padding-left: 0;

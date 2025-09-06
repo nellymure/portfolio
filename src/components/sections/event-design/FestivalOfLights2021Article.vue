@@ -179,7 +179,7 @@ header img {
   width: 25vw;
 }
 
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 5/4) {
   header {
     flex-direction: column;
     padding-right: var(--padding-x);

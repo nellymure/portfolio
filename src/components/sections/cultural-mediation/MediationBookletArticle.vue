@@ -110,7 +110,7 @@ header img {
   width: 100%;
   height: auto;
 }
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 5/4) {
   header {
     flex-direction: column;
   }

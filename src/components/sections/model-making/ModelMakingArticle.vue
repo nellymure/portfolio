@@ -200,7 +200,7 @@ header img {
 .last-img {
   margin-top: 20vh;
 }
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 5/4) {
   .description {
     text-align: center;
     padding-bottom: 1em;

@@ -155,7 +155,7 @@ const { t } = useI18n()
     transform: scale(1);
   }
 }
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 5/4) {
   .about {
     align-items: flex-start;
     overflow-x: hidden;

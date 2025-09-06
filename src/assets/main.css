@@ -38,7 +38,7 @@ img {
 .d-none-landscape {
   display: none !important;
 }
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 5/4) {
   .d-none-portrait {
     display: none !important;
   }

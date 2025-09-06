@@ -154,7 +154,7 @@ const { t } = useI18n()
 .model-making .square {
   background: var(--color-hex-violet2);
 }
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 5/4) {
   .hub {
     --section-width: calc(100vw / 2 - var(--half-padding-x));
     justify-content: center;

@@ -276,7 +276,7 @@ header img {
 .container-4 .big-one {
   width: 40vw;
 }
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 5/4) {
   .no-gap {
     margin-top: 0;
   }

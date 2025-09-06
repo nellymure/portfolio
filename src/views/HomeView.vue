@@ -15,48 +15,89 @@ function goToNextPage() {
   // router.go(1)
 }
 
-function stretch(cssClass: string, parent: HTMLElement) {
-  const items = Array.from(document.getElementsByClassName(cssClass)) as HTMLElement[]
-  if (items.length === 0) {
-    throw new Error(`No element with class ${cssClass} found`)
+function stretch(cssClass: string, parent: HTMLElement, debug: boolean = false) {
+  const items = getElementsByClassName(cssClass)
+  if (debug) {
+    console.log('stretch')
   }
-  items.forEach((item) => {
-    item.style.letterSpacing = `normal`
-    item.style.wordSpacing = `normal`
-  })
-  parent.style.marginRight = `0`
-  parent.style.gap = `normal`
+  clearStretch(items, parent)
 
   const parentWidth = parent.clientWidth
-  console.log(parentWidth)
   const avgSpace =
     items
       .map((item) => {
         const currentLength = item.innerText.length + item.children.length
         const currentCharWidth = item.clientWidth / currentLength
         const spaceForChar = parentWidth / currentLength / items.length
-        console.log({
-          text: item.innerText,
-          offset: item.clientWidth,
-          currentLength,
-          currentCharWidth,
-          spaceForChar,
-        })
-        return spaceForChar - currentCharWidth + (spaceForChar - currentCharWidth) / currentLength
+        const space =
+          spaceForChar - currentCharWidth + (spaceForChar - currentCharWidth) / currentLength
+        if (debug) {
+          console.log({
+            'item.clientWidth': item.clientWidth,
+            currentLength,
+            currentCharWidth,
+            spaceForChar,
+            space,
+          })
+        }
+        return space
       })
       .reduce((a, b) => a + b) / items.length
-  console.log(avgSpace)
+  if (debug) {
+    console.log({
+      avgSpace,
+    })
+  }
   items.forEach((item) => {
     item.style.letterSpacing = `${avgSpace}px`
     item.style.wordSpacing = `-${avgSpace}px`
   })
   parent.style.marginRight = `-${avgSpace}px`
   parent.style.gap = `${avgSpace}px`
+
+  setTimeout(() => {
+    // In case of error, it may be due to DOM refreshing time, so stretch again later
+    if (avgSpace < 0) {
+      console.log('stretch again ', cssClass)
+      stretch(cssClass, parent, debug)
+    }
+  }, 100)
 }
+
+function stretch2(cssClass: string, parent: HTMLElement, debug: boolean = false) {
+  const items = getElementsByClassName(cssClass)
+  items.forEach((item) => {
+    console.log(item.children)
+    item.innerHTML = Array.from(item.innerText)
+      .map((child) => `<span>${child}</span>`)
+      .join('')
+  })
+}
+
+function getElementsByClassName(cssClass: string): HTMLElement[] {
+  const items = Array.from(document.getElementsByClassName(cssClass)) as HTMLElement[]
+  if (items.length === 0) {
+    throw new Error(`No element with class ${cssClass} found`)
+  }
+  return items
+}
+
+function clearStretch(items: HTMLElement[], parent: HTMLElement) {
+  items.forEach((item) => {
+    item.style.letterSpacing = `normal`
+    item.style.wordSpacing = `normal`
+  })
+  parent.style.marginRight = `0`
+  parent.style.gap = `normal`
+}
+
 function resize() {
-  if (window.matchMedia('(orientation: landscape)').matches) {
-    stretch('stretch', banner.value!)
-    stretch('main-title', mainTitleContainer.value!)
+  if (!window.matchMedia('(max-aspect-ratio: 5/4)').matches) {
+    stretch2('stretch', banner.value!)
+    stretch2('main-title', mainTitleContainer.value!)
+  } else {
+    // clearStretch(getElementsByClassName('stretch'), banner.value!)
+    stretch2('stretch', banner.value!, true)
   }
 }
 onMounted(() => {
@@ -70,6 +111,7 @@ onBeforeUnmount(() => {
 
 <template>
   <router-link
+    class="home"
     @wheel="goToNextPage"
     @touchstart="goToNextPage"
     :to="{ name: getRouteName(nextPage) }"
@@ -111,6 +153,11 @@ onBeforeUnmount(() => {
 </i18n>
 
 <style lang="css" scoped>
+.home {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 .hover-container {
   z-index: 1;
   position: absolute;
@@ -125,8 +172,8 @@ onBeforeUnmount(() => {
   opacity: 0;
   animation: fade-in-bottom 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
   width: 100%;
-  height: 100dvh;
-  --font-size-main-title: clamp(2.7994rem, -8.879rem + 51.904vw, 53.4058rem);
+  height: 100%;
+  --font-size-main-title: clamp(2.7994rem, -8.879rem + 51.904vw, 90vmin);
 }
 @keyframes fade-in-bottom {
   0% {
@@ -145,9 +192,10 @@ onBeforeUnmount(() => {
   font-family: var(--font-family-reem-kufi);
   font-weight: var(--font-weight-normal);
   font-size: var(--font-size--2);
-  margin-top: calc(var(--font-size--2) / 2);
-  color: var(--color-hex-beige-light);
+  margin-top: calc(var(--font-size-0) / 2);
   text-transform: uppercase;
+  color: transparent;
+  animation: transparent-to-hex-beige-light 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
 }
 .icon-asterisk {
   font-size: 0.8em;
@@ -156,22 +204,34 @@ onBeforeUnmount(() => {
   display: none;
 }
 .main-title-container {
-  width: 100%;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  text-align: center;
   font-family: var(--font-family-le-murmure);
   font-weight: var(--font-weight-normal);
   font-size: var(--font-size-main-title);
-  color: var(--color-hex-beige-light);
+  color: transparent;
+  animation: transparent-to-hex-beige-light 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+}
+@keyframes transparent-to-hex-beige-light {
+  50% {
+    color: transparent;
+  }
+  100% {
+    color: var(--color-hex-beige-light);
+  }
+}
+@media (height < 100lvh) {
+  .main-title-container {
+    transform-origin: top left;
+    transform: translateY(0.18em);
+  }
 }
 .main-title {
   line-height: 1;
   hyphens: none;
-  transform-origin: top left;
-  /* transform: translateY(var(--font-size-main-title) * 2); */
-  transform: translateY(calc(var(--font-size-main-title) * 0.2));
 }
 .gradient-bg {
   background-image: url('@/assets/images/home/gradient-bg.png');
@@ -194,32 +254,38 @@ onBeforeUnmount(() => {
     background-position: 0% 20%;
   }
 }
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 5/4) {
   .hover-container {
-    margin: 2rem 0 0 2rem;
+    margin: 2rem 0 2rem 2rem;
     align-items: start;
+    --font-size-main-title: clamp(2.7994rem, -8.879rem + 40cqh, 50cqi);
   }
   .banner {
     margin: 0;
     flex-direction: column;
     text-align: left;
-    font-size: var(--font-size--1);
+    gap: 1em;
+  }
+  .stretch {
     letter-spacing: 0.5em;
     word-spacing: normal;
-    gap: auto;
   }
   .sd-asterisk {
     display: inline;
   }
-  /* .main-title-container {
-    flex-direction: column;
-    justify-content: flex-end;
+  .main-title-container {
+    height: 80vh;
     align-items: flex-start;
-  } */
+    justify-content: flex-end;
+    transform-origin: center center;
+    transform: rotate(180deg);
+    margin: 0 0 2rem 0;
+    width: 50%;
+  }
   .main-title {
-    line-height: 1;
-    transform: rotate(-90deg);
-    transform-origin: top left;
+    line-height: normal;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
   }
 }
 </style>

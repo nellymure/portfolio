@@ -24,7 +24,7 @@
   font-weight: var(--font-weight-semi-bold);
   text-transform: uppercase;
 }
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 5/4) {
   .navbar {
     padding: 0rem 2rem;
   }

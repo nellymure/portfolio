@@ -69,7 +69,7 @@ function toggle() {
   width: var(--img-size);
   height: var(--img-size);
 }
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 5/4) {
   .languageSelector {
     top: calc(100% - var(--padding-x) * 1.5 - var(--img-offset));
     left: var(--padding-x);
