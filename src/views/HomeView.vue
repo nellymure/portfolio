@@ -3,109 +3,27 @@ import router, { routes, getRouteName } from '@/router'
 import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import IconAsterisk from '@/components/icons/IconAsterisk.vue'
-import { onBeforeUnmount, onMounted, ref, type VNode } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 const { t } = useI18n()
 const nextPage = routes.HUB
-const banner = ref<HTMLElement | null>(null)
 const mainTitleContainer = ref<HTMLElement | null>(null)
+const landscapeDisplay = ref<boolean>(false)
 
 function goToNextPage() {
-  // router.push({ name: getRouteName(nextPage) })
-  // router.go(1)
+  router.push({ name: getRouteName(nextPage) })
+  router.go(1)
 }
 
-function stretch(cssClass: string, parent: HTMLElement, debug: boolean = false) {
-  const items = getElementsByClassName(cssClass)
-  if (debug) {
-    console.log('stretch')
-  }
-  clearStretch(items, parent)
-
-  const parentWidth = parent.clientWidth
-  const avgSpace =
-    items
-      .map((item) => {
-        const currentLength = item.innerText.length + item.children.length
-        const currentCharWidth = item.clientWidth / currentLength
-        const spaceForChar = parentWidth / currentLength / items.length
-        const space =
-          spaceForChar - currentCharWidth + (spaceForChar - currentCharWidth) / currentLength
-        if (debug) {
-          console.log({
-            'item.clientWidth': item.clientWidth,
-            currentLength,
-            currentCharWidth,
-            spaceForChar,
-            space,
-          })
-        }
-        return space
-      })
-      .reduce((a, b) => a + b) / items.length
-  if (debug) {
-    console.log({
-      avgSpace,
-    })
-  }
-  items.forEach((item) => {
-    item.style.letterSpacing = `${avgSpace}px`
-    item.style.wordSpacing = `-${avgSpace}px`
-  })
-  parent.style.marginRight = `-${avgSpace}px`
-  parent.style.gap = `${avgSpace}px`
-
-  setTimeout(() => {
-    // In case of error, it may be due to DOM refreshing time, so stretch again later
-    if (avgSpace < 0) {
-      console.log('stretch again ', cssClass)
-      stretch(cssClass, parent, debug)
-    }
-  }, 100)
-}
-
-function stretch2(cssClass: string, parent: HTMLElement, debug: boolean = false) {
-  const items = getElementsByClassName(cssClass)
-  items.forEach((item) => {
-    console.log(item.children)
-    item.innerHTML = Array.from(item.innerText)
-      .map((child) => `<span>${child}</span>`)
-      .join('')
-  })
-}
-
-function getElementsByClassName(cssClass: string): HTMLElement[] {
-  const items = Array.from(document.getElementsByClassName(cssClass)) as HTMLElement[]
-  if (items.length === 0) {
-    throw new Error(`No element with class ${cssClass} found`)
-  }
-  return items
-}
-
-function clearStretch(items: HTMLElement[], parent: HTMLElement) {
-  items.forEach((item) => {
-    item.style.letterSpacing = `normal`
-    item.style.wordSpacing = `normal`
-  })
-  parent.style.marginRight = `0`
-  parent.style.gap = `normal`
-}
-
-function resize() {
-  if (!window.matchMedia('(max-aspect-ratio: 5/4)').matches) {
-    stretch2('stretch', banner.value!)
-    stretch2('main-title', mainTitleContainer.value!)
-  } else {
-    // clearStretch(getElementsByClassName('stretch'), banner.value!)
-    stretch2('stretch', banner.value!, true)
-  }
+function updateWindowsAspect() {
+  landscapeDisplay.value = !window.matchMedia('(max-aspect-ratio: 5/4)').matches
 }
 onMounted(() => {
-  window.addEventListener('resize', resize)
-  resize()
+  window.addEventListener('resize', updateWindowsAspect)
+  updateWindowsAspect()
 })
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', resize)
+  window.removeEventListener('resize', updateWindowsAspect)
 })
 </script>
 
@@ -117,22 +35,31 @@ onBeforeUnmount(() => {
     :to="{ name: getRouteName(nextPage) }"
   >
     <div class="hover-container">
-      <div class="banner" ref="banner">
+      <div v-if="landscapeDisplay" class="banner">
+        <span v-for="char in t('nellyMure').replace(' ', '')">{{ char }}</span>
+        <IconAsterisk />
+        <span v-for="char in t('spatial design').replace(' ', '')">{{ char }}</span>
+        <IconAsterisk />
+        <span v-for="char in t('scenography')">{{ char }}</span>
+      </div>
+      <div v-else class="banner">
         <div class="stretch">
-          nelly mure
+          <span v-for="char in t('nellyMure').replace(' ', '')">{{ char }}</span>
           <IconAsterisk />
         </div>
         <div class="stretch">
-          {{ t('spatial design') }}
+          <span v-for="char in t('spatial design').replace(' ', '')">{{ char }}</span>
           <IconAsterisk />
         </div>
         <div class="stretch">
-          {{ t('scenography') }}
+          <span v-for="char in t('scenography')">{{ char }}</span>
           <IconAsterisk class="sd-asterisk" />
         </div>
       </div>
       <div class="main-title-container" ref="mainTitleContainer">
-        <div class="main-title">portfolio</div>
+        <div class="main-title">
+          <span v-for="char in t('portfolio')">{{ char }}</span>
+        </div>
       </div>
     </div>
     <div class="gradient-bg"></div>
@@ -142,10 +69,14 @@ onBeforeUnmount(() => {
 <i18n>
   {
     "fr": {
+      "nelly mure": "nelly mure",
+      "portfolio": "portfolio",
       "spatial design": "design d'espace",
       "scenography": "scenographie",
     },
     "en": {
+      "nelly mure": "nelly mure",
+      "portfolio": "portfolio",
       "spatial design": "spatial design",
       "scenography": "scenography",
     }
@@ -187,21 +118,17 @@ onBeforeUnmount(() => {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  text-align: center;
+  justify-content: space-between;
   font-family: var(--font-family-reem-kufi);
   font-weight: var(--font-weight-normal);
   font-size: var(--font-size--2);
-  margin-top: calc(var(--font-size-0) / 2);
+  padding: 1em;
   text-transform: uppercase;
-  color: transparent;
-  animation: transparent-to-hex-beige-light 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+  color: var(--color-hex-beige-light);
 }
 .icon-asterisk {
   font-size: 0.8em;
-}
-.sd-asterisk {
-  display: none;
+  color: var(--color-hex-beige-light);
 }
 .main-title-container {
   position: fixed;
@@ -212,16 +139,7 @@ onBeforeUnmount(() => {
   font-family: var(--font-family-le-murmure);
   font-weight: var(--font-weight-normal);
   font-size: var(--font-size-main-title);
-  color: transparent;
-  animation: transparent-to-hex-beige-light 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
-}
-@keyframes transparent-to-hex-beige-light {
-  50% {
-    color: transparent;
-  }
-  100% {
-    color: var(--color-hex-beige-light);
-  }
+  color: var(--color-hex-beige-light);
 }
 @media (height < 100lvh) {
   .main-title-container {
@@ -232,6 +150,9 @@ onBeforeUnmount(() => {
 .main-title {
   line-height: 1;
   hyphens: none;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 .gradient-bg {
   background-image: url('@/assets/images/home/gradient-bg.png');
@@ -261,17 +182,14 @@ onBeforeUnmount(() => {
     --font-size-main-title: clamp(2.7994rem, -8.879rem + 40cqh, 50cqi);
   }
   .banner {
-    margin: 0;
     flex-direction: column;
     text-align: left;
-    gap: 1em;
+    gap: 0.5em;
+    width: calc(100% - 4rem);
   }
   .stretch {
+    display: flex;
     letter-spacing: 0.5em;
-    word-spacing: normal;
-  }
-  .sd-asterisk {
-    display: inline;
   }
   .main-title-container {
     height: 80vh;
