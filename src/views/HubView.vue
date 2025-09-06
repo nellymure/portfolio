@@ -4,6 +4,10 @@ import FadeInViewport from '@/components/FadeInViewport.vue'
 import { useI18n } from 'vue-i18n'
 import { routes, getRouteName } from '@/router'
 import { RouterLink } from 'vue-router'
+import LeMurmure01 from '@/components/icons/numbers/LeMurmure_01.vue'
+import LeMurmure02 from '@/components/icons/numbers/LeMurmure_02.vue'
+import LeMurmure03 from '@/components/icons/numbers/LeMurmure_03.vue'
+import LeMurmure04 from '@/components/icons/numbers/LeMurmure_04.vue'
 
 const { t } = useI18n()
 </script>
@@ -21,7 +25,8 @@ const { t } = useI18n()
             <div class="title">
               {{ t('exhibition.title') }}
             </div>
-            <div class="square"><h1>01</h1></div>
+            <div class="square"><LeMurmure01 /></div>
+            <!-- <div class="square"><h1>01</h1></div> -->
           </router-link>
           <router-link
             class="section event-design"
@@ -30,7 +35,8 @@ const { t } = useI18n()
             <div class="title">
               {{ t('eventDesign.title') }}
             </div>
-            <div class="square"><h1>02</h1></div>
+            <div class="square"><LeMurmure02 /></div>
+            <!-- <div class="square"><h1>02</h1></div> -->
           </router-link>
           <router-link
             class="section cultural-mediation"
@@ -39,13 +45,15 @@ const { t } = useI18n()
             <div class="title">
               {{ t('mediation.title') }}
             </div>
-            <div class="square"><h1>03</h1></div>
+            <div class="square"><LeMurmure03 /></div>
+            <!-- <div class="square"><h1>03</h1></div> -->
           </router-link>
           <router-link class="section model-making" :to="{ name: getRouteName(routes.MODELS) }">
             <div class="title">
               {{ t('modelMaking.title') }}
             </div>
-            <div class="square"><h1>04</h1></div>
+            <div class="square"><LeMurmure04 /></div>
+            <!-- <div class="square"><h1>04</h1></div> -->
           </router-link>
         </div>
       </div>
@@ -94,7 +102,7 @@ const { t } = useI18n()
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  --section-width: calc(100vw / 4 - var(--half-padding-x));
+  --section-width: calc(100svw / 4 - var(--half-padding-x));
   background-color: white;
 }
 .container {
@@ -106,7 +114,7 @@ const { t } = useI18n()
 }
 .page-title h1 {
   text-align: center;
-  font-size: 5em;
+  font-size: var(--font-size-5);
   font-family: var(--font-family-le-murmure);
   font-weight: var(--font-weight-semi-bold);
 }
@@ -119,7 +127,6 @@ const { t } = useI18n()
   padding-right: var(--half-padding-x);
 }
 .section {
-  font-family: 'Courier New', Courier, monospace;
   width: var(--section-width);
   flex: 1;
   display: flex;
@@ -127,20 +134,22 @@ const { t } = useI18n()
   justify-content: flex-end;
   padding-bottom: var(--quarter-padding-x);
 }
+.section .title {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: var(--font-size--2);
+}
 .section:last-child {
   flex: 0;
 }
 .square {
   height: var(--section-width);
   width: var(--section-width);
-  font-family: var(--font-family-le-murmure);
-  font-weight: var(--font-weight-semi-bold);
-  font-size: 10em;
-  line-height: 1;
   overflow: hidden;
 }
-.square h1 {
-  transform: translate(calc(var(--section-width) * -0.15), calc(var(--section-width) * 0.1));
+.square svg {
+  height: 80%;
+  width: 80%;
+  transform: translate(-25%, 30%);
 }
 .exhibition .square {
   background: var(--color-hex-orange);
@@ -180,16 +189,6 @@ const { t } = useI18n()
   }
   .section:last-child {
     flex: 1;
-  }
-  .section .title {
-    font-size: 0.8em;
-  }
-  .square {
-    width: auto;
-    font-size: 6em;
-  }
-  .square h1 {
-    transform: translate(calc(var(--section-width) * -0.15), calc(var(--section-width) * 0.25));
   }
 }
 </style>
