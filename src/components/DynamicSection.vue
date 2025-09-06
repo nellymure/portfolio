@@ -31,7 +31,6 @@ const html = {
   animatedOnLocalChanged: ref<HTMLAnimated[]>([]),
 }
 const navbarTextColor = ref(`var(${props.navbarTextColor?.onFolder}`)
-const folderHeightPercentVh = 0.95
 const folderAnimationDurationMs = 2000
 const letterAnimationDurationMs = 500
 const descriptionAnimationDurationMs = 1000
@@ -72,27 +71,33 @@ function scrollEventThrottling() {
     ticking = true
   }
 }
+let initialSectionPosition: number
+function onResize() {
+  initialSectionPosition = html.section.value!.getBoundingClientRect().top
+  scrollEventThrottling()
+}
 onMounted(() => {
   window.addEventListener('scroll', scrollEventThrottling)
-  window.addEventListener('resize', scrollEventThrottling)
+  window.addEventListener('resize', onResize)
 })
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', scrollEventThrottling)
-  window.removeEventListener('resize', scrollEventThrottling)
+  window.removeEventListener('resize', onResize)
 })
 function onScrollPosition(_scrollPosition: number) {
   if (!html.section.value) {
     return
   }
-  const innerHeight = window.innerHeight
+
   const sectionPosition = html.section.value.getBoundingClientRect().top
+  if (!initialSectionPosition) {
+    initialSectionPosition = sectionPosition
+  }
 
-  const folderBottomVerticalMargin = innerHeight * (1 - folderHeightPercentVh)
-  navbarTextColor.value = `var(${sectionPosition > folderBottomVerticalMargin ? props.navbarTextColor?.onFolder : props.navbarTextColor?.default})`
+  navbarTextColor.value = `var(${sectionPosition > 0 ? props.navbarTextColor?.onFolder : props.navbarTextColor?.default})`
 
-  const folderHeight = innerHeight * folderHeightPercentVh
-  if (sectionPosition < folderHeight) {
-    const percent = sectionPosition / folderHeight
+  if (sectionPosition < initialSectionPosition) {
+    const percent = sectionPosition / initialSectionPosition
     html.animatedOnScroll.value
       .filter(({ element }) => element)
       .forEach(({ element, animationDuration, animationDelay }) => {
@@ -202,14 +207,10 @@ function smoothScrollToSection(): void {
 }
 .dynamic-section {
   width: 100%;
-  height: auto;
   overflow: hidden;
 }
-.content .folder {
-  padding: var(--padding-x) var(--padding-x) 0 var(--padding-x);
-}
 .folder {
-  height: calc(100vh * v-bind(folderHeightPercentVh));
+  padding-top: var(--navbar-height);
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -223,7 +224,7 @@ function smoothScrollToSection(): void {
 }
 .folder h1 {
   line-height: 1;
-  font-size: 5rem;
+  font-size: var(--font-size-4);
   align-self: flex-start;
   font-family: var(--font-family-cormorant-infant);
   font-weight: var(--font-weight-light);
@@ -237,8 +238,8 @@ function smoothScrollToSection(): void {
     cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 .folder-description {
-  font-size: 1.2rem;
-  padding: 4em 0 0 0;
+  font-size: var(--font-size-0);
+  padding: 1em 0 0 0;
   animation: folder-description-animation calc(1ms * v-bind(descriptionAnimationDurationMs))
     cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
@@ -258,26 +259,10 @@ section {
   flex-direction: column;
   row-gap: var(--section-row-gap);
 }
-@media (max-aspect-ratio: 5/4) {
-  .content .folder {
-    padding: 4rem var(--padding-x) 0 var(--padding-x);
-  }
-  .folder-text {
-    width: 100%;
-  }
+@media (max-width: 1280px) {
+  /* @media (max-aspect-ratio: 5/4) { */
   .folder h1 {
-    font-size: 3rem;
     align-self: center;
-    display: flex;
-    flex-direction: column;
-  }
-  .folder h1 span {
-    font-size: 2rem;
-    align-self: center;
-  }
-  .folder-description {
-    margin-right: 0;
-    padding: 2em 0 0 0;
   }
 }
 @keyframes letter-animation {

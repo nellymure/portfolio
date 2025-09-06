@@ -24,7 +24,7 @@
   font-weight: var(--font-weight-semi-bold);
   text-transform: uppercase;
 }
-@media (max-aspect-ratio: 5/4) {
+@media (max-width: 1280px) {
   .navbar {
     padding: 0rem 2rem;
   }
