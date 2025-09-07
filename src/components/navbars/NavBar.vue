@@ -22,6 +22,7 @@
   align-items: center;
   font-family: var(--font-family-montserrat);
   font-weight: var(--font-weight-semi-bold);
+  font-size: var(--font-size-0);
   text-transform: uppercase;
 }
 @media (max-width: 1280px) {

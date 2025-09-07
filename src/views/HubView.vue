@@ -26,7 +26,6 @@ const { t } = useI18n()
               {{ t('exhibition.title') }}
             </div>
             <div class="square"><LeMurmure01 /></div>
-            <!-- <div class="square"><h1>01</h1></div> -->
           </router-link>
           <router-link
             class="section event-design"
@@ -36,7 +35,6 @@ const { t } = useI18n()
               {{ t('eventDesign.title') }}
             </div>
             <div class="square"><LeMurmure02 /></div>
-            <!-- <div class="square"><h1>02</h1></div> -->
           </router-link>
           <router-link
             class="section cultural-mediation"
@@ -46,14 +44,12 @@ const { t } = useI18n()
               {{ t('mediation.title') }}
             </div>
             <div class="square"><LeMurmure03 /></div>
-            <!-- <div class="square"><h1>03</h1></div> -->
           </router-link>
           <router-link class="section model-making" :to="{ name: getRouteName(routes.MODELS) }">
             <div class="title">
               {{ t('modelMaking.title') }}
             </div>
             <div class="square"><LeMurmure04 /></div>
-            <!-- <div class="square"><h1>04</h1></div> -->
           </router-link>
         </div>
       </div>
@@ -162,6 +158,11 @@ const { t } = useI18n()
 }
 .model-making .square {
   background: var(--color-hex-violet2);
+}
+@media (max-width: 1280px) {
+  .folder h1 {
+    align-self: center;
+  }
 }
 @media (max-aspect-ratio: 5/4) {
   .hub {

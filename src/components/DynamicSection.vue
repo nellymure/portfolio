@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, watch, type PropType } from 'vue'
+import { onUnmounted, onMounted, ref, watch, type PropType } from 'vue'
 import SectionNavbar from '@/components/navbars/SectionNavbar.vue'
 import IconChevron from './icons/IconChevron.vue'
 
@@ -80,11 +80,11 @@ onMounted(() => {
   window.addEventListener('scroll', scrollEventThrottling)
   window.addEventListener('resize', onResize)
 })
-onBeforeUnmount(() => {
+onUnmounted(() => {
   window.removeEventListener('scroll', scrollEventThrottling)
   window.removeEventListener('resize', onResize)
 })
-function onScrollPosition(_scrollPosition: number) {
+function onScrollPosition(scrollPosition: number) {
   if (!html.section.value) {
     return
   }
@@ -96,7 +96,7 @@ function onScrollPosition(_scrollPosition: number) {
 
   navbarTextColor.value = `var(${sectionPosition > 0 ? props.navbarTextColor?.onFolder : props.navbarTextColor?.default})`
 
-  if (sectionPosition < initialSectionPosition) {
+  if (sectionPosition <= initialSectionPosition) {
     const percent = sectionPosition / initialSectionPosition
     html.animatedOnScroll.value
       .filter(({ element }) => element)
@@ -210,8 +210,9 @@ function smoothScrollToSection(): void {
   overflow: hidden;
 }
 .folder {
-  padding-top: var(--navbar-height);
+  padding: var(--navbar-height) var(--padding-x) 0 var(--padding-x);
   width: 100%;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -220,17 +221,28 @@ function smoothScrollToSection(): void {
 .folder-text {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: auto;
 }
 .folder h1 {
   line-height: 1;
   font-size: var(--font-size-4);
-  align-self: flex-start;
+  align-self: center;
   font-family: var(--font-family-cormorant-infant);
   font-weight: var(--font-weight-light);
   text-transform: uppercase;
   animation: folder-h1-animation calc(1ms * v-bind(folderAnimationDurationMs))
     cubic-bezier(0, 0, 0.2, 1) both;
+}
+@media (orientation: landscape) and (min-width: 960px) {
+  .folder {
+    padding: var(--navbar-height) 0 0 0;
+  }
+  .folder h1 {
+    align-self: flex-start;
+  }
+  .folder-text {
+    width: 50vw;
+  }
 }
 .char {
   opacity: 0;
@@ -258,12 +270,6 @@ section {
   display: flex;
   flex-direction: column;
   row-gap: var(--section-row-gap);
-}
-@media (max-width: 1280px) {
-  /* @media (max-aspect-ratio: 5/4) { */
-  .folder h1 {
-    align-self: center;
-  }
 }
 @keyframes letter-animation {
   0% {

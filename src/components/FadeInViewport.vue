@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { onUnmounted, onMounted, ref } from 'vue'
 
 const props = defineProps({
   delay: {
@@ -21,7 +21,7 @@ onMounted(() => {
   updateVisibility()
 })
 
-onBeforeUnmount(() => {
+onUnmounted(() => {
   window.removeEventListener('scroll', updateVisibility)
   window.removeEventListener('resize', updateVisibility)
 })
