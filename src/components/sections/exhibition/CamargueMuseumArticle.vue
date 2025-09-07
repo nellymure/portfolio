@@ -82,7 +82,7 @@ defineProps({
       <img class="full-img" src="@/assets/images/sections/exhibition/partie-4-bis.jpg" />
     </FadeInViewport>
     <div class="last-image-container">
-      <FadeInViewport delay="0.5s" :debug="true">
+      <FadeInViewport delay="0.5s">
         <img src="@/assets/images/sections/exhibition/partie-4-cabane.jpg" />
       </FadeInViewport>
     </div>

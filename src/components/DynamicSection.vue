@@ -304,6 +304,9 @@ section:deep(article h1) {
   }
   .folder h1 {
     align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .folder-description {
     hyphens: auto;

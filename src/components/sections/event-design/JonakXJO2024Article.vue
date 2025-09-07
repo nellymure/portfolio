@@ -4,13 +4,13 @@ import FadeInViewport from '@/components/FadeInViewport.vue'
 import CarouselWithTranslate from '@/components/CarouselWithTranslate.vue'
 import ColorPalette from '@/components/ColorPalette.vue'
 
-const { t } = useI18n()
 defineProps({
   articleId: {
     type: String,
     required: true,
   },
 })
+const { t } = useI18n()
 </script>
 
 <template>
@@ -161,17 +161,14 @@ header {
     padding-right: var(--padding-0);
   }
   .text-part {
-    max-width: 60vw;
+    max-width: 50vw;
   }
   .text-part .title {
     text-align: center;
   }
-  .img-part {
-    margin-top: var(--padding-0);
-    width: 40vw;
-  }
   .header-image {
-    width: 100%;
+    width: 50vw;
+    height: unset;
     object-fit: contain;
   }
   .container {
@@ -179,6 +176,11 @@ header {
     align-items: center;
     padding-left: var(--padding-0);
     padding-right: var(--padding-0);
+  }
+  .container .left-part img {
+    max-height: 80vh;
+    object-fit: contain;
+    padding-right: 0;
   }
 }
 /** portrait layout */

@@ -18,7 +18,7 @@ const delay = ref(props.delay || '0')
 onMounted(() => {
   window.addEventListener('scroll', updateVisibility)
   window.addEventListener('resize', updateVisibility)
-  updateVisibility()
+  setTimeout(updateVisibility, 500)
 })
 
 onUnmounted(() => {
@@ -32,8 +32,14 @@ function updateVisibility() {
   }
 
   const { top, bottom } = content.value.getBoundingClientRect()
-  const innerHeight = window.innerHeight + 1 // Add 1px to account for any potential scrollbars
-  isVisible.value = (top >= 0 && top < innerHeight) || (bottom >= 0 && bottom < innerHeight)
+  const innerHeight = window.innerHeight
+  if (props.debug) {
+    console.log({ top, bottom, innerHeight })
+  }
+  isVisible.value =
+    (top < 0 && bottom > innerHeight) ||
+    (top >= 0 && top < innerHeight) ||
+    (bottom >= 0 && bottom < innerHeight)
   if (isVisible.value) {
     window.removeEventListener('scroll', updateVisibility)
     window.removeEventListener('resize', updateVisibility)

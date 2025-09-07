@@ -112,6 +112,13 @@
   --color-hex-beige2: #ffeede;
   --color-hex-beige-light: #fff3e5;
 }
+/** small landscape layout */
+@media (orientation: landscape) and (max-height: 430px) {
+  :root {
+    --section-row-gap: 25vh;
+    --article-row-gap: 25vh;
+  }
+}
 /** portrait layout */
 @media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
   :root {

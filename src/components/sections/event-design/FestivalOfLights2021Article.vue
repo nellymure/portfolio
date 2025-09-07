@@ -3,13 +3,13 @@ import { useI18n } from 'vue-i18n'
 import FadeInViewport from '@/components/FadeInViewport.vue'
 import ColorPalette from '@/components/ColorPalette.vue'
 
-const { t } = useI18n()
 defineProps({
   articleId: {
     type: String,
     required: true,
   },
 })
+const { t } = useI18n()
 </script>
 
 <template>
@@ -107,12 +107,12 @@ defineProps({
 <style lang="css" scoped>
 header {
   display: flex;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding--1);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-0);
 }
 .text-part {
   max-width: 35vw;
-  margin-right: var(--padding--1);
+  margin-right: var(--padding-0);
 }
 header img {
   width: 100%;
@@ -123,18 +123,18 @@ header img {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .container-1 {
-  padding-left: var(--padding--1);
+  padding-left: var(--padding-0);
 }
 .container img {
   display: flex;
 }
 .container-1 .left-part img {
   width: 50vw;
-  padding-right: var(--padding--1);
+  padding-right: var(--padding-0);
 }
 .container-2 {
   justify-content: flex-start;
@@ -143,12 +143,12 @@ header img {
   object-fit: cover;
 }
 .container-2 .left-part img {
-  width: calc(50vw - var(--padding-0) - var(--padding--1));
+  width: calc(50vw - var(--padding-2) - var(--padding-0));
   height: 80vh;
-  padding-right: var(--padding--1);
+  padding-right: var(--padding-0);
 }
 .container-2 .right-part img {
-  width: calc(50vw - var(--padding--1));
+  width: calc(50vw - var(--padding-0));
   height: 80vh;
 }
 .container-3 {
@@ -160,7 +160,7 @@ header img {
   object-fit: cover;
 }
 .container-3 .left-part img {
-  width: calc(50vw - var(--padding--1) * 2);
+  width: calc(50vw - var(--padding-0) * 2);
 }
 .container-3 .right-part img {
   width: 25vw;
@@ -169,7 +169,7 @@ header img {
 @media (max-aspect-ratio: 5/4) {
   header {
     flex-direction: column;
-    padding-right: var(--padding-0);
+    padding-right: var(--padding-2);
   }
   header .text-part {
     height: auto;
@@ -196,8 +196,8 @@ header img {
   .container {
     flex-direction: column;
     row-gap: 3vh;
-    padding-left: var(--padding--1);
-    padding-right: var(--padding--1);
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
   .container-1 {
     row-gap: 5vh;
@@ -219,8 +219,8 @@ header img {
     height: auto;
   }
   .container-1 .right-part {
-    padding-left: var(--padding--1);
-    padding-right: var(--padding--1);
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
   .container-2 .left-part img {
     width: 100%;
