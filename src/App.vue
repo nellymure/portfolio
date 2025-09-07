@@ -7,15 +7,15 @@ function getTransitionName(route: RouteLocationNormalizedLoadedGeneric): string 
   return <string>route.meta!.transition
 }
 
-function isNotHome(route: RouteLocationNormalizedLoadedGeneric) {
-  return route.name && route.name != routes.HOME.name
+function displayLanguageSelector(route: RouteLocationNormalizedLoadedGeneric): boolean {
+  return route.name != undefined && route.name != routes.HOME.name
 }
 </script>
 
 <template>
   <main>
     <router-view v-slot="{ Component, route }">
-      <LanguageSelector v-if="isNotHome(route)" />
+      <LanguageSelector v-if="displayLanguageSelector(route)" />
       <transition :name="getTransitionName(route)">
         <component class="component" :is="Component" :key="route.path" />
       </transition>

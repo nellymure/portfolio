@@ -82,6 +82,7 @@
   --font-size-3: clamp(1.728rem, 1.5159rem + 0.9425vw, 2.9297rem);
   --font-size-4: clamp(2.0736rem, 1.7933rem + 1.2459vw, 3.6621rem);
   --font-size-5: clamp(2.4883rem, 2.1196rem + 1.6387vw, 4.5776rem);
+  --font-size-X5: calc(var(--font-size-5) * 2);
 
   --font-family-antic-didone: 'Antic Didone';
   --font-family-cormorant-infant: 'Cormorant Infant';
@@ -90,9 +91,11 @@
   --font-family-montserrat: 'Montserrat';
   --font-family-reem-kufi: 'Reem Kufi';
 
-  --padding-x: 8rem;
-  --half-padding-x: calc(var(--padding-x) / 2);
-  --quarter-padding-x: calc(var(--padding-x) / 4);
+  --padding--2: calc(var(--padding-0) * 0.25);
+  --padding--1: calc(var(--padding-0) * 0.5);
+  --padding-0: 2rem;
+  --padding-1: calc(var(--padding-0) * 2);
+  --padding-2: calc(var(--padding-0) * 4);
   --navbar-height: 6rem;
   --section-row-gap: 20vh;
   --article-row-gap: 20vh;
@@ -109,9 +112,10 @@
   --color-hex-beige2: #ffeede;
   --color-hex-beige-light: #fff3e5;
 }
-@media (max-aspect-ratio: 5/4) {
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
   :root {
-    --padding-x: 2rem;
+    --padding-0: 1rem;
     --section-row-gap: 10vh;
     --article-row-gap: 5vh;
   }

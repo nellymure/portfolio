@@ -95,28 +95,15 @@ defineProps({
 </i18n>
 
 <style lang="css" scoped>
-article {
-  display: flex;
-  flex-direction: column;
-  row-gap: var(--article-row-gap);
-}
 header {
   display: flex;
   align-items: flex-end;
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  padding-left: var(--padding-0);
+  padding-right: var(--padding-0);
 }
 .text-part {
   max-width: 35vw;
-  margin-right: var(--half-padding-x);
-}
-h1 {
-  font-size: 7em;
-  font-family: var(--font-family-antic-didone);
-  font-weight: var(--font-weight-light);
-  line-height: 1;
-  text-align: left;
-  margin-bottom: 1em;
+  margin-right: var(--padding--1);
 }
 .img-part {
   width: 100%;
@@ -129,15 +116,15 @@ h1 {
 .container {
   display: flex;
   align-items: center;
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  padding-left: var(--padding-0);
+  padding-right: var(--padding-0);
 }
 .container .left-part {
   min-width: 50vw;
   width: 50vw;
   display: flex;
   justify-content: center;
-  padding-right: var(--half-padding-x);
+  padding-right: var(--padding--1);
 }
 .container .right-part {
   height: 100%;
@@ -160,8 +147,8 @@ h1 {
 .carousel-arrow {
   width: 80%;
   margin-left: 10%;
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  padding-left: var(--padding-0);
+  padding-right: var(--padding-0);
 }
 .carousel-arrow img {
   width: 100%;
@@ -197,12 +184,12 @@ h1 {
   }
   .container {
     flex-direction: column;
-    padding-left: var(--half-padding-x);
-    padding-right: var(--half-padding-x);
+    padding-left: var(--padding--1);
+    padding-right: var(--padding--1);
     margin-bottom: -3vh;
   }
   .container .left-part img {
-    width: calc(100vw - var(--padding-x));
+    width: calc(100vw - var(--padding-0));
     height: 50vh;
     object-fit: contain;
     padding-left: 0;
@@ -210,8 +197,8 @@ h1 {
   }
   .container .right-part {
     padding-top: 5vh;
-    padding-left: var(--half-padding-x);
-    padding-right: var(--half-padding-x);
+    padding-left: var(--padding--1);
+    padding-right: var(--padding--1);
   }
   .carousel-arrow {
     width: 100%;
@@ -225,8 +212,8 @@ h1 {
   .img-80 {
     margin-left: 0;
     width: 100%;
-    padding-left: var(--padding-x);
-    padding-right: var(--padding-x);
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
 }
 </style>

@@ -19,7 +19,7 @@ defineProps({
       <div class="text-part">
         <div class="title">
           <h3>{{ articleId }}</h3>
-          <h1>{{ t('title') }}</h1>
+          <h1>{{ t('title-1') }}<br />{{ t('title-2') }}</h1>
         </div>
         <p class="text-indent">
           {{ t('paragraphs[0]') }}
@@ -64,7 +64,8 @@ defineProps({
 <i18n>
   {
     "fr": {
-      "title": "Grand Nord\nGrand Sud",
+      "title-1": "Grand Nord",
+      "title-2": "Grand Sud",
       "paragraphs": [
         "Le projet d'exposition Grand Nord Grand Sud est le projet de diplôme que j'ai mené en
         dernière année de licence. Il explore les liens entre deux arts autochtones antipodiques :
@@ -80,7 +81,8 @@ defineProps({
       ]
     },
     "en": {
-      "title": "Big North\nBig South",
+      "title-1": "Big North",
+      "title-2": "Big South",
       "paragraphs": [
         "The Grand Nord Grand Sud exhibition project was my final-year degree project. It explores
         the links between two indigenous arts from opposite sides of the globe: Inuit art and
@@ -98,28 +100,15 @@ defineProps({
 </i18n>
 
 <style lang="css" scoped>
-article {
-  display: flex;
-  flex-direction: column;
-  row-gap: var(--article-row-gap);
-}
 header {
   display: flex;
   align-items: flex-end;
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .text-part {
   max-width: 35vw;
-  margin-right: var(--half-padding-x);
-}
-h1 {
-  font-size: 7em;
-  font-family: var(--font-family-antic-didone);
-  font-weight: var(--font-weight-light);
-  line-height: 1;
-  text-align: left;
-  margin-bottom: 1em;
+  margin-right: var(--padding-0);
 }
 .img-part {
   height: 80vh;
@@ -132,15 +121,15 @@ h1 {
 .container {
   display: flex;
   align-items: flex-end;
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  padding-left: var(--padding-0);
+  padding-right: var(--padding-0);
 }
 .container .left-part {
   min-width: 60vw;
   width: 60vw;
   display: flex;
   align-items: flex-end;
-  padding-right: var(--half-padding-x);
+  padding-right: var(--padding--1);
 }
 .container .right-part {
   display: flex;
@@ -156,38 +145,54 @@ h1 {
   height: auto;
 }
 .last-image-container {
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  padding-left: var(--padding-0);
+  padding-right: var(--padding-0);
 }
 .last-image-container img {
   width: 100%;
 }
 .carousel-interval {
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  padding-left: var(--padding-0);
+  padding-right: var(--padding-0);
 }
 .carousel-interval img {
   width: 80%;
   height: auto;
 }
-@media (max-aspect-ratio: 5/4) {
+/** portrait layout and small landscape layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) or (max-height: 430px) {
   header {
     flex-direction: column;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
-  header .text-part {
+  .text-part {
     height: auto;
     max-width: 100%;
     width: 100%;
     align-items: flex-start;
     margin-right: 0;
   }
-  header .text-part .title {
+  .text-part .title {
     text-align: center;
   }
-  h1 {
-    font-size: 4em;
-    text-align: center;
+}
+/** small landscape layout */
+@media (orientation: landscape) or (max-height: 430px) {
+  header .img-part {
+    margin-top: 5vh;
+    width: 100%;
   }
+  header img {
+    height: auto;
+    object-fit: contain;
+  }
+  .container {
+    hyphens: auto;
+  }
+}
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
   header .img-part {
     margin-top: 5vh;
     width: 100%;
@@ -205,20 +210,20 @@ h1 {
   }
   .container .left-part {
     width: 100vw;
-    padding-left: var(--half-padding-x);
-    padding-right: var(--half-padding-x);
+    padding-left: var(--padding--1);
+    padding-right: var(--padding--1);
   }
   .container .right-part {
     padding-top: 5vh;
-    padding-left: var(--padding-x);
-    padding-right: var(--padding-x);
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
   .carousel-interval img {
     width: 100%;
   }
   .carousel-interval {
-    padding-left: var(--half-padding-x);
-    padding-right: var(--half-padding-x);
+    padding-left: var(--padding--1);
+    padding-right: var(--padding--1);
   }
 }
 </style>

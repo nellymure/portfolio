@@ -108,13 +108,12 @@ defineProps({
 
 <style lang="css" scoped>
 article {
-  display: flex;
-  flex-direction: column;
+  row-gap: unset;
 }
 header {
   display: flex;
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  padding-left: var(--padding-0);
+  padding-right: var(--padding-0);
 }
 header .text-part {
   display: flex;
@@ -123,16 +122,8 @@ header .text-part {
   align-items: center;
   height: 80vh;
   max-width: 35vw;
-  margin-right: var(--half-padding-x);
-  padding-bottom: var(--half-padding-x);
-}
-h1 {
-  font-size: 7em;
-  font-family: var(--font-family-antic-didone);
-  font-weight: var(--font-weight-light);
-  line-height: 1;
-  text-align: left;
-  margin-bottom: 1em;
+  margin-right: var(--padding--1);
+  padding-bottom: var(--padding--1);
 }
 header .img-part {
   width: 50vw;
@@ -150,7 +141,7 @@ header img {
 }
 .description {
   padding-top: 1em;
-  padding-left: var(--half-padding-x);
+  padding-left: var(--padding--1);
 }
 .container-1 {
   display: flex;
@@ -162,7 +153,7 @@ header img {
 }
 .container-1 .left-part img {
   display: flex;
-  width: calc(50vw - var(--half-padding-x));
+  width: calc(50vw - var(--padding--1));
   height: 100vh;
   object-fit: cover;
 }
@@ -170,7 +161,7 @@ header img {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-bottom: var(--half-padding-x);
+  padding-bottom: var(--padding--1);
 }
 .container-2 {
   align-self: center;
@@ -178,7 +169,7 @@ header img {
   justify-content: space-between;
   margin-top: 20vh;
   height: 80vh;
-  width: calc(100vw - var(--padding-x));
+  width: calc(100vw - var(--padding-0));
 }
 .container-2 img {
   height: 80vh;
@@ -187,8 +178,8 @@ header img {
 }
 .container-2 .big-one {
   width: 45vw;
-  padding-left: calc(var(--half-padding-x) / 2);
-  padding-right: calc(var(--half-padding-x) / 2);
+  padding-left: calc(var(--padding--1) / 2);
+  padding-right: calc(var(--padding--1) / 2);
 }
 .img-80 {
   display: flex;
@@ -251,13 +242,13 @@ header img {
   }
   .container-2 img {
     height: 50vh;
-    padding-left: var(--padding-x);
-    padding-right: var(--padding-x);
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
   .img-80 {
     margin-top: 5vh;
-    padding-left: var(--padding-x);
-    padding-right: var(--padding-x);
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
   .last-img {
     margin-top: calc(5vh + 2em);

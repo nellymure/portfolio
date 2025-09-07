@@ -95,47 +95,42 @@ const { t } = useI18n()
 <style lang="css" scoped>
 .hub {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  --section-width: calc(100svw / 4 - var(--half-padding-x));
+  --section-width: calc((100vw - var(--padding-0)) / 4 - var(--padding-0));
   background-color: white;
 }
 .container {
-  margin-top: var(--navbar-height);
-  min-height: calc(var(--section-width) + 5em);
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.page-title h1 {
+.page-title {
+  margin-top: var(--navbar-height);
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
   text-align: center;
   font-size: var(--font-size-5);
   font-family: var(--font-family-le-murmure);
   font-weight: var(--font-weight-semi-bold);
 }
 .sections {
-  overflow-y: auto;
+  margin-bottom: var(--padding-0);
   display: flex;
-  align-items: center;
-  row-gap: var(--article-row-gap);
-  padding-left: var(--half-padding-x);
-  padding-right: var(--half-padding-x);
+  padding-left: var(--padding-0);
 }
 .section {
+  margin-right: var(--padding-0);
   width: var(--section-width);
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-bottom: var(--quarter-padding-x);
 }
 .section .title {
   font-family: 'Courier New', Courier, monospace;
-  font-size: var(--font-size--2);
-}
-.section:last-child {
-  flex: 0;
+  font-size: var(--font-size-0);
 }
 .square {
   height: var(--section-width);
@@ -159,37 +154,17 @@ const { t } = useI18n()
 .model-making .square {
   background: var(--color-hex-violet2);
 }
-@media (max-width: 1280px) {
-  .folder h1 {
-    align-self: center;
-  }
-}
-@media (max-aspect-ratio: 5/4) {
+@media (orientation: portrait) {
   .hub {
-    --section-width: calc(100vw / 2 - var(--half-padding-x));
-    justify-content: center;
-  }
-  .page-title {
-    padding-top: var(--article-row-gap);
-  }
-  .page-title h1 {
-    font-size: 3.5em;
+    --section-width: calc((100vw - var(--padding-1)) / 2 - var(--padding-1));
   }
   .sections {
     flex-wrap: wrap;
-    row-gap: var(--half-padding-x);
-  }
-  .sections {
-    padding-left: 0;
-    padding-right: 0;
+    row-gap: var(--padding-1);
+    padding-left: var(--padding-1);
   }
   .section {
-    padding: var(--quarter-padding-x);
-    width: calc(50vw - var(--half-padding-x));
-    min-width: calc(50vw - var(--half-padding-x));
-  }
-  .section:last-child {
-    flex: 1;
+    margin-right: var(--padding-1);
   }
 }
 </style>

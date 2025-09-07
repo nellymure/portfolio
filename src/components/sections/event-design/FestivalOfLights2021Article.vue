@@ -105,27 +105,14 @@ defineProps({
 </i18n>
 
 <style lang="css" scoped>
-article {
-  display: flex;
-  flex-direction: column;
-  row-gap: var(--article-row-gap);
-}
 header {
   display: flex;
-  padding-left: var(--padding-x);
-  padding-right: var(--half-padding-x);
+  padding-left: var(--padding-0);
+  padding-right: var(--padding--1);
 }
 .text-part {
   max-width: 35vw;
-  margin-right: var(--half-padding-x);
-}
-h1 {
-  font-size: 7em;
-  font-family: var(--font-family-antic-didone);
-  font-weight: var(--font-weight-light);
-  line-height: 1;
-  text-align: left;
-  margin-bottom: 1em;
+  margin-right: var(--padding--1);
 }
 header img {
   width: 100%;
@@ -136,18 +123,18 @@ header img {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  padding-left: var(--padding-0);
+  padding-right: var(--padding-0);
 }
 .container-1 {
-  padding-left: var(--half-padding-x);
+  padding-left: var(--padding--1);
 }
 .container img {
   display: flex;
 }
 .container-1 .left-part img {
   width: 50vw;
-  padding-right: var(--half-padding-x);
+  padding-right: var(--padding--1);
 }
 .container-2 {
   justify-content: flex-start;
@@ -156,12 +143,12 @@ header img {
   object-fit: cover;
 }
 .container-2 .left-part img {
-  width: calc(50vw - var(--padding-x) - var(--half-padding-x));
+  width: calc(50vw - var(--padding-0) - var(--padding--1));
   height: 80vh;
-  padding-right: var(--half-padding-x);
+  padding-right: var(--padding--1);
 }
 .container-2 .right-part img {
-  width: calc(50vw - var(--half-padding-x));
+  width: calc(50vw - var(--padding--1));
   height: 80vh;
 }
 .container-3 {
@@ -173,7 +160,7 @@ header img {
   object-fit: cover;
 }
 .container-3 .left-part img {
-  width: calc(50vw - var(--half-padding-x) * 2);
+  width: calc(50vw - var(--padding--1) * 2);
 }
 .container-3 .right-part img {
   width: 25vw;
@@ -182,7 +169,7 @@ header img {
 @media (max-aspect-ratio: 5/4) {
   header {
     flex-direction: column;
-    padding-right: var(--padding-x);
+    padding-right: var(--padding-0);
   }
   header .text-part {
     height: auto;
@@ -209,8 +196,8 @@ header img {
   .container {
     flex-direction: column;
     row-gap: 3vh;
-    padding-left: var(--half-padding-x);
-    padding-right: var(--half-padding-x);
+    padding-left: var(--padding--1);
+    padding-right: var(--padding--1);
   }
   .container-1 {
     row-gap: 5vh;
@@ -232,8 +219,8 @@ header img {
     height: auto;
   }
   .container-1 .right-part {
-    padding-left: var(--half-padding-x);
-    padding-right: var(--half-padding-x);
+    padding-left: var(--padding--1);
+    padding-right: var(--padding--1);
   }
   .container-2 .left-part img {
     width: 100%;

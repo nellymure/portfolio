@@ -1,36 +1,40 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const MAX_EXTRA_SMALL_MAX_WIDTH = 600 // xs
-const MAX_SMALL_MAX_WIDTH = 960 // sm
-const MAX_MEDIUM_MAX_WIDTH = 1280 // md
-const MAX_LARGE_MAX_WIDTH = 1920 // lg
-const MAX_EXTRA_LARGE_MAX_WIDTH = 2560 // xl
-
 export function useLayout() {
-  const isMobileLayout = ref(false)
+  const isPortraitLayout = ref(false)
+  const isSmallLandscapeLayout = ref(false)
+  const isLargeLandscapeLayout = ref(false)
+  const isLandscapeLayout = ref(false)
 
-  function updateCurrentLayout() {
-    isMobileLayout.value = !window.matchMedia(
-      `(orientation: landscape) and (min-width: ${MAX_SMALL_MAX_WIDTH}px)`,
+  function updateLayout() {
+    isPortraitLayout.value = window.matchMedia(
+      `(orientation: portrait) or ((max-width: 960px) and (min-height: 431px))`,
     ).matches
+    isSmallLandscapeLayout.value = window.matchMedia(
+      `(orientation: landscape) and (max-height: 430px)`,
+    ).matches
+    isLargeLandscapeLayout.value = !isPortraitLayout.value && !isSmallLandscapeLayout.value
+    isLandscapeLayout.value = !isPortraitLayout.value
+    console.log('Active layout', {
+      isPortraitLayout: isPortraitLayout.value,
+      isSmallLandscapeLayout: isSmallLandscapeLayout.value,
+      isLargeLandscapeLayout: isLargeLandscapeLayout.value,
+      isLandscapeLayout: isLandscapeLayout.value,
+    })
   }
 
   onMounted(() => {
-    window.addEventListener('resize', updateCurrentLayout)
+    window.addEventListener('resize', updateLayout)
+    updateLayout()
   })
   onUnmounted(() => {
-    window.removeEventListener('resize', updateCurrentLayout)
+    window.removeEventListener('resize', updateLayout)
   })
 
   return {
-    isMobileLayout,
+    isPortraitLayout,
+    isSmallLandscapeLayout,
+    isLargeLandscapeLayout,
+    isLandscapeLayout,
   }
-}
-
-export default {
-  MAX_EXTRA_SMALL_MAX_WIDTH,
-  MAX_SMALL_MAX_WIDTH,
-  MAX_MEDIUM_MAX_WIDTH,
-  MAX_LARGE_MAX_WIDTH,
-  MAX_EXTRA_LARGE_MAX_WIDTH,
 }

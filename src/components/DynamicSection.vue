@@ -59,45 +59,50 @@ function splitWordsByLine(text: string): string[][] {
 /**
  * https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event#examples
  */
-let lastKnownScrollPosition = 0
 let ticking = false
 function scrollEventThrottling() {
-  lastKnownScrollPosition = window.scrollY
   if (!ticking) {
     window.requestAnimationFrame(() => {
-      onScrollPosition(lastKnownScrollPosition)
+      onScrollPosition()
       ticking = false
     })
     ticking = true
   }
 }
-let initialSectionPosition: number
+let navbarHeight: number
+function updateNavbarHeight() {
+  navbarHeight = parseInt(
+    window
+      .getComputedStyle(document.getElementById('navbar')!)
+      .getPropertyValue('height')
+      .replace('px', ''),
+  )
+}
 function onResize() {
-  initialSectionPosition = html.section.value!.getBoundingClientRect().top
-  scrollEventThrottling()
+  updateNavbarHeight()
+  onScrollPosition()
 }
 onMounted(() => {
   window.addEventListener('scroll', scrollEventThrottling)
   window.addEventListener('resize', onResize)
+  updateNavbarHeight()
 })
 onUnmounted(() => {
   window.removeEventListener('scroll', scrollEventThrottling)
   window.removeEventListener('resize', onResize)
 })
-function onScrollPosition(scrollPosition: number) {
+function onScrollPosition() {
   if (!html.section.value) {
     return
   }
 
   const sectionPosition = html.section.value.getBoundingClientRect().top
-  if (!initialSectionPosition) {
-    initialSectionPosition = sectionPosition
-  }
+  const windowHeight = window.innerHeight
 
-  navbarTextColor.value = `var(${sectionPosition > 0 ? props.navbarTextColor?.onFolder : props.navbarTextColor?.default})`
+  navbarTextColor.value = `var(${sectionPosition > navbarHeight ? props.navbarTextColor?.onFolder : props.navbarTextColor?.default})`
 
-  if (sectionPosition <= initialSectionPosition) {
-    const percent = sectionPosition / initialSectionPosition
+  if (sectionPosition <= windowHeight) {
+    const percent = sectionPosition / windowHeight
     html.animatedOnScroll.value
       .filter(({ element }) => element)
       .forEach(({ element, animationDuration, animationDelay }) => {
@@ -210,7 +215,7 @@ function smoothScrollToSection(): void {
   overflow: hidden;
 }
 .folder {
-  padding: var(--navbar-height) var(--padding-x) 0 var(--padding-x);
+  padding: var(--navbar-height) var(--padding-2) 0 var(--padding-2);
   width: 100%;
   min-height: 90vh;
   display: flex;
@@ -221,28 +226,17 @@ function smoothScrollToSection(): void {
 .folder-text {
   display: flex;
   flex-direction: column;
-  width: auto;
+  max-width: 50vw;
 }
 .folder h1 {
   line-height: 1;
   font-size: var(--font-size-4);
-  align-self: center;
+  align-self: flex-start;
   font-family: var(--font-family-cormorant-infant);
   font-weight: var(--font-weight-light);
   text-transform: uppercase;
   animation: folder-h1-animation calc(1ms * v-bind(folderAnimationDurationMs))
     cubic-bezier(0, 0, 0.2, 1) both;
-}
-@media (orientation: landscape) and (min-width: 960px) {
-  .folder {
-    padding: var(--navbar-height) 0 0 0;
-  }
-  .folder h1 {
-    align-self: flex-start;
-  }
-  .folder-text {
-    width: 50vw;
-  }
 }
 .char {
   opacity: 0;
@@ -270,6 +264,43 @@ section {
   display: flex;
   flex-direction: column;
   row-gap: var(--section-row-gap);
+  font-size: var(--font-size--1);
+}
+section:deep(article) {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--article-row-gap);
+}
+section:deep(article h1) {
+  font-size: var(--font-size-X5);
+  font-family: var(--font-family-antic-didone);
+  font-weight: var(--font-weight-light);
+  line-height: 1;
+  text-align: left;
+  margin-bottom: 1em;
+}
+/** portrait layout and small landscape layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) or (max-height: 430px) {
+  .folder-text {
+    max-width: unset;
+  }
+  section {
+    line-height: 1.5;
+    font-size: var(--font-size-0);
+  }
+  section:deep(article h1) {
+    font-size: var(--font-size-5);
+    text-align: center;
+  }
+}
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
+  .folder {
+    padding: var(--navbar-height) var(--padding-0) 0 var(--padding-0);
+  }
+  .folder h1 {
+    align-self: center;
+  }
 }
 @keyframes letter-animation {
   0% {

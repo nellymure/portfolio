@@ -3,28 +3,18 @@ import router, { routes, getRouteName } from '@/router'
 import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import IconAsterisk from '@/components/icons/IconAsterisk.vue'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { ref } from 'vue'
+import { useLayout } from '@/utils/screen-utils'
 
 const { t } = useI18n()
 const nextPage = routes.HUB
 const mainTitleContainer = ref<HTMLElement | null>(null)
-const landscapeDisplay = ref<boolean>(false)
+const { isLandscapeLayout } = useLayout()
 
 function goToNextPage() {
   router.push({ name: getRouteName(nextPage) })
   router.go(1)
 }
-
-function updateWindowsAspect() {
-  landscapeDisplay.value = !window.matchMedia('(max-aspect-ratio: 5/4)').matches
-}
-onMounted(() => {
-  window.addEventListener('resize', updateWindowsAspect)
-  updateWindowsAspect()
-})
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateWindowsAspect)
-})
 </script>
 
 <template>
@@ -35,7 +25,7 @@ onBeforeUnmount(() => {
     :to="{ name: getRouteName(nextPage) }"
   >
     <div class="hover-container">
-      <div v-if="landscapeDisplay" class="banner">
+      <div v-if="isLandscapeLayout" class="banner">
         <span v-for="char in t('nellyMure').replace(' ', '')">{{ char }}</span>
         <IconAsterisk />
         <span v-for="char in t('spatial design').replace(' ', '')">{{ char }}</span>
@@ -43,15 +33,15 @@ onBeforeUnmount(() => {
         <span v-for="char in t('scenography')">{{ char }}</span>
       </div>
       <div v-else class="banner">
-        <div class="stretch">
+        <div class="banner-row">
           <span v-for="char in t('nellyMure').replace(' ', '')">{{ char }}</span>
           <IconAsterisk />
         </div>
-        <div class="stretch">
+        <div class="banner-row">
           <span v-for="char in t('spatial design').replace(' ', '')">{{ char }}</span>
           <IconAsterisk />
         </div>
-        <div class="stretch">
+        <div class="banner-row">
           <span v-for="char in t('scenography')">{{ char }}</span>
           <IconAsterisk class="sd-asterisk" />
         </div>
@@ -175,7 +165,8 @@ onBeforeUnmount(() => {
     background-position: 0% 20%;
   }
 }
-@media (max-aspect-ratio: 5/4) {
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
   .hover-container {
     margin: 2rem 0 2rem 2rem;
     align-items: start;
@@ -187,7 +178,7 @@ onBeforeUnmount(() => {
     gap: 0.5em;
     width: calc(100% - 4rem);
   }
-  .stretch {
+  .banner-row {
     display: flex;
     letter-spacing: 0.5em;
   }

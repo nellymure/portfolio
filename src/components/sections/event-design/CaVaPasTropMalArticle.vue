@@ -205,28 +205,15 @@ defineProps({
 </i18n>
 
 <style lang="css" scoped>
-article {
-  display: flex;
-  flex-direction: column;
-  row-gap: var(--article-row-gap);
-}
 header {
   display: flex;
   align-items: flex-end;
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  padding-left: var(--padding-0);
+  padding-right: var(--padding-0);
 }
 .text-part {
   max-width: 35vw;
-  margin-right: var(--half-padding-x);
-}
-h1 {
-  font-size: 7em;
-  font-family: var(--font-family-antic-didone);
-  font-weight: var(--font-weight-light);
-  line-height: 1;
-  text-align: left;
-  margin-bottom: 1em;
+  margin-right: var(--padding--1);
 }
 .img-part {
   width: 100%;
@@ -242,8 +229,8 @@ h1 {
 }
 .container {
   display: flex;
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  padding-left: var(--padding-0);
+  padding-right: var(--padding-0);
 }
 .container-1 {
   height: 100vh;
@@ -252,14 +239,14 @@ h1 {
   object-fit: cover;
 }
 .container-1 .left-part img {
-  width: calc(30vw - var(--half-padding-x));
+  width: calc(30vw - var(--padding--1));
   height: 100vh;
-  padding-right: var(--half-padding-x);
+  padding-right: var(--padding--1);
 }
 .container-1 .center-part img {
-  width: calc(40vw - var(--half-padding-x));
+  width: calc(40vw - var(--padding--1));
   height: 100vh;
-  padding-right: var(--half-padding-x);
+  padding-right: var(--padding--1);
 }
 .container-1 .right-part {
   height: 100%;
@@ -272,19 +259,19 @@ h1 {
   align-items: flex-end;
 }
 .container-2 .left-part img {
-  width: calc(33vw - var(--half-padding-x) / 2);
-  padding-right: calc(var(--half-padding-x) / 2);
+  width: calc(33vw - var(--padding--1) / 2);
+  padding-right: calc(var(--padding--1) / 2);
 }
 .container-2 .center-part img {
-  width: calc(33vw - var(--half-padding-x) / 2);
-  padding-right: calc(var(--half-padding-x) / 2);
+  width: calc(33vw - var(--padding--1) / 2);
+  padding-right: calc(var(--padding--1) / 2);
 }
 .container-2 .right-part {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  row-gap: calc(var(--half-padding-x) / 2);
+  row-gap: calc(var(--padding--1) / 2);
 }
 .container-2 .right-part img {
   width: 15vw;
@@ -293,14 +280,14 @@ h1 {
 .final-container {
   display: flex;
   flex-direction: column;
-  row-gap: calc(var(--half-padding-x) / 2);
+  row-gap: calc(var(--padding--1) / 2);
 }
 .container-3 {
   align-items: center;
 }
 .container-3 .left-part {
   width: 60vw;
-  padding-right: var(--half-padding-x);
+  padding-right: var(--padding--1);
 }
 .container-3 .right-part {
   width: 40vw;
@@ -311,15 +298,15 @@ h1 {
   object-fit: cover;
 }
 .container-4 .left-part img {
-  width: calc(50vw - var(--half-padding-x) * 2);
-  padding-right: calc(var(--half-padding-x) / 2);
+  width: calc(50vw - var(--padding--1) * 2);
+  padding-right: calc(var(--padding--1) / 2);
 }
 .container-4 .center-part img {
-  width: calc(25vw - var(--half-padding-x));
-  padding-right: calc(var(--half-padding-x) / 2);
+  width: calc(25vw - var(--padding--1));
+  padding-right: calc(var(--padding--1) / 2);
 }
 .container-4 .right-part img {
-  width: calc(25vw - var(--half-padding-x));
+  width: calc(25vw - var(--padding--1));
 }
 @media (max-aspect-ratio: 5/4) {
   header {

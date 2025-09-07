@@ -94,8 +94,8 @@ const { t } = useI18n()
 .content {
   display: flex;
   align-items: flex-end;
-  padding-left: var(--half-padding-x);
-  padding-right: var(--half-padding-x);
+  padding-left: var(--padding--1);
+  padding-right: var(--padding--1);
   overflow: hidden;
   height: 90vh;
   --asterisk-size: 20vh;
@@ -103,9 +103,9 @@ const { t } = useI18n()
 }
 .content p {
   font-size: 1.5rem;
-  padding-left: var(--half-padding-x);
-  padding-right: var(--half-padding-x);
-  padding-bottom: var(--half-padding-x);
+  padding-left: var(--padding--1);
+  padding-right: var(--padding--1);
+  padding-bottom: var(--padding--1);
 }
 .selfie {
   height: 90vh;
@@ -163,7 +163,7 @@ const { t } = useI18n()
   }
   .content {
     flex-direction: column;
-    padding: var(--navbar-height) var(--padding-x) var(--padding-x) var(--padding-x);
+    padding: var(--navbar-height) var(--padding-0) var(--padding-0) var(--padding-0);
     height: auto;
     --asterisk-size: 30vw;
   }
@@ -171,7 +171,7 @@ const { t } = useI18n()
     font-size: 1rem;
     padding-left: 0;
     padding-right: 0;
-    padding-bottom: var(--padding-x);
+    padding-bottom: var(--padding-0);
   }
   .selfie {
     height: auto;
