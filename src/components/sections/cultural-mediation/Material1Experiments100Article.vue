@@ -308,7 +308,7 @@ header img {
     padding-right: 0;
   }
   .container .right-part {
-    margin-top: 5vh;
+    margin-top: var(--padding-1);
     width: 100%;
     height: auto;
     padding-left: var(--padding-0);

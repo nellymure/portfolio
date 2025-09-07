@@ -3,7 +3,6 @@ import { useI18n } from 'vue-i18n'
 import FadeInViewport from '@/components/FadeInViewport.vue'
 import CarouselWithFade from '@/components/CarouselWithFade.vue'
 import CarouselWithTranslate from '@/components/CarouselWithTranslate.vue'
-import ColorPalette from '@/components/ColorPalette.vue'
 
 const { t } = useI18n()
 defineProps({
@@ -208,8 +207,8 @@ defineProps({
 header {
   display: flex;
   align-items: flex-end;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .text-part {
   max-width: 35vw;
@@ -327,7 +326,7 @@ header {
     text-align: center;
   }
   header .img-part {
-    margin-top: 5vh;
+    margin-top: var(--padding-1);
     height: 50vh;
     width: 100%;
   }
@@ -353,7 +352,7 @@ header {
     width: 100%;
   }
   .container-4 {
-    margin-top: 5vh;
+    margin-top: var(--padding-1);
     padding-left: 0;
     padding-right: 0;
   }

@@ -178,9 +178,9 @@ header {
   }
 }
 /** small landscape layout */
-@media (orientation: landscape) or (max-height: 430px) {
+@media (orientation: landscape) and (max-height: 430px) {
   header .img-part {
-    margin-top: 5vh;
+    margin-top: var(--padding-1);
     width: 100%;
   }
   header img {
@@ -194,7 +194,7 @@ header {
 /** portrait layout */
 @media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
   header .img-part {
-    margin-top: 5vh;
+    margin-top: var(--padding-1);
     width: 100%;
     height: 50vh;
   }

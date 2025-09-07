@@ -223,7 +223,7 @@ header img {
   .container-1 {
     flex-direction: column;
     justify-content: center;
-    margin-top: 5vh;
+    margin-top: var(--padding-1);
     margin-bottom: 5vh;
   }
   .container-1 .left-part img {
@@ -246,7 +246,7 @@ header img {
     padding-right: var(--padding-0);
   }
   .img-80 {
-    margin-top: 5vh;
+    margin-top: var(--padding-1);
     padding-left: var(--padding-0);
     padding-right: var(--padding-0);
   }

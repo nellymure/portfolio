@@ -186,7 +186,7 @@ header img {
     text-align: center;
   }
   header .img-part {
-    margin-top: 5vh;
+    margin-top: var(--padding-1);
     width: 100%;
   }
   header img {

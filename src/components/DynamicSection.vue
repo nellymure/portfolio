@@ -98,11 +98,15 @@ function onScrollPosition() {
 
   const sectionPosition = html.section.value.getBoundingClientRect().top
   const windowHeight = window.innerHeight
+  const scrollY = window.scrollY
 
   navbarTextColor.value = `var(${sectionPosition > navbarHeight ? props.navbarTextColor?.onFolder : props.navbarTextColor?.default})`
 
-  if (sectionPosition <= windowHeight) {
-    const percent = sectionPosition / windowHeight
+  if (sectionPosition <= windowHeight || scrollY == 0) {
+    const percent =
+      scrollY == 0
+        ? 1 // Prevent fast scroll up
+        : sectionPosition / windowHeight
     html.animatedOnScroll.value
       .filter(({ element }) => element)
       .forEach(({ element, animationDuration, animationDelay }) => {
@@ -300,6 +304,9 @@ section:deep(article h1) {
   }
   .folder h1 {
     align-self: center;
+  }
+  .folder-description {
+    hyphens: auto;
   }
 }
 @keyframes letter-animation {

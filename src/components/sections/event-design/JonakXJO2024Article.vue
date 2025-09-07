@@ -98,12 +98,12 @@ defineProps({
 header {
   display: flex;
   align-items: flex-end;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .text-part {
   max-width: 35vw;
-  margin-right: var(--padding--1);
+  margin-right: var(--padding-0);
 }
 .img-part {
   width: 100%;
@@ -116,8 +116,8 @@ header {
 .container {
   display: flex;
   align-items: center;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .container .left-part {
   min-width: 50vw;
@@ -154,32 +154,52 @@ header {
   width: 100%;
   height: auto;
 }
-
-@media (max-aspect-ratio: 5/4) {
+/** small landscape layout */
+@media (orientation: landscape) and (max-height: 430px) {
+  header {
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
+  }
+  .text-part {
+    max-width: 60vw;
+  }
+  .text-part .title {
+    text-align: center;
+  }
+  .img-part {
+    margin-top: var(--padding-0);
+    width: 40vw;
+  }
+  .header-image {
+    width: 100%;
+    object-fit: contain;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
+  }
+}
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
   header {
     flex-direction: column;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
-  header .text-part {
+  .text-part {
     height: auto;
     max-width: 100%;
     width: 100%;
     align-items: flex-start;
     margin-right: 0;
   }
-  header .text-part .title {
+  .text-part .title {
     text-align: center;
   }
-  h1 {
-    font-size: 5em;
-    text-align: center;
-  }
-  header .img-part {
-    margin-top: 5vh;
+  .header-image {
     width: 100%;
-    height: 50vh;
-  }
-  header img {
-    max-height: 50vh;
     object-fit: contain;
   }
   .container {

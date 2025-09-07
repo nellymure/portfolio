@@ -136,7 +136,7 @@ header {
     padding-right: var(--padding-0);
   }
   header .img-part {
-    margin-top: 5vh;
+    margin-top: var(--padding-1);
     width: 100%;
   }
   header img {
@@ -158,7 +158,7 @@ header {
   }
 }
 /** small landscape layout */
-@media (orientation: landscape) or (max-height: 430px) {
+@media (orientation: landscape) and (max-height: 430px) {
   .container {
     padding-left: var(--padding-0);
     padding-right: var(--padding-0);
