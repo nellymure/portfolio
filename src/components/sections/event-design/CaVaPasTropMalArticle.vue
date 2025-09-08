@@ -352,6 +352,23 @@ header {
   .container-2 {
     height: 100vh;
   }
+  .container-3 {
+    flex-direction: column;
+    align-items: center;
+  }
+  .container-3 .left-part {
+    width: 100%;
+    padding-right: 0;
+  }
+  .container-3 .right-part {
+    width: 100%;
+  }
+  .container-4 {
+    margin-top: var(--padding-1);
+  }
+  .container-4 img {
+    height: 100vh;
+  }
 }
 /** portrait layout */
 @media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
@@ -406,9 +423,6 @@ header {
     margin-top: var(--padding-1);
     padding-left: 0;
     padding-right: 0;
-  }
-  .container-4 img {
-    max-width: 98%;
   }
 }
 </style>
