@@ -132,7 +132,7 @@ defineProps({
 <style lang="css" scoped>
 header {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   padding-left: var(--padding-2);
   padding-right: var(--padding-2);
 }

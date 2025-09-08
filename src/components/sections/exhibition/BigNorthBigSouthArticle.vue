@@ -102,13 +102,13 @@ defineProps({
 <style lang="css" scoped>
 header {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   padding-left: var(--padding-2);
   padding-right: var(--padding-2);
 }
 .text-part {
   max-width: 35vw;
-  margin-right: var(--padding-0);
+  margin-right: var(--padding-1);
 }
 .img-part {
   height: 80vh;
@@ -129,7 +129,7 @@ header {
   width: 60vw;
   display: flex;
   align-items: flex-end;
-  padding-right: var(--padding--1);
+  margin-right: var(--padding-1);
 }
 .container .right-part {
   display: flex;

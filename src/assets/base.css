@@ -116,7 +116,7 @@
 @media (orientation: landscape) and (max-height: 430px) {
   :root {
     --section-row-gap: 25vh;
-    --article-row-gap: 25vh;
+    --article-row-gap: 10vh;
   }
 }
 /** portrait layout */

@@ -43,7 +43,7 @@ const { t } = useI18n()
     </div>
     <div class="container container-2">
       <div class="left-part">
-        <FadeInViewport delay="0.5s">
+        <FadeInViewport delay="0.5s" :debug="true">
           <img src="@/assets/images/sections/event-design/IMG_5918.jpg" />
         </FadeInViewport>
       </div>
@@ -107,12 +107,13 @@ const { t } = useI18n()
 <style lang="css" scoped>
 header {
   display: flex;
+  align-items: center;
   padding-left: var(--padding-2);
   padding-right: var(--padding-0);
 }
 .text-part {
   max-width: 35vw;
-  margin-right: var(--padding-0);
+  margin-right: var(--padding-1);
 }
 header img {
   width: 100%;
@@ -165,14 +166,15 @@ header img {
 .container-3 .right-part img {
   width: 25vw;
 }
-
-@media (max-aspect-ratio: 5/4) {
+/** portrait layout and small landscape layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) or (max-height: 430px) {
   header {
     flex-direction: column;
-    padding-right: var(--padding-2);
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
   header .text-part {
-    height: auto;
+    height: unset;
     max-width: 100%;
     width: 100%;
     align-items: flex-start;
@@ -181,18 +183,31 @@ header img {
   header .text-part .title {
     text-align: center;
   }
-  h1 {
-    font-size: 5em;
-    text-align: center;
-  }
   header .img-part {
     margin-top: var(--padding-1);
     width: 100%;
   }
   header img {
-    height: auto;
+    height: unset;
     object-fit: contain;
   }
+}
+/** small landscape layout */
+@media (orientation: landscape) and (max-height: 430px) {
+  .container {
+    display: flex;
+    align-items: center;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
+  }
+  .container .left-part img {
+    max-height: 80vh;
+    object-fit: contain;
+    padding-right: 0;
+  }
+}
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
   .container {
     flex-direction: column;
     row-gap: 3vh;

@@ -208,20 +208,20 @@ const { isLargeLandscapeLayout, isLandscapeLayout, isPortraitLayout } = useLayou
 <style lang="css" scoped>
 header {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   padding-left: var(--padding-2);
   padding-right: var(--padding-2);
 }
 .text-part {
   max-width: 35vw;
-  margin-right: var(--padding--1);
+  margin-right: var(--padding-1);
 }
 .img-part {
   width: 100%;
 }
 .header-image {
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   object-fit: cover;
 }
 .full-img {
@@ -294,8 +294,12 @@ header {
   padding-right: var(--padding--1);
 }
 .container-3 .right-part {
-  width: 40vw;
-  overflow: hidden;
+  width: 30vw;
+  height: 30vw;
+}
+.container-3 img {
+  height: 30vw;
+  object-fit: cover;
 }
 .container-4 img {
   height: 60vh;
@@ -363,8 +367,11 @@ header {
   .container-3 .right-part {
     width: 100%;
   }
+  .container-3 img {
+    height: 100vh;
+  }
   .container-4 {
-    margin-top: var(--padding-1);
+    margin-top: unset;
   }
   .container-4 img {
     height: 100vh;
@@ -418,6 +425,11 @@ header {
   }
   .container-3 .right-part {
     width: 100%;
+    height: unset;
+  }
+  .container-3 img {
+    height: unset;
+    object-fit: contain;
   }
   .container-4 {
     margin-top: var(--padding-1);

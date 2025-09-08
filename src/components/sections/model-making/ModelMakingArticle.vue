@@ -112,6 +112,7 @@ article {
 }
 header {
   display: flex;
+  align-items: center;
   padding-left: var(--padding-0);
   padding-right: var(--padding-0);
 }
