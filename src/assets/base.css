@@ -82,6 +82,7 @@
   --font-size-3: clamp(1.728rem, 1.5159rem + 0.9425vw, 2.9297rem);
   --font-size-4: clamp(2.0736rem, 1.7933rem + 1.2459vw, 3.6621rem);
   --font-size-5: clamp(2.4883rem, 2.1196rem + 1.6387vw, 4.5776rem);
+  --font-size-X4: calc(var(--font-size-4) * 2);
   --font-size-X5: calc(var(--font-size-5) * 2);
 
   --font-family-antic-didone: 'Antic Didone';

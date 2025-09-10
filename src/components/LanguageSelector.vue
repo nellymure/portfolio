@@ -68,11 +68,6 @@ function toggle() {
   width: var(--img-size);
   height: var(--img-size);
 }
-@media (orientation: landscape) and (max-height: 430px) {
-  .languageSelector {
-    bottom: calc(var(--padding-2) - var(--img-offset) * 2);
-  }
-}
 @media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
   .languageSelector {
     bottom: calc(var(--padding-2) - var(--img-offset));
