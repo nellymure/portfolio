@@ -4,13 +4,13 @@ import FadeInViewport from '@/components/FadeInViewport.vue'
 import CarouselWithTranslate from '@/components/CarouselWithTranslate.vue'
 import ColorPalette from '@/components/ColorPalette.vue'
 
-const { t } = useI18n()
 defineProps({
   articleId: {
     type: String,
     required: true,
   },
 })
+const { t } = useI18n()
 </script>
 
 <template>
@@ -95,28 +95,15 @@ defineProps({
 </i18n>
 
 <style lang="css" scoped>
-article {
-  display: flex;
-  flex-direction: column;
-  row-gap: var(--article-row-gap);
-}
 header {
   display: flex;
-  align-items: flex-end;
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  align-items: center;
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .text-part {
   max-width: 35vw;
-  margin-right: var(--half-padding-x);
-}
-h1 {
-  font-size: 7em;
-  font-family: var(--font-family-antic-didone);
-  font-weight: var(--font-weight-light);
-  line-height: 1;
-  text-align: left;
-  margin-bottom: 1em;
+  margin-right: var(--padding-1);
 }
 .img-part {
   width: 100%;
@@ -129,15 +116,15 @@ h1 {
 .container {
   display: flex;
   align-items: center;
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .container .left-part {
   min-width: 50vw;
   width: 50vw;
   display: flex;
   justify-content: center;
-  padding-right: var(--half-padding-x);
+  padding-right: var(--padding--1);
 }
 .container .right-part {
   height: 100%;
@@ -160,58 +147,80 @@ h1 {
 .carousel-arrow {
   width: 80%;
   margin-left: 10%;
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  padding-left: var(--padding-0);
+  padding-right: var(--padding-0);
 }
 .carousel-arrow img {
   width: 100%;
   height: auto;
 }
-
-@media (orientation: portrait) {
+/** small landscape layout */
+@media (orientation: landscape) and (max-height: 430px) {
+  header {
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
+  }
+  .text-part {
+    max-width: 50vw;
+  }
+  .text-part .title {
+    text-align: center;
+  }
+  .header-image {
+    width: 50vw;
+    height: unset;
+    object-fit: contain;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
+  }
+  .container .left-part img {
+    max-height: 80vh;
+    object-fit: contain;
+    padding-right: 0;
+  }
+}
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
   header {
     flex-direction: column;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
-  header .text-part {
+  .text-part {
     height: auto;
     max-width: 100%;
     width: 100%;
     align-items: flex-start;
     margin-right: 0;
   }
-  header .text-part .title {
+  .text-part .title {
     text-align: center;
   }
-  h1 {
-    font-size: 5em;
-    text-align: center;
-  }
-  header .img-part {
-    margin-top: 5vh;
+  .header-image {
     width: 100%;
-    height: 50vh;
-  }
-  header img {
-    max-height: 50vh;
     object-fit: contain;
   }
   .container {
     flex-direction: column;
-    padding-left: var(--half-padding-x);
-    padding-right: var(--half-padding-x);
-    margin-bottom: -3vh;
+    padding-left: var(--padding--1);
+    padding-right: var(--padding--1);
+    margin-bottom: var(--color-palette-bottom-margin);
   }
   .container .left-part img {
-    width: calc(100vw - var(--padding-x));
+    width: calc(100vw - var(--padding-0));
     height: 50vh;
     object-fit: contain;
     padding-left: 0;
     padding-right: 0;
   }
   .container .right-part {
-    padding-top: 5vh;
-    padding-left: var(--half-padding-x);
-    padding-right: var(--half-padding-x);
+    padding-top: var(--article-row-gap);
+    padding-left: var(--padding--1);
+    padding-right: var(--padding--1);
   }
   .carousel-arrow {
     width: 100%;
@@ -225,8 +234,8 @@ h1 {
   .img-80 {
     margin-left: 0;
     width: 100%;
-    padding-left: var(--padding-x);
-    padding-right: var(--padding-x);
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
 }
 </style>

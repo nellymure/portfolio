@@ -5,8 +5,10 @@ import FadeInViewport from '@/components/FadeInViewport.vue'
 import { routes, getRouteName } from '@/router'
 import { RouterLink } from 'vue-router'
 import IconAsterisk from '@/components/icons/IconAsterisk.vue'
+import { useLayout } from '@/utils/screen-utils'
 
 const { t } = useI18n()
+const { isLandscapeLayout } = useLayout()
 </script>
 
 <template>
@@ -16,7 +18,7 @@ const { t } = useI18n()
         <router-link :to="{ name: getRouteName(routes.HUB) }">{{ t('buttons.back') }}</router-link>
       </template>
     </NavBar>
-    <div class="content d-none-portrait">
+    <div v-if="isLandscapeLayout" class="content">
       <p class="text-indent">
         {{ t('about') }}
       </p>
@@ -33,7 +35,7 @@ const { t } = useI18n()
         <IconAsterisk />
       </div>
     </div>
-    <div class="content d-none-landscape">
+    <div v-else class="content">
       <p class="text-indent">
         {{ t('about') }}
       </p>
@@ -87,6 +89,7 @@ const { t } = useI18n()
   display: flex;
   align-items: center;
   background-color: white;
+  height: 100%;
 }
 .navbar {
   color: var(--color-hex-orange);
@@ -94,18 +97,22 @@ const { t } = useI18n()
 .content {
   display: flex;
   align-items: flex-end;
-  padding-left: var(--half-padding-x);
-  padding-right: var(--half-padding-x);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
   overflow: hidden;
-  height: 90vh;
-  --asterisk-size: 20vh;
+  --asterisk-size: var(--font-size-X5);
   --asterisk-offset: var(--asterisk-size) / -2;
+  height: 90vh;
 }
 .content p {
-  font-size: 1.5rem;
-  padding-left: var(--half-padding-x);
-  padding-right: var(--half-padding-x);
-  padding-bottom: var(--half-padding-x);
+  font-size: var(--font-size-0);
+  padding-left: var(--padding-0);
+  padding-right: var(--padding-2);
+  padding-bottom: var(--padding-2);
+  hyphens: auto;
+}
+.fade-in-viewport {
+  height: 90vh;
 }
 .selfie {
   height: 90vh;
@@ -155,7 +162,34 @@ const { t } = useI18n()
     transform: scale(1);
   }
 }
-@media (orientation: portrait) {
+/** small landscape layout */
+@media (orientation: landscape) and (max-height: 430px) {
+  .about {
+    align-items: flex-end;
+  }
+  .content {
+    height: 90svh;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
+    --asterisk-size: var(--font-size-X4);
+    --asterisk-offset: var(--asterisk-size) / -2;
+  }
+  .content p {
+    font-size: var(--font-size--1);
+    padding-left: 0;
+    padding-right: var(--padding-0);
+    padding-bottom: var(--padding-0);
+  }
+  .content img {
+    height: 90svh;
+  }
+  .asterisk-1 {
+    top: calc(-0.1 * var(--asterisk-size));
+    left: calc(40vw);
+  }
+}
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
   .about {
     align-items: flex-start;
     overflow-x: hidden;
@@ -163,7 +197,7 @@ const { t } = useI18n()
   }
   .content {
     flex-direction: column;
-    padding: var(--navbar-height) var(--padding-x) var(--padding-x) var(--padding-x);
+    padding: var(--navbar-height) var(--padding-0) var(--padding-0) var(--padding-0);
     height: auto;
     --asterisk-size: 30vw;
   }
@@ -171,7 +205,7 @@ const { t } = useI18n()
     font-size: 1rem;
     padding-left: 0;
     padding-right: 0;
-    padding-bottom: var(--padding-x);
+    padding-bottom: var(--padding-0);
   }
   .selfie {
     height: auto;

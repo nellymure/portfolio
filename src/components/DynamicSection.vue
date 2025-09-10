@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, watch, type PropType } from 'vue'
+import { onUnmounted, onMounted, ref, watch, type PropType } from 'vue'
 import SectionNavbar from '@/components/navbars/SectionNavbar.vue'
 import IconChevron from './icons/IconChevron.vue'
 
@@ -31,7 +31,6 @@ const html = {
   animatedOnLocalChanged: ref<HTMLAnimated[]>([]),
 }
 const navbarTextColor = ref(`var(${props.navbarTextColor?.onFolder}`)
-const folderHeightPercentVh = 0.95
 const folderAnimationDurationMs = 2000
 const letterAnimationDurationMs = 500
 const descriptionAnimationDurationMs = 1000
@@ -60,39 +59,54 @@ function splitWordsByLine(text: string): string[][] {
 /**
  * https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event#examples
  */
-let lastKnownScrollPosition = 0
 let ticking = false
 function scrollEventThrottling() {
-  lastKnownScrollPosition = window.scrollY
   if (!ticking) {
     window.requestAnimationFrame(() => {
-      onScrollPosition(lastKnownScrollPosition)
+      onScrollPosition()
       ticking = false
     })
     ticking = true
   }
 }
+let navbarHeight: number
+function updateNavbarHeight() {
+  navbarHeight = parseInt(
+    window
+      .getComputedStyle(document.getElementById('navbar')!)
+      .getPropertyValue('height')
+      .replace('px', ''),
+  )
+}
+function onResize() {
+  updateNavbarHeight()
+  onScrollPosition()
+}
 onMounted(() => {
   window.addEventListener('scroll', scrollEventThrottling)
-  window.addEventListener('resize', scrollEventThrottling)
+  window.addEventListener('resize', onResize)
+  updateNavbarHeight()
 })
-onBeforeUnmount(() => {
+onUnmounted(() => {
   window.removeEventListener('scroll', scrollEventThrottling)
-  window.removeEventListener('resize', scrollEventThrottling)
+  window.removeEventListener('resize', onResize)
 })
-function onScrollPosition(_scrollPosition: number) {
+function onScrollPosition() {
   if (!html.section.value) {
     return
   }
-  const innerHeight = window.innerHeight
+
   const sectionPosition = html.section.value.getBoundingClientRect().top
+  const windowHeight = window.innerHeight
+  const scrollY = window.scrollY
 
-  const folderBottomVerticalMargin = innerHeight * (1 - folderHeightPercentVh)
-  navbarTextColor.value = `var(${sectionPosition > folderBottomVerticalMargin ? props.navbarTextColor?.onFolder : props.navbarTextColor?.default})`
+  navbarTextColor.value = `var(${sectionPosition > navbarHeight ? props.navbarTextColor?.onFolder : props.navbarTextColor?.default})`
 
-  const folderHeight = innerHeight * folderHeightPercentVh
-  if (sectionPosition < folderHeight) {
-    const percent = sectionPosition / folderHeight
+  if (sectionPosition <= windowHeight || scrollY == 0) {
+    const percent =
+      scrollY == 0
+        ? 1 // Prevent fast scroll up
+        : sectionPosition / windowHeight
     html.animatedOnScroll.value
       .filter(({ element }) => element)
       .forEach(({ element, animationDuration, animationDelay }) => {
@@ -202,15 +216,12 @@ function smoothScrollToSection(): void {
 }
 .dynamic-section {
   width: 100%;
-  height: auto;
   overflow: hidden;
 }
-.content .folder {
-  padding: var(--padding-x) var(--padding-x) 0 var(--padding-x);
-}
 .folder {
-  height: calc(100vh * v-bind(folderHeightPercentVh));
+  padding: var(--navbar-height) var(--padding-2) 0 var(--padding-2);
   width: 100%;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -219,11 +230,11 @@ function smoothScrollToSection(): void {
 .folder-text {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  max-width: 50vw;
 }
 .folder h1 {
   line-height: 1;
-  font-size: 5rem;
+  font-size: var(--font-size-4);
   align-self: flex-start;
   font-family: var(--font-family-cormorant-infant);
   font-weight: var(--font-weight-light);
@@ -237,8 +248,8 @@ function smoothScrollToSection(): void {
     cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 .folder-description {
-  font-size: 1.2rem;
-  padding: 4em 0 0 0;
+  font-size: var(--font-size-0);
+  padding: 1em 0 0 0;
   animation: folder-description-animation calc(1ms * v-bind(descriptionAnimationDurationMs))
     cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
@@ -257,27 +268,48 @@ section {
   display: flex;
   flex-direction: column;
   row-gap: var(--section-row-gap);
+  font-size: var(--font-size--1);
 }
-@media (orientation: portrait) {
-  .content .folder {
-    padding: 4rem var(--padding-x) 0 var(--padding-x);
-  }
+section:deep(article) {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--article-row-gap);
+}
+section:deep(article h1) {
+  font-size: var(--font-size-X5);
+  font-family: var(--font-family-antic-didone);
+  font-weight: var(--font-weight-light);
+  line-height: 1;
+  text-align: left;
+  margin-bottom: 1em;
+}
+/** portrait layout and small landscape layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) or (max-height: 430px) {
   .folder-text {
-    width: 100%;
+    max-width: unset;
+  }
+  section {
+    line-height: 1.5;
+    font-size: var(--font-size-0);
+  }
+  section:deep(article h1) {
+    font-size: var(--font-size-5);
+    text-align: center;
+  }
+}
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
+  .folder {
+    padding: var(--navbar-height) var(--padding-0) 0 var(--padding-0);
   }
   .folder h1 {
-    font-size: 3rem;
     align-self: center;
     display: flex;
     flex-direction: column;
-  }
-  .folder h1 span {
-    font-size: 2rem;
-    align-self: center;
+    align-items: center;
   }
   .folder-description {
-    margin-right: 0;
-    padding: 2em 0 0 0;
+    hyphens: auto;
   }
 }
 @keyframes letter-animation {

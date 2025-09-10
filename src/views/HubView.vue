@@ -4,6 +4,10 @@ import FadeInViewport from '@/components/FadeInViewport.vue'
 import { useI18n } from 'vue-i18n'
 import { routes, getRouteName } from '@/router'
 import { RouterLink } from 'vue-router'
+import LeMurmure01 from '@/components/icons/numbers/LeMurmure_01.vue'
+import LeMurmure02 from '@/components/icons/numbers/LeMurmure_02.vue'
+import LeMurmure03 from '@/components/icons/numbers/LeMurmure_03.vue'
+import LeMurmure04 from '@/components/icons/numbers/LeMurmure_04.vue'
 
 const { t } = useI18n()
 </script>
@@ -21,7 +25,7 @@ const { t } = useI18n()
             <div class="title">
               {{ t('exhibition.title') }}
             </div>
-            <div class="square"><h1>01</h1></div>
+            <div class="square"><LeMurmure01 /></div>
           </router-link>
           <router-link
             class="section event-design"
@@ -30,7 +34,7 @@ const { t } = useI18n()
             <div class="title">
               {{ t('eventDesign.title') }}
             </div>
-            <div class="square"><h1>02</h1></div>
+            <div class="square"><LeMurmure02 /></div>
           </router-link>
           <router-link
             class="section cultural-mediation"
@@ -39,13 +43,13 @@ const { t } = useI18n()
             <div class="title">
               {{ t('mediation.title') }}
             </div>
-            <div class="square"><h1>03</h1></div>
+            <div class="square"><LeMurmure03 /></div>
           </router-link>
           <router-link class="section model-making" :to="{ name: getRouteName(routes.MODELS) }">
             <div class="title">
               {{ t('modelMaking.title') }}
             </div>
-            <div class="square"><h1>04</h1></div>
+            <div class="square"><LeMurmure04 /></div>
           </router-link>
         </div>
       </div>
@@ -91,52 +95,52 @@ const { t } = useI18n()
 <style lang="css" scoped>
 .hub {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  --section-width: calc(100vw / 4 - var(--half-padding-x));
+  --section-width: calc((100vw - var(--padding-0)) / 4 - var(--padding-0));
   background-color: white;
 }
-.page-title {
-  padding-bottom: var(--article-row-gap);
+.container {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.page-title h1 {
+.page-title {
+  margin-top: var(--navbar-height);
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
   text-align: center;
-  font-size: 5em;
+  font-size: var(--font-size-5);
   font-family: var(--font-family-le-murmure);
   font-weight: var(--font-weight-semi-bold);
 }
 .sections {
-  overflow-y: auto;
+  margin-bottom: var(--padding-0);
   display: flex;
-  align-items: center;
-  row-gap: var(--article-row-gap);
-  padding-left: var(--half-padding-x);
-  padding-right: var(--half-padding-x);
+  padding-left: var(--padding-0);
 }
 .section {
-  font-family: 'Courier New', Courier, monospace;
+  margin-right: var(--padding-0);
   width: var(--section-width);
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-bottom: var(--quarter-padding-x);
 }
-.section:last-child {
-  flex: 0;
+.section .title {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: var(--font-size-0);
 }
 .square {
   height: var(--section-width);
   width: var(--section-width);
-  font-family: var(--font-family-le-murmure);
-  font-weight: var(--font-weight-semi-bold);
-  font-size: 10em;
-  line-height: 1;
   overflow: hidden;
 }
-.square h1 {
-  transform: translate(calc(var(--section-width) * -0.15), calc(var(--section-width) * 0.1));
+.square svg {
+  height: 80%;
+  width: 80%;
+  transform: translate(-25%, 30%);
 }
 .exhibition .square {
   background: var(--color-hex-orange);
@@ -152,40 +156,15 @@ const { t } = useI18n()
 }
 @media (orientation: portrait) {
   .hub {
-    --section-width: calc(100vw / 2 - var(--half-padding-x));
-    justify-content: center;
-  }
-  .page-title {
-    padding-top: var(--article-row-gap);
-  }
-  .page-title h1 {
-    font-size: 3.5em;
+    --section-width: calc((100vw - var(--padding-1)) / 2 - var(--padding-1));
   }
   .sections {
     flex-wrap: wrap;
-    row-gap: var(--half-padding-x);
-  }
-  .sections {
-    padding-left: 0;
-    padding-right: 0;
+    row-gap: var(--padding-1);
+    padding-left: var(--padding-1);
   }
   .section {
-    padding: var(--quarter-padding-x);
-    width: calc(50vw - var(--half-padding-x));
-    min-width: calc(50vw - var(--half-padding-x));
-  }
-  .section:last-child {
-    flex: 1;
-  }
-  .section .title {
-    font-size: 0.8em;
-  }
-  .square {
-    width: auto;
-    font-size: 6em;
-  }
-  .square h1 {
-    transform: translate(calc(var(--section-width) * -0.15), calc(var(--section-width) * 0.25));
+    margin-right: var(--padding-1);
   }
 }
 </style>

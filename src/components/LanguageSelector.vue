@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { switchI18nLocale } from '@/i18n/i18n'
-import FadeInViewport from '@/components/FadeInViewport.vue'
 
 let isToggled = ref(false)
 function toggle() {
@@ -20,10 +19,10 @@ function toggle() {
 <style lang="css" scoped>
 .languageSelector {
   position: fixed;
-  --img-size: 5rem;
+  --img-size: calc(var(--font-size-5) * 1.5);
   --img-offset: calc(var(--img-size) / 2);
-  top: calc(100vh - var(--half-padding-x) - var(--img-offset));
-  left: calc(var(--half-padding-x) - var(--img-offset));
+  bottom: calc(var(--padding-0) - var(--img-offset));
+  left: var(--padding-0);
   z-index: 200;
   animation: bounce-in-bck 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
   animation-delay: 1s;
@@ -69,10 +68,9 @@ function toggle() {
   width: var(--img-size);
   height: var(--img-size);
 }
-@media (orientation: portrait) {
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
   .languageSelector {
-    top: calc(100% - var(--padding-x) * 1.5 - var(--img-offset));
-    left: var(--padding-x);
+    bottom: calc(var(--padding-2) - var(--img-offset));
   }
 }
 </style>

@@ -3,15 +3,16 @@ import { useI18n } from 'vue-i18n'
 import FadeInViewport from '@/components/FadeInViewport.vue'
 import CarouselWithFade from '@/components/CarouselWithFade.vue'
 import CarouselWithTranslate from '@/components/CarouselWithTranslate.vue'
-import ColorPalette from '@/components/ColorPalette.vue'
+import { useLayout } from '@/utils/screen-utils'
 
-const { t } = useI18n()
 defineProps({
   articleId: {
     type: String,
     required: true,
   },
 })
+const { t } = useI18n()
+const { isLargeLandscapeLayout, isLandscapeLayout, isPortraitLayout } = useLayout()
 </script>
 
 <template>
@@ -35,19 +36,7 @@ defineProps({
         </FadeInViewport>
       </div>
     </header>
-    <div class="container container-1 d-none-landscape">
-      <FadeInViewport delay="0.5s">
-        <CarouselWithFade :intervalTimer="2000" :smoothPercent="0.2">
-          <img
-            src="@/assets/images/sections/event-design/4CBCC66E-E124-47C2-9685-D768A38D929F.jpg"
-          />
-          <img src="@/assets/images/sections/event-design/IMG_8705.jpg" />
-          <img src="@/assets/images/sections/event-design/IMG_2197.jpg" />
-        </CarouselWithFade>
-      </FadeInViewport>
-      <p>{{ t('paragraphs[1]') }}</p>
-    </div>
-    <div class="container container-1 d-none-portrait">
+    <div v-if="isLargeLandscapeLayout" class="container container-1">
       <div class="left-part">
         <FadeInViewport delay="0.5s">
           <img
@@ -67,20 +56,22 @@ defineProps({
         <p>{{ t('paragraphs[1]') }}</p>
       </div>
     </div>
+    <div v-else class="container container-1">
+      <FadeInViewport delay="0.5s">
+        <CarouselWithFade :intervalTimer="2000" :smoothPercent="0.2">
+          <img
+            src="@/assets/images/sections/event-design/4CBCC66E-E124-47C2-9685-D768A38D929F.jpg"
+          />
+          <img src="@/assets/images/sections/event-design/IMG_8705.jpg" />
+          <img src="@/assets/images/sections/event-design/IMG_2197.jpg" />
+        </CarouselWithFade>
+      </FadeInViewport>
+      <p>{{ t('paragraphs[1]') }}</p>
+    </div>
     <FadeInViewport delay="0.5s">
       <img class="full-img" src="@/assets/images/sections/event-design/IMG_7315.jpg" />
     </FadeInViewport>
-    <div class="container container-2 d-none-landscape">
-      <FadeInViewport delay="0.5s">
-        <CarouselWithFade :intervalTimer="2000" :smoothPercent="0.2">
-          <img src="@/assets/images/sections/event-design/3e-duo-focus-bl+texte.jpeg" />
-          <img src="@/assets/images/sections/event-design/2-photo-malo-bien+texte.jpeg" />
-          <img src="@/assets/images/sections/event-design/IMG_8198.jpg" />
-        </CarouselWithFade>
-      </FadeInViewport>
-      <p>{{ t('paragraphs[2]') }}</p>
-    </div>
-    <div class="container container-2 d-none-portrait">
+    <div v-if="isLargeLandscapeLayout" class="container container-2">
       <div class="left-part">
         <FadeInViewport delay="0.5s">
           <img src="@/assets/images/sections/event-design/3e-duo-focus-bl+texte.jpeg" />
@@ -92,14 +83,24 @@ defineProps({
         </FadeInViewport>
       </div>
       <div class="right-part">
-        <FadeInViewport delay="0.5s">
+        <FadeInViewport delay="0.5s" :debug="true">
           <img src="@/assets/images/sections/event-design/IMG_8198.jpg" />
         </FadeInViewport>
         <p>{{ t('paragraphs[2]') }}</p>
       </div>
     </div>
+    <div v-else class="container container-2">
+      <FadeInViewport delay="0.5s">
+        <CarouselWithFade :intervalTimer="2000" :smoothPercent="0.2">
+          <img src="@/assets/images/sections/event-design/3e-duo-focus-bl+texte.jpeg" />
+          <img src="@/assets/images/sections/event-design/2-photo-malo-bien+texte.jpeg" />
+          <img src="@/assets/images/sections/event-design/IMG_8198.jpg" />
+        </CarouselWithFade>
+      </FadeInViewport>
+      <p>{{ t('paragraphs[2]') }}</p>
+    </div>
     <div class="final-container">
-      <div class="container container-3 d-none-portrait">
+      <div v-if="isLargeLandscapeLayout" class="container container-3">
         <div class="left-part">
           <p>{{ t('paragraphs[3]') }}</p>
         </div>
@@ -109,7 +110,7 @@ defineProps({
           </FadeInViewport>
         </div>
       </div>
-      <div class="container container-3 d-none-landscape">
+      <div v-else class="container container-3">
         <div class="left-part">
           <FadeInViewport delay="0.5s">
             <img src="@/assets/images/sections/event-design/IMG_3462_2.jpg" />
@@ -119,16 +120,7 @@ defineProps({
           <p>{{ t('paragraphs[3]') }}</p>
         </div>
       </div>
-      <div class="container container-4 d-none-landscape">
-        <FadeInViewport delay="0.5s">
-          <CarouselWithTranslate enableArrows>
-            <img src="@/assets/images/sections/event-design/IMG_3493.jpg" />
-            <img src="@/assets/images/sections/event-design/IMG_1985.jpg" />
-            <img src="@/assets/images/sections/event-design/IMG_1992.jpg" />
-          </CarouselWithTranslate>
-        </FadeInViewport>
-      </div>
-      <div class="container container-4 d-none-portrait">
+      <div v-if="isLargeLandscapeLayout" class="container container-4">
         <div class="left-part">
           <FadeInViewport delay="0.5s">
             <img src="@/assets/images/sections/event-design/IMG_1992.jpg" />
@@ -144,6 +136,15 @@ defineProps({
             <img src="@/assets/images/sections/event-design/IMG_1985.jpg" />
           </FadeInViewport>
         </div>
+      </div>
+      <div v-else class="container container-4">
+        <FadeInViewport delay="0.5s">
+          <CarouselWithTranslate enableArrows>
+            <img src="@/assets/images/sections/event-design/IMG_3493.jpg" />
+            <img src="@/assets/images/sections/event-design/IMG_1985.jpg" />
+            <img src="@/assets/images/sections/event-design/IMG_1992.jpg" />
+          </CarouselWithTranslate>
+        </FadeInViewport>
       </div>
     </div>
   </article>
@@ -205,35 +206,22 @@ defineProps({
 </i18n>
 
 <style lang="css" scoped>
-article {
-  display: flex;
-  flex-direction: column;
-  row-gap: var(--article-row-gap);
-}
 header {
   display: flex;
-  align-items: flex-end;
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  align-items: center;
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .text-part {
   max-width: 35vw;
-  margin-right: var(--half-padding-x);
-}
-h1 {
-  font-size: 7em;
-  font-family: var(--font-family-antic-didone);
-  font-weight: var(--font-weight-light);
-  line-height: 1;
-  text-align: left;
-  margin-bottom: 1em;
+  margin-right: var(--padding-1);
 }
 .img-part {
   width: 100%;
 }
 .header-image {
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   object-fit: cover;
 }
 .full-img {
@@ -242,8 +230,8 @@ h1 {
 }
 .container {
   display: flex;
-  padding-left: var(--padding-x);
-  padding-right: var(--padding-x);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .container-1 {
   height: 100vh;
@@ -252,14 +240,14 @@ h1 {
   object-fit: cover;
 }
 .container-1 .left-part img {
-  width: calc(30vw - var(--half-padding-x));
+  width: calc(30vw - var(--padding--1));
   height: 100vh;
-  padding-right: var(--half-padding-x);
+  padding-right: var(--padding--1);
 }
 .container-1 .center-part img {
-  width: calc(40vw - var(--half-padding-x));
+  width: calc(40vw - var(--padding--1));
   height: 100vh;
-  padding-right: var(--half-padding-x);
+  padding-right: var(--padding--1);
 }
 .container-1 .right-part {
   height: 100%;
@@ -272,58 +260,129 @@ h1 {
   align-items: flex-end;
 }
 .container-2 .left-part img {
-  width: calc(33vw - var(--half-padding-x) / 2);
-  padding-right: calc(var(--half-padding-x) / 2);
+  width: calc(33vw - var(--padding--2));
+  padding-right: var(--padding--2);
 }
 .container-2 .center-part img {
-  width: calc(33vw - var(--half-padding-x) / 2);
-  padding-right: calc(var(--half-padding-x) / 2);
+  width: calc(33vw - var(--padding--2));
+  padding-right: var(--padding--2);
 }
 .container-2 .right-part {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  row-gap: calc(var(--half-padding-x) / 2);
+  row-gap: var(--padding--2);
 }
 .container-2 .right-part img {
   width: 15vw;
   padding-bottom: 50%;
 }
+.container-2 p {
+  padding-left: var(--padding--1);
+}
 .final-container {
   display: flex;
   flex-direction: column;
-  row-gap: calc(var(--half-padding-x) / 2);
+  row-gap: var(--padding--2);
 }
 .container-3 {
   align-items: center;
 }
 .container-3 .left-part {
   width: 60vw;
-  padding-right: var(--half-padding-x);
+  padding-right: var(--padding--1);
 }
 .container-3 .right-part {
-  width: 40vw;
-  overflow: hidden;
+  width: 30vw;
+  height: 30vw;
+}
+.container-3 img {
+  height: 30vw;
+  object-fit: cover;
 }
 .container-4 img {
   height: 60vh;
   object-fit: cover;
 }
 .container-4 .left-part img {
-  width: calc(50vw - var(--half-padding-x) * 2);
-  padding-right: calc(var(--half-padding-x) / 2);
+  padding-right: var(--padding--2);
 }
 .container-4 .center-part img {
-  width: calc(25vw - var(--half-padding-x));
-  padding-right: calc(var(--half-padding-x) / 2);
+  width: calc(25vw - var(--padding--1));
+  padding-right: var(--padding--2);
 }
 .container-4 .right-part img {
-  width: calc(25vw - var(--half-padding-x));
+  width: calc(25vw - var(--padding--1));
 }
-@media (orientation: portrait) {
+/** small landscape layout */
+@media (orientation: landscape) and (max-height: 430px) {
+  header {
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
+  }
+  .text-part {
+    max-width: unset;
+    width: 50vw;
+    hyphens: auto;
+  }
+  .text-part .title {
+    text-align: center;
+  }
+  .img-part {
+    width: 60vw;
+  }
+  .header-image {
+    width: 100%;
+    height: unset;
+    object-fit: contain;
+  }
+  .container {
+    height: unset;
+    display: flex;
+    align-items: center;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
+  }
+  .container-1 img,
+  .container-2 img {
+    max-height: unset;
+    width: 30vw;
+    max-height: 100vh;
+    object-fit: contain;
+    margin-right: var(--padding-0);
+  }
+  .container-1,
+  .container-2 {
+    height: 100vh;
+  }
+  .container-3 {
+    flex-direction: column;
+    align-items: center;
+  }
+  .container-3 .left-part {
+    width: 100%;
+    padding-right: 0;
+  }
+  .container-3 .right-part {
+    width: 100%;
+  }
+  .container-3 img {
+    height: 100vh;
+  }
+  .container-4 {
+    margin-top: unset;
+  }
+  .container-4 img {
+    height: 100vh;
+  }
+}
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
   header {
     flex-direction: column;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
   header .text-part {
     height: auto;
@@ -340,7 +399,7 @@ h1 {
     text-align: center;
   }
   header .img-part {
-    margin-top: 5vh;
+    margin-top: var(--padding-1);
     height: 50vh;
     width: 100%;
   }
@@ -349,10 +408,12 @@ h1 {
     object-fit: contain;
   }
   .container {
-    height: auto;
+    height: unset;
     flex-direction: column;
     align-items: center;
     row-gap: 5vh;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
   .container img {
     max-height: 50vh;
@@ -364,14 +425,16 @@ h1 {
   }
   .container-3 .right-part {
     width: 100%;
+    height: unset;
+  }
+  .container-3 img {
+    height: unset;
+    object-fit: contain;
   }
   .container-4 {
-    margin-top: 5vh;
+    margin-top: var(--padding-1);
     padding-left: 0;
     padding-right: 0;
-  }
-  .container-4 img {
-    max-width: 98%;
   }
 }
 </style>

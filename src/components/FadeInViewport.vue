@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { onUnmounted, onMounted, ref } from 'vue'
 
 const props = defineProps({
   delay: {
@@ -16,25 +16,40 @@ const isVisible = ref(false)
 const delay = ref(props.delay || '0')
 
 onMounted(() => {
+  if (props.debug) {
+    console.log('Fadeinvieewport onMounted')
+  }
   window.addEventListener('scroll', updateVisibility)
   window.addEventListener('resize', updateVisibility)
-  updateVisibility()
+  setTimeout(updateVisibility, 500)
 })
 
-onBeforeUnmount(() => {
+onUnmounted(() => {
   window.removeEventListener('scroll', updateVisibility)
   window.removeEventListener('resize', updateVisibility)
 })
 
 function updateVisibility() {
   if (!content.value) {
+    if (props.debug) {
+      console.log('updateVisibility content not ready')
+    }
     return
   }
 
   const { top, bottom } = content.value.getBoundingClientRect()
-  const innerHeight = window.innerHeight + 1 // Add 1px to account for any potential scrollbars
-  isVisible.value = (top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)
+  const innerHeight = window.innerHeight
+  if (props.debug) {
+    console.log({ top, bottom, innerHeight })
+  }
+  isVisible.value =
+    (top < 0 && bottom > innerHeight) ||
+    (top >= 0 && top < innerHeight) ||
+    (bottom >= 0 && bottom < innerHeight)
   if (isVisible.value) {
+    if (props.debug) {
+      console.log('isVisible, remove listeners')
+    }
     window.removeEventListener('scroll', updateVisibility)
     window.removeEventListener('resize', updateVisibility)
   }

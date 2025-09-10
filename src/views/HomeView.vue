@@ -3,9 +3,13 @@ import router, { routes, getRouteName } from '@/router'
 import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import IconAsterisk from '@/components/icons/IconAsterisk.vue'
+import { ref } from 'vue'
+import { useLayout } from '@/utils/screen-utils'
 
 const { t } = useI18n()
 const nextPage = routes.HUB
+const mainTitleContainer = ref<HTMLElement | null>(null)
+const { isLandscapeLayout } = useLayout()
 
 function goToNextPage() {
   router.push({ name: getRouteName(nextPage) })
@@ -15,27 +19,37 @@ function goToNextPage() {
 
 <template>
   <router-link
+    class="home"
     @wheel="goToNextPage"
     @touchstart="goToNextPage"
     :to="{ name: getRouteName(nextPage) }"
   >
     <div class="hover-container">
-      <div class="banner">
-        <div>
-          nelly mure
+      <div v-if="isLandscapeLayout" class="banner">
+        <span v-for="char in t('nellyMure').replace(' ', '')">{{ char }}</span>
+        <IconAsterisk />
+        <span v-for="char in t('spatial design').replace(' ', '')">{{ char }}</span>
+        <IconAsterisk />
+        <span v-for="char in t('scenography')">{{ char }}</span>
+      </div>
+      <div v-else class="banner">
+        <div class="banner-row">
+          <span v-for="char in t('nellyMure').replace(' ', '')">{{ char }}</span>
           <IconAsterisk />
         </div>
-        <div>
-          {{ t('spatial design') }}
+        <div class="banner-row">
+          <span v-for="char in t('spatial design').replace(' ', '')">{{ char }}</span>
           <IconAsterisk />
         </div>
-        <div>
-          {{ t('scenography') }}
+        <div class="banner-row">
+          <span v-for="char in t('scenography')">{{ char }}</span>
           <IconAsterisk class="sd-asterisk" />
         </div>
       </div>
-      <div class="main-title-container">
-        <div class="main-title">portfolio</div>
+      <div class="main-title-container" ref="mainTitleContainer">
+        <div class="main-title">
+          <span v-for="char in t('portfolio')">{{ char }}</span>
+        </div>
       </div>
     </div>
     <div class="gradient-bg"></div>
@@ -45,10 +59,14 @@ function goToNextPage() {
 <i18n>
   {
     "fr": {
+      "nelly mure": "nelly mure",
+      "portfolio": "portfolio",
       "spatial design": "design d'espace",
       "scenography": "scenographie",
     },
     "en": {
+      "nelly mure": "nelly mure",
+      "portfolio": "portfolio",
       "spatial design": "spatial design",
       "scenography": "scenography",
     }
@@ -56,10 +74,13 @@ function goToNextPage() {
 </i18n>
 
 <style lang="css" scoped>
-.hover-container {
-  z-index: 1;
+.home {
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
+}
+.hover-container {
+  z-index: 1;
   position: absolute;
   top: 0;
   left: 0;
@@ -71,6 +92,9 @@ function goToNextPage() {
   overflow: hidden;
   opacity: 0;
   animation: fade-in-bottom 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+  width: 100%;
+  height: 100%;
+  --font-size-main-title: clamp(2.7994rem, -8.879rem + 51.904vw, 90vmin);
 }
 @keyframes fade-in-bottom {
   0% {
@@ -81,48 +105,51 @@ function goToNextPage() {
   }
 }
 .banner {
+  width: 100%;
   display: flex;
-  height: 20vh;
-  margin-top: 0.46em; /* 0.92em / 2 */
-  margin-left: 0.92em;
-  letter-spacing: 0.92em;
   flex-direction: row;
-  justify-content: center;
-  row-gap: 0.5em;
-  text-align: center;
+  justify-content: space-between;
   font-family: var(--font-family-reem-kufi);
   font-weight: var(--font-weight-normal);
-  font-size: 1.5vw;
-  color: var(--color-hex-beige-light);
+  font-size: var(--font-size--2);
+  padding: 1em;
   text-transform: uppercase;
+  color: var(--color-hex-beige-light);
 }
 .icon-asterisk {
-  margin-right: 2em;
   font-size: 0.8em;
-}
-.sd-asterisk {
-  display: none;
+  color: var(--color-hex-beige-light);
 }
 .main-title-container {
+  position: fixed;
+  bottom: 0;
   width: 100vw;
-  height: 80vh;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  hyphens: none;
-}
-.main-title {
-  color: var(--color-hex-beige-light);
   font-family: var(--font-family-le-murmure);
   font-weight: var(--font-weight-normal);
-  font-size: 45vw;
+  font-size: var(--font-size-main-title);
+  color: var(--color-hex-beige-light);
+}
+@media (height < 100lvh) {
+  .main-title-container {
+    transform-origin: top left;
+    transform: translateY(0.18em);
+  }
+}
+.main-title {
   line-height: 1;
+  hyphens: none;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 .gradient-bg {
   background-image: url('@/assets/images/home/gradient-bg.png');
   background-size: 200% 200%;
   animation: movingBgGradient 20s linear infinite;
   height: 100vh;
+  width: 100vw;
 }
 @keyframes movingBgGradient {
   0% {
@@ -138,43 +165,36 @@ function goToNextPage() {
     background-position: 0% 20%;
   }
 }
-@media (min-aspect-ratio: 21/9) {
-  .main-title-container {
-    margin-top: 15vh;
-  }
-}
-@media (orientation: portrait) {
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
   .hover-container {
-    width: calc(100vw - 4rem);
-    height: calc(100vh - 4rem);
-    margin: 2rem;
+    margin: 2rem 0 2rem 2rem;
     align-items: start;
+    --font-size-main-title: clamp(2.7994rem, -8.879rem + 40cqh, 50cqi);
   }
   .banner {
-    margin: 0;
     flex-direction: column;
     text-align: left;
-    font-size: 4.3vw;
+    gap: 0.5em;
+    width: calc(100% - 4rem);
+  }
+  .banner-row {
+    display: flex;
     letter-spacing: 0.5em;
   }
-  .sd-asterisk {
-    display: inline;
-  }
   .main-title-container {
-    flex-direction: column;
-    justify-content: flex-end;
+    height: 80vh;
     align-items: flex-start;
+    justify-content: flex-end;
+    transform-origin: center center;
+    transform: rotate(180deg);
+    margin: 0 0 2rem 0;
+    width: 50%;
   }
   .main-title {
-    position: absolute;
-    bottom: 0;
-    font-size: 25vh;
-    line-height: 1;
-    transform: rotate(-90deg) translateX(-1.02em);
-    transform-origin: top left;
-  }
-  .gradient-bg {
-    background-size: 300% 300%;
+    line-height: normal;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
   }
 }
 </style>

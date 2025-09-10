@@ -73,7 +73,18 @@
   font-weight: var(--font-weight-normal);
 }
 :root {
-  font-size: 1vw;
+  /* @link https://utopia.fyi/type/calculator?c=360,16,1.2,2400,24,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  --font-size--2: clamp(0.6944rem, 0.6476rem + 0.2083vw, 0.96rem);
+  --font-size--1: clamp(0.8333rem, 0.7686rem + 0.2876vw, 1.2rem);
+  --font-size-0: clamp(1rem, 0.9118rem + 0.3922vw, 1.5rem);
+  --font-size-1: clamp(1.2rem, 1.0809rem + 0.5294vw, 1.875rem);
+  --font-size-2: clamp(1.44rem, 1.2805rem + 0.7088vw, 2.3438rem);
+  --font-size-3: clamp(1.728rem, 1.5159rem + 0.9425vw, 2.9297rem);
+  --font-size-4: clamp(2.0736rem, 1.7933rem + 1.2459vw, 3.6621rem);
+  --font-size-5: clamp(2.4883rem, 2.1196rem + 1.6387vw, 4.5776rem);
+  --font-size-X4: calc(var(--font-size-4) * 2);
+  --font-size-X5: calc(var(--font-size-5) * 2);
+
   --font-family-antic-didone: 'Antic Didone';
   --font-family-cormorant-infant: 'Cormorant Infant';
   --font-family-le-murmure: 'Le Murmure';
@@ -81,9 +92,11 @@
   --font-family-montserrat: 'Montserrat';
   --font-family-reem-kufi: 'Reem Kufi';
 
-  --padding-x: 8rem;
-  --half-padding-x: calc(var(--padding-x) / 2);
-  --quarter-padding-x: calc(var(--padding-x) / 4);
+  --padding--2: calc(var(--padding-0) * 0.25);
+  --padding--1: calc(var(--padding-0) * 0.5);
+  --padding-0: 2rem;
+  --padding-1: calc(var(--padding-0) * 2);
+  --padding-2: calc(var(--padding-0) * 4);
   --navbar-height: 6rem;
   --section-row-gap: 20vh;
   --article-row-gap: 20vh;
@@ -100,11 +113,19 @@
   --color-hex-beige2: #ffeede;
   --color-hex-beige-light: #fff3e5;
 }
-@media (orientation: portrait) {
+/** small landscape layout */
+@media (orientation: landscape) and (max-height: 430px) {
   :root {
-    font-size: 2vh;
-    --padding-x: 2rem;
+    --section-row-gap: 25vh;
+    --article-row-gap: 10vh;
+  }
+}
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
+  :root {
+    --padding-0: 1rem;
     --section-row-gap: 10vh;
     --article-row-gap: 5vh;
+    --color-palette-bottom-margin: calc(-1 * var(--article-row-gap) + var(--padding-0));
   }
 }

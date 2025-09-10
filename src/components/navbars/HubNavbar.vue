@@ -43,7 +43,7 @@ const { t } = useI18n()
   color: var(--color-hex-orange);
 }
 .nelly-mure {
-  font-size: 3rem;
+  font-size: var(--font-size-4);
 }
 .btn-about {
   margin-left: 1em;

@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar">
+  <div class="navbar" id="navbar">
     <div class="left">
       <slot name="left"></slot>
     </div>
@@ -16,18 +16,14 @@
   z-index: 100;
   width: 100vw;
   height: var(--navbar-height);
-  padding: 0rem 4rem;
+  padding: 0 var(--padding-0);
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: var(--font-family-montserrat);
   font-weight: var(--font-weight-semi-bold);
+  font-size: var(--font-size-0);
   text-transform: uppercase;
-}
-@media (orientation: portrait) {
-  .navbar {
-    padding: 0rem 2rem;
-  }
 }
 .left {
   display: flex;
