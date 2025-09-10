@@ -212,6 +212,7 @@ header {
     width: 100vw;
     padding-left: var(--padding--1);
     padding-right: var(--padding--1);
+    margin-right: 0;
   }
   .container .right-part {
     padding-top: 5vh;

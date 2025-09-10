@@ -83,7 +83,7 @@ const { isLargeLandscapeLayout, isLandscapeLayout, isPortraitLayout } = useLayou
         </FadeInViewport>
       </div>
       <div class="right-part">
-        <FadeInViewport delay="0.5s">
+        <FadeInViewport delay="0.5s" :debug="true">
           <img src="@/assets/images/sections/event-design/IMG_8198.jpg" />
         </FadeInViewport>
         <p>{{ t('paragraphs[2]') }}</p>

@@ -32,7 +32,7 @@ const { t } = useI18n()
     </header>
     <div class="container container-1">
       <div class="left-part">
-        <FadeInViewport delay="0.5s">
+        <FadeInViewport delay="0.5s" :debug="true">
           <img src="@/assets/images/sections/event-design/IMG_5917.jpg" />
         </FadeInViewport>
       </div>
@@ -43,7 +43,7 @@ const { t } = useI18n()
     </div>
     <div class="container container-2">
       <div class="left-part">
-        <FadeInViewport delay="0.5s" :debug="true">
+        <FadeInViewport delay="0.5s">
           <img src="@/assets/images/sections/event-design/IMG_5918.jpg" />
         </FadeInViewport>
       </div>
@@ -149,7 +149,7 @@ header img {
   padding-right: var(--padding-0);
 }
 .container-2 .right-part img {
-  width: calc(50vw - var(--padding-0));
+  width: calc(50vw - var(--padding-2));
   height: 80vh;
 }
 .container-3 {
@@ -200,10 +200,21 @@ header img {
     padding-left: var(--padding-0);
     padding-right: var(--padding-0);
   }
-  .container .left-part img {
+  .container-1 .left-part img {
     max-height: 80vh;
     object-fit: contain;
     padding-right: 0;
+  }
+  .container-1 .left-part img {
+    padding-right: var(--padding--1);
+    max-height: unset;
+  }
+  .container-2 .left-part img {
+    width: calc(50vw - var(--padding-0));
+    padding-right: var(--padding--1);
+  }
+  .container-2 .right-part img {
+    width: calc(50vw - var(--padding-0));
   }
 }
 /** portrait layout */

@@ -16,6 +16,9 @@ const isVisible = ref(false)
 const delay = ref(props.delay || '0')
 
 onMounted(() => {
+  if (props.debug) {
+    console.log('Fadeinvieewport onMounted')
+  }
   window.addEventListener('scroll', updateVisibility)
   window.addEventListener('resize', updateVisibility)
   setTimeout(updateVisibility, 500)
@@ -28,6 +31,9 @@ onUnmounted(() => {
 
 function updateVisibility() {
   if (!content.value) {
+    if (props.debug) {
+      console.log('updateVisibility content not ready')
+    }
     return
   }
 
@@ -41,6 +47,9 @@ function updateVisibility() {
     (top >= 0 && top < innerHeight) ||
     (bottom >= 0 && bottom < innerHeight)
   if (isVisible.value) {
+    if (props.debug) {
+      console.log('isVisible, remove listeners')
+    }
     window.removeEventListener('scroll', updateVisibility)
     window.removeEventListener('resize', updateVisibility)
   }
