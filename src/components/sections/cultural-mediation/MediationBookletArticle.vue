@@ -74,12 +74,12 @@ defineProps({
 header {
   display: flex;
   align-items: center;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .text-part {
   max-width: 35vw;
-  margin-right: var(--padding--1);
+  margin-right: var(--padding-1);
 }
 header img {
   width: 100%;
@@ -91,24 +91,28 @@ header img {
   height: auto;
 }
 .carousel-arrow {
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .carousel-arrow img {
   width: 100%;
   height: auto;
 }
-@media (max-aspect-ratio: 5/4) {
+/** portrait layout and small landscape layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) or (max-height: 430px) {
   header {
     flex-direction: column;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
-  header .text-part {
+  .text-part {
     height: auto;
     max-width: 100%;
     width: 100%;
-    align-items: center;
+    align-items: flex-start;
+    margin-right: 0;
   }
-  header .text-part .title {
+  .text-part .title {
     text-align: center;
   }
   header .img-part {
@@ -117,11 +121,18 @@ header img {
   header img {
     height: auto;
     object-fit: contain;
-    margin-top: 3vh;
   }
-  h1 {
-    font-size: 5em;
-    text-align: center;
+}
+/** small landscape layout */
+@media (orientation: landscape) and (max-height: 430px) {
+  header img {
+    margin-top: var(--padding--2);
+  }
+}
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
+  header img {
+    margin-top: var(--padding-0);
   }
   .carousel-arrow {
     padding-left: 0;

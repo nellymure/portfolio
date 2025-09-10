@@ -125,5 +125,6 @@
     --padding-0: 1rem;
     --section-row-gap: 10vh;
     --article-row-gap: 5vh;
+    --color-palette-bottom-margin: calc(-1 * var(--article-row-gap) + var(--padding-0));
   }
 }

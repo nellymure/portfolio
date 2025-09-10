@@ -95,19 +95,19 @@ defineProps({
 header {
   display: flex;
   align-items: center;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .text-part {
   max-width: 35vw;
-  margin-right: var(--padding--1);
+  margin-right: var(--padding-0);
 }
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .container .left-part {
   width: 40vw;
@@ -116,7 +116,7 @@ header {
 .container .left-part img {
   width: 40vw;
   height: 100vh;
-  padding-right: var(--padding--1);
+  padding-right: var(--padding-0);
   object-fit: cover;
 }
 .container .right-part {
@@ -135,41 +135,58 @@ header {
 .carousel-arrow {
   width: 80vw;
   align-self: center;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .carousel-arrow img {
   width: 100%;
 }
-@media (max-aspect-ratio: 5/4) {
+/** portrait layout and small landscape layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) or (max-height: 430px) {
   header {
     flex-direction: column;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
-  header .text-part {
+  .text-part {
     height: auto;
     max-width: 100%;
     width: 100%;
-    align-items: center;
+    align-items: flex-start;
+    margin-right: 0;
   }
-  header .text-part .title {
+  .text-part .title {
     text-align: center;
   }
   header .img-part {
-    margin-top: 3vh;
-    height: auto;
     width: 100%;
   }
   header img {
     height: auto;
     object-fit: contain;
+    margin-top: var(--padding-0);
   }
-  h1 {
-    font-size: 5em;
-    text-align: center;
+}
+/** small landscape layout */
+@media (orientation: landscape) and (max-height: 430px) {
+  .container {
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
+  .carousel-arrow {
+    width: 100%;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
+  }
+}
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
   .container {
     flex-direction: column;
     justify-content: center;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
+    margin-bottom: var(--color-palette-bottom-margin);
   }
   .container .left-part {
     width: 100%;
@@ -183,10 +200,9 @@ header {
     padding-right: 0;
   }
   .container .right-part {
-    margin-top: 3vh;
+    padding-top: var(--padding-0);
   }
   .carousel-arrow {
-    margin-top: -2vh;
     width: 100%;
     padding-left: 0;
     padding-right: 0;

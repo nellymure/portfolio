@@ -69,8 +69,8 @@ defineProps({
 header {
   display: flex;
   align-items: center;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .text-part {
   max-width: 35vw;
@@ -81,34 +81,42 @@ header {
   width: 100%;
   object-fit: cover;
 }
-@media (max-aspect-ratio: 5/4) {
+/** portrait layout and small landscape layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) or (max-height: 430px) {
   header {
     flex-direction: column;
-    padding-left: 0;
-    padding-right: 0;
-  }
-  header .text-part {
-    height: auto;
-    max-width: 100%;
-    width: 100%;
-    align-items: center;
     padding-left: var(--padding-0);
     padding-right: var(--padding-0);
   }
-  header .text-part .title {
+  .text-part {
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+    align-items: flex-start;
+    margin-right: 0;
+  }
+  .text-part .title {
     text-align: center;
   }
   header .img-part {
     width: 100%;
   }
   header img {
-    max-height: 50vh;
+    height: auto;
     object-fit: contain;
-    margin-top: 3vh;
   }
-  h1 {
-    font-size: 5em;
-    text-align: center;
+}
+/** small landscape layout */
+@media (orientation: landscape) and (max-height: 430px) {
+  header img {
+    margin-top: var(--padding--2);
+  }
+}
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
+  header img {
+    margin-top: var(--padding-0);
+    max-height: 50vh;
   }
   .carousel-arrow {
     padding-left: 0;

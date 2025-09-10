@@ -3,14 +3,16 @@ import { useI18n } from 'vue-i18n'
 import FadeInViewport from '@/components/FadeInViewport.vue'
 import ColorPalette from '@/components/ColorPalette.vue'
 import CarouselWithFade from '@/components/CarouselWithFade.vue'
+import { useLayout } from '@/utils/screen-utils'
 
-const { t } = useI18n()
 defineProps({
   articleId: {
     type: String,
     required: true,
   },
 })
+const { t } = useI18n()
+const { isPortraitLayout } = useLayout()
 </script>
 
 <template>
@@ -45,7 +47,7 @@ defineProps({
     <FadeInViewport delay="0.5s">
       <img class="full-img" src="@/assets/images/sections/model-making/IMG_4620-2.jpg" />
     </FadeInViewport>
-    <div class="container-2 d-none-landscape">
+    <div v-if="isPortraitLayout" class="container-2">
       <FadeInViewport delay="0.5s">
         <CarouselWithFade :intervalTimer="2000" :smoothPercent="0.2">
           <img src="@/assets/images/sections/model-making/IMG_5957.png" />
@@ -54,7 +56,7 @@ defineProps({
         </CarouselWithFade>
       </FadeInViewport>
     </div>
-    <div class="container-2 d-none-portrait">
+    <div v-else class="container-2">
       <FadeInViewport delay="0.5s">
         <img src="@/assets/images/sections/model-making/IMG_5957.png" />
       </FadeInViewport>
@@ -65,7 +67,7 @@ defineProps({
         <img src="@/assets/images/sections/model-making/IMG_5948_2.png" />
       </FadeInViewport>
     </div>
-    <p class="description">
+    <p class="description description-2">
       {{ t('paragraphs[2]') }}
     </p>
     <FadeInViewport delay="0.5s">
@@ -74,7 +76,7 @@ defineProps({
     <FadeInViewport delay="0.5s">
       <img class="full-img last-img" src="@/assets/images/sections/model-making/IMG_5964.png" />
     </FadeInViewport>
-    <p class="description">
+    <p class="description description-3">
       {{ t('paragraphs[3]') }}
     </p>
   </article>
@@ -108,28 +110,31 @@ defineProps({
 
 <style lang="css" scoped>
 article {
-  row-gap: unset;
+  row-gap: unset !important;
 }
 header {
   display: flex;
   align-items: center;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
-header .text-part {
+.text-part {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   height: 80vh;
   max-width: 35vw;
-  margin-right: var(--padding--1);
-  padding-bottom: var(--padding--1);
+  margin-right: var(--padding-0);
+  padding-bottom: var(--padding-0);
 }
-header .img-part {
+.img-part {
   width: 50vw;
   display: flex;
   align-items: flex-end;
+}
+.img-part .fade-in-container {
+  width: 100%;
 }
 header img {
   height: 80vh;
@@ -142,7 +147,7 @@ header img {
 }
 .description {
   padding-top: 1em;
-  padding-left: var(--padding--1);
+  padding-left: var(--padding-2);
 }
 .container-1 {
   display: flex;
@@ -154,7 +159,7 @@ header img {
 }
 .container-1 .left-part img {
   display: flex;
-  width: calc(50vw - var(--padding--1));
+  width: calc(50vw - var(--padding-0));
   height: 100vh;
   object-fit: cover;
 }
@@ -162,7 +167,10 @@ header img {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-bottom: var(--padding--1);
+  padding-bottom: var(--padding-0);
+}
+.container-1 .description {
+  padding-left: var(--padding-0);
 }
 .container-2 {
   align-self: center;
@@ -170,7 +178,8 @@ header img {
   justify-content: space-between;
   margin-top: 20vh;
   height: 80vh;
-  width: calc(100vw - var(--padding-0));
+  padding-left: var(--padding-1);
+  padding-right: var(--padding-1);
 }
 .container-2 img {
   height: 80vh;
@@ -179,8 +188,11 @@ header img {
 }
 .container-2 .big-one {
   width: 45vw;
-  padding-left: calc(var(--padding--1) / 2);
-  padding-right: calc(var(--padding--1) / 2);
+  padding-left: var(--padding--1);
+  padding-right: var(--padding--1);
+}
+.description-2 {
+  padding-left: var(--padding-1);
 }
 .img-80 {
   display: flex;
@@ -192,34 +204,60 @@ header img {
 .last-img {
   margin-top: 20vh;
 }
-@media (max-aspect-ratio: 5/4) {
-  .description {
-    text-align: center;
-    padding-bottom: 1em;
-    padding-left: 0;
-  }
+/** portrait layout and small landscape layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) or (max-height: 430px) {
   header {
     flex-direction: column;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
-  header .text-part {
+  .text-part {
     height: auto;
     max-width: 100%;
     width: 100%;
     align-items: center;
+    margin-right: 0;
   }
-  header .text-part .title {
+  .text-part .title {
     text-align: center;
   }
-  header .img-part {
+  .img-part {
     width: 100%;
+    align-items: flex-start;
   }
   header img {
     height: auto;
     object-fit: contain;
+    margin-top: unset;
   }
-  h1 {
-    font-size: 5em;
+}
+/** small landscape layout */
+@media (orientation: landscape) and (max-height: 430px) {
+  header .img-part {
+    width: 50%;
+  }
+  .container-2 {
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
+  }
+  .container-2 .big-one {
+    width: 45vw;
+    padding-left: var(--padding--1);
+    padding-right: var(--padding--1);
+  }
+  .description-2 {
+    padding-left: var(--padding-0);
+  }
+  .description-3 {
+    padding-left: var(--padding-0);
+  }
+}
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
+  .description {
     text-align: center;
+    padding-bottom: 1em;
+    padding-left: 0;
   }
   .container-1 {
     flex-direction: column;
@@ -233,8 +271,8 @@ header img {
     object-fit: contain;
     padding-right: 0;
   }
-  .container-1 .right-part {
-    padding-bottom: 1em;
+  .container-1 .description {
+    padding-left: 0;
   }
   .container-2 {
     margin-top: 10vh;

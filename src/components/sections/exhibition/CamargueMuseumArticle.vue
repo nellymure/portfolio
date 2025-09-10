@@ -241,12 +241,12 @@ header {
     padding-right: var(--padding--1);
   }
   .container .right-part {
-    padding-top: 5vh;
+    padding-top: var(--article-row-gap);
     padding-left: var(--padding-0);
     padding-right: var(--padding-0);
   }
   .container-2 {
-    margin-top: -3vh;
+    margin-top: var(--color-palette-bottom-margin);
   }
   .carousel-arrow {
     padding-left: 0;

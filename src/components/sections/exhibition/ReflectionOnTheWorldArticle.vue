@@ -175,6 +175,7 @@ header {
     flex-direction: column;
     padding-left: 0;
     padding-right: 0;
+    margin-bottom: calc(-1 * var(--article-row-gap));
   }
   .container .right-part {
     width: calc(100vw - var(--padding-0));
@@ -188,7 +189,6 @@ header {
   }
   .container .left-part {
     width: 100%;
-    padding-top: 5vh;
     padding-left: var(--padding-0);
     padding-right: var(--padding-0);
   }

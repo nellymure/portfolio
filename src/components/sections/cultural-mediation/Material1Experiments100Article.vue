@@ -3,14 +3,16 @@ import { useI18n } from 'vue-i18n'
 import FadeInViewport from '@/components/FadeInViewport.vue'
 import CarouselWithFade from '@/components/CarouselWithFade.vue'
 import ColorPalette from '@/components/ColorPalette.vue'
+import { useLayout } from '@/utils/screen-utils'
 
-const { t } = useI18n()
 defineProps({
   articleId: {
     type: String,
     required: true,
   },
 })
+const { t } = useI18n()
+const { isPortraitLayout } = useLayout()
 </script>
 
 <template>
@@ -42,11 +44,9 @@ defineProps({
       </div>
       <div class="right-part">
         <FadeInViewport delay="0.5s">
-          <div class="img-container">
-            <img src="@/assets/images/sections/cultural-mediation/IMG_2768.jpg" />
-          </div>
+          <img src="@/assets/images/sections/cultural-mediation/IMG_2768.jpg" />
         </FadeInViewport>
-        <div>
+        <div class="text-part">
           <p>{{ t('paragraphs[2]') }}</p>
           <p>{{ t('paragraphs[3]') }}</p>
           <ColorPalette :colors="['#000D20', '#67645B', '#7B8383', '#B0B8B0', '#E7EDEC']" />
@@ -56,7 +56,7 @@ defineProps({
     <FadeInViewport delay="0.5s">
       <img class="full-img no-gap" src="@/assets/images/sections/cultural-mediation/IMG_2914.jpg" />
     </FadeInViewport>
-    <div class="container-2 d-none-landscape">
+    <div v-if="isPortraitLayout" class="container-2">
       <FadeInViewport delay="0.5s">
         <CarouselWithFade :intervalTimer="2000">
           <img src="@/assets/images/sections/cultural-mediation/IMG_2663.jpg" />
@@ -65,7 +65,7 @@ defineProps({
         </CarouselWithFade>
       </FadeInViewport>
     </div>
-    <div class="container-2 d-none-portrait">
+    <div v-else class="container-2">
       <FadeInViewport delay="0.5s">
         <img src="@/assets/images/sections/cultural-mediation/IMG_2663.jpg" />
         <img src="@/assets/images/sections/cultural-mediation/IMG_2559.jpg" />
@@ -80,13 +80,11 @@ defineProps({
       </div>
       <div class="right-part">
         <FadeInViewport delay="0.5s">
-          <div class="img-container">
-            <img src="@/assets/images/sections/cultural-mediation/IMG_2325.jpg" />
-          </div>
+          <img src="@/assets/images/sections/cultural-mediation/IMG_2325.jpg" />
         </FadeInViewport>
       </div>
     </div>
-    <div class="container-4 d-none-landscape">
+    <div v-if="isPortraitLayout" class="container-4">
       <FadeInViewport delay="0.5s">
         <CarouselWithFade :intervalTimer="2000">
           <img src="@/assets/images/sections/cultural-mediation/IMG_3139-1.jpg" />
@@ -95,7 +93,7 @@ defineProps({
         </CarouselWithFade>
       </FadeInViewport>
     </div>
-    <div class="container-4 d-none-portrait">
+    <div v-else class="container-4">
       <FadeInViewport delay="0.5s">
         <img src="@/assets/images/sections/cultural-mediation/IMG_3139-1.jpg" />
       </FadeInViewport>
@@ -157,12 +155,12 @@ defineProps({
 header {
   display: flex;
   align-items: center;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
-.text-part {
+header .text-part {
   max-width: 50vw;
-  margin-right: var(--padding--1);
+  margin-right: var(--padding-0);
 }
 .img-part {
   width: 50vw;
@@ -177,8 +175,8 @@ header img {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .container img {
   width: 100%;
@@ -190,9 +188,9 @@ header img {
   padding-right: 0;
 }
 .container-1 .left-part img {
-  width: calc(50vw - var(--padding--1));
+  width: calc(50vw - var(--padding-0));
   height: 100vh;
-  padding-right: var(--padding--1);
+  padding-right: var(--padding-0);
   object-fit: cover;
 }
 .container-1 .right-part {
@@ -201,13 +199,13 @@ header img {
   flex-direction: column;
   justify-content: flex-end;
   width: 40vw;
-  padding-bottom: var(--padding--1);
+  padding-bottom: var(--padding-0);
 }
-.container-1 .right-part .img-container {
+.container-1 .right-part .fade-in-container {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  padding-bottom: var(--padding--1);
+  padding-bottom: var(--padding-0);
 }
 .container-1 .right-part img {
   width: 50%;
@@ -224,30 +222,33 @@ header img {
 }
 .container-2 img {
   width: 30vw;
-  padding-left: calc(var(--padding--1) / 4);
-  padding-right: calc(var(--padding--1) / 4);
+  padding-left: var(--padding--2);
+  padding-right: var(--padding--2);
   object-fit: cover;
 }
 .container-3 {
-  justify-content: space-between;
+  height: 100vh;
   padding-left: 0;
   padding-right: 0;
 }
 .container-3 .left-part {
-  width: 50vw;
+  width: 40vw;
+  height: 100vh;
+}
+.container-3 .left-part img {
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
 }
 .container-3 .right-part {
-  width: 50vw;
+  width: 60vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 }
-.container-3 .right-part :deep(.content) {
-  display: flex;
-  justify-content: center;
-}
-.container-3 .right-part .img-container {
-  width: 50%;
+.container-3 .right-part .fade-in-container {
+  width: 30%;
 }
 .container-4 {
   height: 70vh;
@@ -256,42 +257,101 @@ header img {
 }
 .container-4 img {
   width: 25vw;
-  padding-left: calc(var(--padding--1) / 4);
-  padding-right: calc(var(--padding--1) / 4);
+  padding-left: var(--padding--2);
+  padding-right: var(--padding--2);
   object-fit: cover;
 }
 .container-4 .big-one {
   width: 40vw;
 }
-@media (max-aspect-ratio: 5/4) {
-  .no-gap {
-    margin-top: 0;
-  }
+/** portrait layout and small landscape layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) or (max-height: 430px) {
   header {
     flex-direction: column;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
   }
   header .text-part {
     height: auto;
     max-width: 100%;
     width: 100%;
-    align-items: center;
+    align-items: flex-start;
     margin-right: 0;
   }
   header .text-part .title {
     text-align: center;
   }
-  header .img-part {
-    margin-top: 3vh;
-    height: auto;
-    width: 100%;
-  }
   header img {
     height: auto;
     object-fit: contain;
+    margin-top: var(--padding-0);
   }
-  h1 {
-    font-size: 5em;
-    text-align: center;
+}
+/** small landscape layout */
+@media (orientation: landscape) and (max-height: 430px) {
+  header .img-part {
+    width: 50%;
+  }
+  .container {
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
+  }
+  .container-1 {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
+  }
+  .container-1 .left-part {
+    width: 80%;
+  }
+  .container-1 .left-part img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    padding-right: 0;
+  }
+  .container-1 .right-part {
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    padding-top: var(--padding-0);
+  }
+  .container-1 .right-part .fade-in-container {
+    padding-right: var(--padding-0);
+    padding-bottom: 0;
+  }
+  .container-1 .right-part img {
+    width: 35vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+  .container-1 .right-part .text-part {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .container-2 {
+    height: 80vh;
+  }
+  .container-2 img {
+    padding-left: var(--padding--2);
+    padding-right: var(--padding--2);
+  }
+  .container-3 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container-4 img {
+    padding-left: var(--padding--2);
+    padding-right: var(--padding--2);
+  }
+}
+/** portrait layout */
+@media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
+  header .img-part {
+    width: 100%;
   }
   .container {
     flex-direction: column;
@@ -314,9 +374,6 @@ header img {
     padding-left: var(--padding-0);
     padding-right: var(--padding-0);
   }
-  .container-1 {
-    margin-bottom: -4vh;
-  }
   .container-1 .right-part img {
     width: 100%;
   }
@@ -330,8 +387,19 @@ header img {
     height: 50vh;
     width: 100%;
   }
-  .container-3 .right-part .img-container {
-    height: 50vh;
+  .container-3 img {
+    height: unset;
+    width: 100%;
+  }
+  .container-3 .left-part {
+    height: unset;
+  }
+  .container-3 .right-part .fade-in-container {
+    height: unset;
+    width: 100%;
+  }
+  .container-3 .right-part img {
+    height: unset;
     width: 100%;
   }
   .container-4 {

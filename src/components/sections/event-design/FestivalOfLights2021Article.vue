@@ -216,18 +216,21 @@ header img {
   .container-2 .right-part img {
     width: calc(50vw - var(--padding-0));
   }
+  .container-3 {
+    align-items: flex-end;
+  }
 }
 /** portrait layout */
 @media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
   .container {
     flex-direction: column;
-    row-gap: 3vh;
+    row-gap: var(--article-row-gap);
     padding-left: var(--padding-0);
     padding-right: var(--padding-0);
   }
   .container-1 {
-    row-gap: 5vh;
-    margin-bottom: -3vh;
+    row-gap: var(--article-row-gap);
+    margin-bottom: var(--color-palette-bottom-margin);
   }
   .container img {
     width: 100%;
@@ -257,9 +260,6 @@ header img {
     width: 100%;
     height: auto;
     padding-right: 0;
-  }
-  .container-3 {
-    margin-top: -2vh;
   }
   .container-3 .left-part img {
     width: 100%;

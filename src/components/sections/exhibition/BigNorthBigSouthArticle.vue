@@ -206,7 +206,6 @@ header {
     flex-direction: column;
     padding-left: 0;
     padding-right: 0;
-    margin-bottom: -7vh;
   }
   .container .left-part {
     width: 100vw;
@@ -215,9 +214,11 @@ header {
     margin-right: 0;
   }
   .container .right-part {
-    padding-top: 5vh;
+    padding-top: var(--article-row-gap);
     padding-left: var(--padding-0);
     padding-right: var(--padding-0);
+    padding-bottom: unset;
+    margin-bottom: var(--color-palette-bottom-margin);
   }
   .carousel-interval img {
     width: 100%;

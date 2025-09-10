@@ -208,7 +208,7 @@ header {
     flex-direction: column;
     padding-left: var(--padding--1);
     padding-right: var(--padding--1);
-    margin-bottom: -3vh;
+    margin-bottom: var(--color-palette-bottom-margin);
   }
   .container .left-part img {
     width: calc(100vw - var(--padding-0));
@@ -218,7 +218,7 @@ header {
     padding-right: 0;
   }
   .container .right-part {
-    padding-top: 5vh;
+    padding-top: var(--article-row-gap);
     padding-left: var(--padding--1);
     padding-right: var(--padding--1);
   }
