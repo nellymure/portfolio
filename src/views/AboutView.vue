@@ -158,7 +158,7 @@ function openEmail() {
 }
 .asterisk-3 {
   top: calc(100vh - var(--asterisk-size) * 0.91);
-  left: calc(68vw + var(--asterisk-offset));
+  left: calc(60vw + var(--asterisk-offset));
   height: calc(var(--asterisk-size) * 0.91);
   color: var(--color-hex-orange);
 }
@@ -168,16 +168,14 @@ function openEmail() {
 .contact-container {
   position: absolute;
   z-index: 3;
-  right: 0;
-  bottom: 15%;
-  background-color: brown;
-  color: white;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--padding--1) var(--padding-0);
-  margin-right: calc(-1 * var(--padding-0));
-  font-size: var(--font-size--1);
+  padding: var(--padding--1) var(--padding-2);
 }
 @keyframes scale-in {
   0% {
@@ -212,8 +210,18 @@ function openEmail() {
     top: calc(-0.1 * var(--asterisk-size));
     left: calc(40vw);
   }
+  .asterisk-3 {
+    left: calc(68vw + var(--asterisk-offset));
+  }
   .contact-container {
-    margin-right: 0;
+    padding: 0 0;
+  }
+  .contact-container svg {
+    width: 80%;
+    padding: var(--padding--2) var(--padding-0);
+  }
+  .content .fade-in-container {
+    margin-bottom: var(--padding--2);
   }
 }
 /** portrait layout */
@@ -251,9 +259,6 @@ function openEmail() {
     top: 40vh;
     left: calc(100% + var(--asterisk-offset));
     height: var(--asterisk-size);
-  }
-  .contact-container {
-    bottom: 5%;
   }
 }
 </style>

@@ -170,10 +170,8 @@ header {
   .text-part .title {
     text-align: center;
   }
-  .header-image {
+  .img-part {
     width: 50vw;
-    height: unset;
-    object-fit: contain;
   }
   .container {
     display: flex;

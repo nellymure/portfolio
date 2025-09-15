@@ -74,6 +74,7 @@
 }
 :root {
   /* @link https://utopia.fyi/type/calculator?c=360,16,1.2,2400,24,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  font-size: 16px;
   --font-size--2: clamp(0.6944rem, 0.6476rem + 0.2083cqi, 0.96rem);
   --font-size--1: clamp(0.8333rem, 0.7686rem + 0.2876cqi, 1.2rem);
   --font-size-0: clamp(1rem, 0.9118rem + 0.3922cqi, 1.5rem);
