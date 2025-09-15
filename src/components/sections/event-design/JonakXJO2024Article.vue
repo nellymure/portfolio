@@ -182,7 +182,6 @@ header {
     padding-right: var(--padding-0);
   }
   .container .left-part img {
-    max-height: 80vh;
     object-fit: contain;
     padding-right: 0;
   }

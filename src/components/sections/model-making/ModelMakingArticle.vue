@@ -154,7 +154,7 @@ header img {
   margin-top: 20vh;
   margin-bottom: 20vh;
   padding-left: 0;
-  padding-right: 0;
+  padding-right: var(--padding-2);
 }
 .container-1 .left-part img {
   display: flex;
@@ -206,7 +206,6 @@ header img {
 /** portrait layout and small landscape layout */
 @media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) or (max-height: 430px) {
   header {
-    flex-direction: column;
     padding-left: var(--padding-0);
     padding-right: var(--padding-0);
   }
@@ -215,7 +214,6 @@ header img {
     max-width: 100%;
     width: 100%;
     align-items: center;
-    margin-right: 0;
   }
   .text-part .title {
     text-align: center;
@@ -232,8 +230,11 @@ header img {
 }
 /** small landscape layout */
 @media (orientation: landscape) and (max-height: 430px) {
-  header .img-part {
-    width: 50%;
+  .text-part .title {
+    margin-right: center;
+  }
+  .container-1 {
+    padding-right: var(--padding-0);
   }
   .container-2 {
     padding-left: var(--padding-0);
@@ -253,6 +254,12 @@ header img {
 }
 /** portrait layout */
 @media (orientation: portrait) or ((max-width: 720px) and (min-height: 431px)) {
+  header {
+    flex-direction: column;
+  }
+  .text-part {
+    margin-right: 0;
+  }
   .description {
     text-align: center;
     padding-bottom: 1em;

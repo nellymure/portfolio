@@ -222,7 +222,13 @@ header {
 /** small landscape layout */
 @media (orientation: landscape) and (max-height: 430px) {
   .container {
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
     hyphens: auto;
+  }
+  .container .left-part img {
+    width: 60vw;
+    padding-right: var(--padding-0);
   }
 }
 /** portrait layout */

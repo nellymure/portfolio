@@ -131,12 +131,6 @@ header {
   align-items: flex-end;
   margin-right: var(--padding-1);
 }
-.container .right-part {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-bottom: 3em;
-}
 .container img {
   width: 100%;
 }
@@ -181,7 +175,14 @@ header {
     object-fit: contain;
   }
   .container {
+    padding-left: var(--padding-0);
+    padding-right: var(--padding-0);
     hyphens: auto;
+  }
+  .container .left-part {
+    min-width: 50vw;
+    width: 50vw;
+    margin-right: var(--padding-0);
   }
 }
 /** portrait layout */
