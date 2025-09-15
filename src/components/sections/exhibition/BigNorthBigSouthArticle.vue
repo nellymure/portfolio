@@ -131,6 +131,9 @@ header {
   align-items: flex-end;
   margin-right: var(--padding-1);
 }
+.container .right-part {
+  padding-bottom: 3em;
+}
 .container img {
   width: 100%;
 }
@@ -162,6 +165,9 @@ header {
   }
   .text-part .title {
     text-align: center;
+  }
+  .container .right-part {
+    padding-bottom: 0;
   }
 }
 /** small landscape layout */
