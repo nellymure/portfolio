@@ -107,8 +107,8 @@ header {
   padding-right: var(--padding-2);
 }
 .text-part {
-  max-width: 35vw;
-  margin-right: var(--padding-1);
+  max-width: 50%;
+  margin-right: var(--padding-0);
 }
 .img-part {
   height: 80vh;
@@ -121,8 +121,8 @@ header {
 .container {
   display: flex;
   align-items: flex-end;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .container .left-part {
   min-width: 60vw;
@@ -144,16 +144,9 @@ header {
   width: 100vw;
   height: auto;
 }
-.last-image-container {
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
-}
-.last-image-container img {
-  width: 100%;
-}
 .carousel-interval {
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .carousel-interval img {
   width: 80%;

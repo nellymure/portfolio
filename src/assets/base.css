@@ -74,14 +74,14 @@
 }
 :root {
   /* @link https://utopia.fyi/type/calculator?c=360,16,1.2,2400,24,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-  --font-size--2: clamp(0.6944rem, 0.6476rem + 0.2083vw, 0.96rem);
-  --font-size--1: clamp(0.8333rem, 0.7686rem + 0.2876vw, 1.2rem);
-  --font-size-0: clamp(1rem, 0.9118rem + 0.3922vw, 1.5rem);
-  --font-size-1: clamp(1.2rem, 1.0809rem + 0.5294vw, 1.875rem);
-  --font-size-2: clamp(1.44rem, 1.2805rem + 0.7088vw, 2.3438rem);
-  --font-size-3: clamp(1.728rem, 1.5159rem + 0.9425vw, 2.9297rem);
-  --font-size-4: clamp(2.0736rem, 1.7933rem + 1.2459vw, 3.6621rem);
-  --font-size-5: clamp(2.4883rem, 2.1196rem + 1.6387vw, 4.5776rem);
+  --font-size--2: clamp(0.6944rem, 0.6476rem + 0.2083cqi, 0.96rem);
+  --font-size--1: clamp(0.8333rem, 0.7686rem + 0.2876cqi, 1.2rem);
+  --font-size-0: clamp(1rem, 0.9118rem + 0.3922cqi, 1.5rem);
+  --font-size-1: clamp(1.2rem, 1.0809rem + 0.5294cqi, 1.875rem);
+  --font-size-2: clamp(1.44rem, 1.2805rem + 0.7088cqi, 2.3438rem);
+  --font-size-3: clamp(1.728rem, 1.5159rem + 0.9425cqi, 2.9297rem);
+  --font-size-4: clamp(2.0736rem, 1.7933rem + 1.2459cqi, 3.6621rem);
+  --font-size-5: clamp(2.4883rem, 2.1196rem + 1.6387cqi, 4.5776rem);
   --font-size-X4: calc(var(--font-size-4) * 2);
   --font-size-X5: calc(var(--font-size-5) * 2);
 

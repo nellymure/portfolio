@@ -96,7 +96,7 @@ header {
   padding-right: var(--padding-2);
 }
 .text-part {
-  max-width: 30vw;
+  max-width: 40%;
   margin-right: var(--padding-1);
 }
 .img-part {

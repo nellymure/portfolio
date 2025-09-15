@@ -122,14 +122,13 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: center;
   height: 80vh;
-  max-width: 35vw;
+  max-width: 40%;
   margin-right: var(--padding-0);
   padding-bottom: var(--padding-0);
 }
 .img-part {
-  width: 50vw;
+  width: 100%;
   display: flex;
   align-items: flex-end;
 }

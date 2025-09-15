@@ -32,7 +32,7 @@ const { t } = useI18n()
     </header>
     <div class="container container-1">
       <div class="left-part">
-        <FadeInViewport delay="0.5s" :debug="true">
+        <FadeInViewport delay="0.5s">
           <img src="@/assets/images/sections/event-design/IMG_5917.jpg" />
         </FadeInViewport>
       </div>
@@ -109,11 +109,14 @@ header {
   display: flex;
   align-items: center;
   padding-left: var(--padding-2);
-  padding-right: var(--padding-0);
+  padding-right: var(--padding-2);
 }
 .text-part {
-  max-width: 35vw;
+  max-width: 35%;
   margin-right: var(--padding-1);
+}
+.img-part {
+  width: 100%;
 }
 header img {
   width: 100%;

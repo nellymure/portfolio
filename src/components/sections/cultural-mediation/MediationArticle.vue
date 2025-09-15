@@ -99,7 +99,7 @@ header {
   padding-right: var(--padding-2);
 }
 .text-part {
-  max-width: 35vw;
+  max-width: 35%;
   margin-right: var(--padding-0);
 }
 .container {

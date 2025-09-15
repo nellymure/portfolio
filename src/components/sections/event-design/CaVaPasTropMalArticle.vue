@@ -83,7 +83,7 @@ const { isLargeLandscapeLayout, isLandscapeLayout, isPortraitLayout } = useLayou
         </FadeInViewport>
       </div>
       <div class="right-part">
-        <FadeInViewport delay="0.5s" :debug="true">
+        <FadeInViewport delay="0.5s">
           <img src="@/assets/images/sections/event-design/IMG_8198.jpg" />
         </FadeInViewport>
         <p>{{ t('paragraphs[2]') }}</p>
@@ -213,7 +213,7 @@ header {
   padding-right: var(--padding-2);
 }
 .text-part {
-  max-width: 35vw;
+  max-width: 35%;
   margin-right: var(--padding-1);
 }
 .img-part {

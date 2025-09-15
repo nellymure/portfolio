@@ -137,7 +137,7 @@ header {
   padding-right: var(--padding-2);
 }
 .text-part {
-  max-width: 35vw;
+  max-width: 35%;
   margin-right: var(--padding-0);
 }
 .img-part {
@@ -150,8 +150,8 @@ header {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .container .left-part img {
   width: 60vw;
@@ -171,23 +171,23 @@ header {
   height: auto;
 }
 .last-image-container {
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .last-image-container img {
   width: 100%;
 }
 .carousel-arrow {
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .carousel-arrow img {
   width: 100%;
   height: auto;
 }
 .carousel-interval {
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .carousel-interval img {
   width: 80%;

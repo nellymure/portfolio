@@ -34,7 +34,7 @@ const { t } = useI18n()
     <div class="container">
       <div class="left-part">
         <FadeInViewport delay="0.5s">
-          <img class="header-image" src="@/assets/images/sections/event-design/piste-course.png" />
+          <img src="@/assets/images/sections/event-design/piste-course.png" />
         </FadeInViewport>
       </div>
       <div class="right-part">
@@ -102,7 +102,7 @@ header {
   padding-right: var(--padding-2);
 }
 .text-part {
-  max-width: 35vw;
+  max-width: 35%;
   margin-right: var(--padding-1);
 }
 .img-part {
@@ -126,6 +126,10 @@ header {
   justify-content: center;
   padding-right: var(--padding--1);
 }
+.container .left-part .fade-in-container {
+  display: flex;
+  justify-content: center;
+}
 .container .right-part {
   height: 100%;
   display: flex;
@@ -133,7 +137,7 @@ header {
   align-items: flex-start;
 }
 .container img {
-  width: 100%;
+  width: 50%;
 }
 .full-img {
   width: 100vw;
@@ -147,8 +151,8 @@ header {
 .carousel-arrow {
   width: 80%;
   margin-left: 10%;
-  padding-left: var(--padding-0);
-  padding-right: var(--padding-0);
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-2);
 }
 .carousel-arrow img {
   width: 100%;
