@@ -6,9 +6,14 @@ import { routes, getRouteName } from '@/router'
 import { RouterLink } from 'vue-router'
 import IconAsterisk from '@/components/icons/IconAsterisk.vue'
 import { useLayout } from '@/utils/screen-utils'
+import MailSvg from '@/components/mail/MailSvg.vue'
 
 const { t } = useI18n()
 const { isLandscapeLayout } = useLayout()
+
+function openEmail() {
+  window.location.href = 'mailto:nelly.mure43@gmail.com'
+}
 </script>
 
 <template>
@@ -24,6 +29,9 @@ const { isLandscapeLayout } = useLayout()
       </p>
       <FadeInViewport delay="0.5s">
         <img class="selfie" src="@/assets/images/about/selfie.jpg" alt="selfie" />
+        <div class="contact-container" @click="openEmail">
+          <MailSvg />
+        </div>
       </FadeInViewport>
       <div class="asterisk asterisk-1">
         <IconAsterisk />
@@ -47,6 +55,9 @@ const { isLandscapeLayout } = useLayout()
           </div>
           <div class="asterisk asterisk-3">
             <IconAsterisk />
+          </div>
+          <div class="contact-container" @click="openEmail">
+            <MailSvg />
           </div>
         </div>
       </FadeInViewport>
@@ -154,6 +165,20 @@ const { isLandscapeLayout } = useLayout()
 .asterisk-3 .icon-asterisk {
   height: calc(var(--asterisk-size) * 0.91);
 }
+.contact-container {
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  bottom: 15%;
+  background-color: brown;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--padding--1) var(--padding-0);
+  margin-right: calc(-1 * var(--padding-0));
+  font-size: var(--font-size--1);
+}
 @keyframes scale-in {
   0% {
     transform: scale(0);
@@ -186,6 +211,9 @@ const { isLandscapeLayout } = useLayout()
   .asterisk-1 {
     top: calc(-0.1 * var(--asterisk-size));
     left: calc(40vw);
+  }
+  .contact-container {
+    margin-right: 0;
   }
 }
 /** portrait layout */
@@ -223,6 +251,9 @@ const { isLandscapeLayout } = useLayout()
     top: 40vh;
     left: calc(100% + var(--asterisk-offset));
     height: var(--asterisk-size);
+  }
+  .contact-container {
+    bottom: 5%;
   }
 }
 </style>
