@@ -233,7 +233,8 @@ function openEmail() {
   }
   .content {
     flex-direction: column;
-    padding: var(--navbar-height) var(--padding-0) var(--padding-0) var(--padding-0);
+    padding: var(--padding-0);
+    margin-top: calc(var(--article-row-gap) * 2);
     height: auto;
     --asterisk-size: 30vw;
   }
