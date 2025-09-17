@@ -7,12 +7,24 @@ import { RouterLink } from 'vue-router'
 import IconAsterisk from '@/components/icons/IconAsterisk.vue'
 import { useLayout } from '@/utils/screen-utils'
 import MailSvg from '@/components/mail/MailSvg.vue'
+import HeaderOutline from '@/components/HeaderOutline.vue'
+import IconDownloadArrow from '@/components/icons/IconDownloadArrow.vue'
 
 const { t } = useI18n()
 const { isLandscapeLayout } = useLayout()
 
 function openEmail() {
   window.location.href = 'mailto:nelly.mure43@gmail.com'
+}
+function downloadCV() {
+  const url = `${import.meta.env.BASE_URL}cv_nelly_mure.pdf`
+  const link = document.createElement('a')
+  link.href = url
+  link.download = 'cv_nelly_mure.pdf'
+  link.target = '_blank'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
 }
 </script>
 
@@ -24,9 +36,12 @@ function openEmail() {
       </template>
     </NavBar>
     <div v-if="isLandscapeLayout" class="content">
-      <p class="text-indent">
-        {{ t('about') }}
-      </p>
+      <div class="text-part">
+        <HeaderOutline @click="downloadCV"> <IconDownloadArrow /> CV </HeaderOutline>
+        <p class="text-indent">
+          {{ t('about') }}
+        </p>
+      </div>
       <FadeInViewport delay="0.5s">
         <img class="selfie" src="@/assets/images/about/selfie.jpg" alt="selfie" />
         <div class="contact-container" @click="openEmail">
@@ -44,9 +59,12 @@ function openEmail() {
       </div>
     </div>
     <div v-else class="content">
-      <p class="text-indent">
-        {{ t('about') }}
-      </p>
+      <div class="text-part">
+        <p class="text-indent">
+          {{ t('about') }}
+        </p>
+        <HeaderOutline @click="downloadCV"> <IconDownloadArrow /> CV </HeaderOutline>
+      </div>
       <FadeInViewport delay="0.5s">
         <div class="selfie">
           <img src="@/assets/images/about/selfie.jpg" alt="selfie" />
@@ -114,6 +132,22 @@ function openEmail() {
   --asterisk-size: var(--font-size-X5);
   --asterisk-offset: var(--asterisk-size) / -2;
   height: 90vh;
+}
+.text-part {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.outline {
+  margin-right: -1em;
+  font-size: var(--font-size-1);
+  padding-right: var(--padding-2);
+  padding-bottom: var(--padding-0);
+}
+.outline .left,
+.outline .content,
+.outline .right {
+  height: 2em;
 }
 .content p {
   font-size: var(--font-size-0);
@@ -192,10 +226,16 @@ function openEmail() {
   }
   .content {
     height: 90svh;
+    align-items: center;
     padding-left: var(--padding-0);
     padding-right: var(--padding-0);
     --asterisk-size: var(--font-size-X4);
     --asterisk-offset: var(--asterisk-size) / -2;
+  }
+  .outline {
+    padding-right: var(--padding-0);
+    padding-bottom: var(--padding--1);
+    --border-size: 0.05em;
   }
   .content p {
     font-size: var(--font-size--1);
@@ -221,6 +261,7 @@ function openEmail() {
     padding: var(--padding--2) var(--padding-0);
   }
   .content .fade-in-container {
+    align-self: flex-end;
     margin-bottom: var(--padding--2);
   }
 }
@@ -237,6 +278,12 @@ function openEmail() {
     margin-top: calc(var(--article-row-gap) * 2);
     height: auto;
     --asterisk-size: 30vw;
+  }
+  .text-part {
+    align-items: center;
+  }
+  .outline {
+    padding-right: 0;
   }
   .content p {
     font-size: 1rem;

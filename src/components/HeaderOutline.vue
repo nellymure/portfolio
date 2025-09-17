@@ -1,14 +1,5 @@
-<script setup lang="ts">
-defineProps({
-  outlineWidth: {
-    type: String,
-    default: '0.3em',
-  },
-})
-</script>
-
 <template>
-  <div class="container">
+  <div class="outline">
     <div class="left"></div>
     <div class="content">
       <slot></slot>
@@ -18,34 +9,35 @@ defineProps({
 </template>
 
 <style lang="css" scoped>
-.container {
+.outline {
   display: flex;
   flex-direction: row;
   font-family: var(--font-family-antic-didone);
   font-weight: var(--font-weight-light);
   font-size: 1.783rem;
-  color: var(--color-hex-black-orange);
+  color: var(--color-hex-orange);
+  --border-size: 0.1em;
 }
 .content {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-basis: auto;
-  border: v-bind(outlineWidth) solid var(--color-hex-black-orange);
+  border: var(--border-size) solid var(--color-hex-orange);
   border-left: 0;
   border-right: 0;
-  width: 100%;
 }
 .left {
-  width: 20%;
+  width: 2em;
   transform: translateX(52%);
-  border: v-bind(outlineWidth) solid var(--color-hex-black-orange);
+  border: var(--border-size) solid var(--color-hex-orange);
   border-right: 0;
   border-radius: 50% 0 0 50%;
 }
 .right {
-  width: 20%;
+  width: 2em;
   transform: translateX(-52%);
-  border: v-bind(outlineWidth) solid var(--color-hex-black-orange);
+  border: var(--border-size) solid var(--color-hex-orange);
   border-left: 0;
   border-radius: 0 50% 50% 0;
 }
